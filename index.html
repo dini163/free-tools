@@ -439,7 +439,11 @@
             .tools-grid { grid-template-columns: 1fr; }
             .header-inner { flex-direction: column; gap: 1rem; }
         }
-    </style>
+    
+a.tool-card-link { text-decoration: none; color: inherit; display: block; }
+a.tool-card-link:hover { transform: none; }
+
+</style>
 </head>
 <body>
 
@@ -484,44 +488,44 @@
 <div class="tools-grid" id="toolsGrid">
 
     <!-- 1. JSON Formatter -->
-    <div class="tool-card" data-cat="developer" onclick="openTool('json')">
+    <a href="tools/json-formatter.html" class="tool-card-link"><div class="tool-card" data-cat="developer" >
         <div class="tool-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">&#128203;</div>
         <h3>JSON Formatter</h3>
         <p>Format, validate, and beautify JSON data instantly.</p>
         <span class="tool-tag">Developer</span>
-    </div>
+    </div></a>
 
     <!-- 2. Word Counter -->
-    <div class="tool-card" data-cat="text" onclick="openTool('wordcount')">
+    <a href="tools/word-counter.html" class="tool-card-link"><div class="tool-card" data-cat="text" >
         <div class="tool-icon" style="background: linear-gradient(135deg, #3b82f6, #2563eb);">&#128221;</div>
         <h3>Word Counter</h3>
         <p>Count words, characters, sentences, and paragraphs.</p>
         <span class="tool-tag">Text</span>
-    </div>
+    </div></a>
 
     <!-- 3. Base64 Encoder/Decoder -->
-    <div class="tool-card" data-cat="converter developer" onclick="openTool('base64')">
+    <a href="tools/base64-encoder-decoder.html" class="tool-card-link"><div class="tool-card" data-cat="converter developer" >
         <div class="tool-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">&#128272;</div>
         <h3>Base64 Encoder/Decoder</h3>
         <p>Encode or decode Base64 strings instantly.</p>
         <span class="tool-tag">Converter</span>
-    </div>
+    </div></a>
 
     <!-- 4. Password Generator -->
-    <div class="tool-card" data-cat="security generator" onclick="openTool('password')">
+    <a href="tools/password-generator.html" class="tool-card-link"><div class="tool-card" data-cat="security generator" >
         <div class="tool-icon" style="background: linear-gradient(135deg, #22c55e, #16a34a);">&#128274;</div>
         <h3>Password Generator</h3>
         <p>Generate strong, secure random passwords.</p>
         <span class="tool-tag">Security</span>
-    </div>
+    </div></a>
 
     <!-- 5. Markdown Preview -->
-    <div class="tool-card" data-cat="text developer" onclick="openTool('markdown')">
+    <a href="tools/markdown-preview.html" class="tool-card-link"><div class="tool-card" data-cat="text developer" >
         <div class="tool-icon" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">&#9997;</div>
         <h3>Markdown Preview</h3>
         <p>Write Markdown and see live HTML preview.</p>
         <span class="tool-tag">Developer</span>
-    </div>
+    </div></a>
 
     <!-- 6. URL Encoder/Decoder -->
     <div class="tool-card" data-cat="converter developer" onclick="openTool('url')">
@@ -532,20 +536,20 @@
     </div>
 
     <!-- 7. Lorem Ipsum Generator -->
-    <div class="tool-card" data-cat="text generator" onclick="openTool('lorem')">
+    <a href="tools/lorem-ipsum-generator.html" class="tool-card-link"><div class="tool-card" data-cat="text generator" >
         <div class="tool-icon" style="background: linear-gradient(135deg, #f97316, #ea580c);">&#128196;</div>
         <h3>Lorem Ipsum Generator</h3>
         <p>Generate placeholder text for designs and mockups.</p>
         <span class="tool-tag">Generator</span>
-    </div>
+    </div></a>
 
     <!-- 8. Color Picker/Converter -->
-    <div class="tool-card" data-cat="developer converter" onclick="openTool('color')">
+    <a href="tools/color-picker.html" class="tool-card-link"><div class="tool-card" data-cat="developer converter" >
         <div class="tool-icon" style="background: linear-gradient(135deg, #e879f9, #d946ef);">&#127912;</div>
         <h3>Color Picker & Converter</h3>
         <p>Convert between HEX, RGB, HSL color formats.</p>
         <span class="tool-tag">Converter</span>
-    </div>
+    </div></a>
 
     <!-- 9. Timestamp Converter -->
     <div class="tool-card" data-cat="converter" onclick="openTool('timestamp')">
@@ -604,12 +608,12 @@
     </div>
 
     <!-- 16. QR Code Generator -->
-    <div class="tool-card" data-cat="generator" onclick="openTool('qr')">
+    <a href="tools/qr-code-generator.html" class="tool-card-link"><div class="tool-card" data-cat="generator" >
         <div class="tool-icon" style="background: linear-gradient(135deg, #84cc16, #65a30d);">&#9638;</div>
         <h3>QR Code Generator</h3>
         <p>Generate QR codes for URLs, text, or contact info.</p>
         <span class="tool-tag">Generator</span>
-    </div>
+    </div></a>
 
     <!-- 17. Regex Tester -->
     <div class="tool-card" data-cat="developer" onclick="openTool('regex')">
