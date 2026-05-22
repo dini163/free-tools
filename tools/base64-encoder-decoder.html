@@ -3,86 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Base64 Encoder & Decoder - Free Online Tool</title>
-    <meta name="description" content="Encode or decode Base64 strings instantly. Supports UTF-8 text.">
-    <meta name="keywords" content="base64 encoder, base64 decoder, base64 converter">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9267698062788796"
+     crossorigin="anonymous"></script>
+    <title>Base64 Encoder/Decoder - Free Online Tool</title>
+    <meta name="description" content="Encode and decode text into Base64 format instantly. Simple, fast, secure browser-based tool.">
+    <meta name="keywords" content="base64 encoder, base64 decoder, text to base64, base64 online tool">
     <link rel="canonical" href="https://dini163.github.io/free-tools/tools/base64-encoder-decoder.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-:root {
-    --bg-primary: #0f172a; --bg-secondary: #1e293b; --bg-card: #1e293b;
-    --bg-card-hover: #334155; --text-primary: #f1f5f9; --text-secondary: #94a3b8;
-    --text-muted: #64748b; --accent: #6366f1; --accent-light: #818cf8;
-    --accent-dark: #4f46e5; --border: #334155; --success: #22c55e;
-    --warning: #f59e0b; --error: #ef4444; --radius: 12px;
-    --shadow: 0 4px 6px -1px rgba(0,0,0,0.3); --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.4);
-}
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; }
-.header { background: var(--bg-secondary); border-bottom: 1px solid var(--border); padding: 1rem 2rem; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px); }
-.header-inner { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-.logo { display: flex; align-items: center; gap: 0.75rem; font-size: 1.5rem; font-weight: 800; text-decoration: none; color: var(--text-primary); }
-.logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, #6366f1, #8b5cf6); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; }
-.nav-links { display: flex; gap: 1.5rem; align-items: center; }
-.nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
-.nav-links a:hover { color: var(--accent-light); }
-main { flex: 1; max-width: 900px; margin: 2rem auto; padding: 0 1.5rem; width: 100%; }
-footer { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 2rem; text-align: center; color: var(--text-muted); font-size: 0.875rem; margin-top: auto; }
-footer a { color: var(--accent-light); text-decoration: none; }
-.tool-textarea { width: 100%; min-height: 150px; padding: 1rem; background: var(--bg-primary); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text-primary); font-family: 'Fira Code', monospace; font-size: 0.875rem; resize: vertical; margin-bottom: 1rem; }
-.tool-textarea:focus { outline: none; border-color: var(--accent); }
-.tool-output { width: 100%; min-height: 100px; padding: 1rem; background: var(--bg-primary); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text-primary); font-family: 'Fira Code', monospace; font-size: 0.875rem; white-space: pre-wrap; word-break: break-all; margin-bottom: 1rem; }
-.btn { padding: 0.625rem 1.25rem; border-radius: 8px; border: none; font-weight: 600; cursor: pointer; transition: all 0.2s; font-size: 0.875rem; display: inline-block; }
-.btn-primary { background: var(--accent); color: white; }
-.btn-primary:hover { background: var(--accent-dark); }
-.btn-secondary { background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border); }
-.btn-secondary:hover { background: var(--bg-card-hover); }
-.btn-group { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
-.result-container { position: relative; }
-.copy-btn { position: absolute; top: 0.5rem; right: 0.5rem; padding: 0.375rem 0.75rem; font-size: 0.75rem; }
-.stats-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
-.stat-box { background: var(--bg-primary); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem 1rem; text-align: center; flex: 1; min-width: 80px; }
-.stat-value { font-size: 1.5rem; font-weight: 700; color: var(--accent-light); }
-.stat-label { font-size: 0.75rem; color: var(--text-muted); }
-.color-preview { width: 100%; height: 100px; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 1rem; }
-.password-result { font-size: 1.5rem; font-family: 'Fira Code', monospace; text-align: center; padding: 1.5rem; background: var(--bg-primary); border-radius: var(--radius); margin-bottom: 1rem; word-break: break-all; letter-spacing: 2px; }
-.strength-bar { height: 6px; border-radius: 3px; background: var(--border); margin-bottom: 1rem; overflow: hidden; }
-.strength-fill { height: 100%; border-radius: 3px; transition: all 0.3s; }
-.prompt-templates { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.75rem; margin-bottom: 1rem; }
-.prompt-template { padding: 0.75rem; background: var(--bg-primary); border: 1px solid var(--border); border-radius: 8px; cursor: pointer; transition: all 0.2s; }
-.prompt-template:hover { border-color: var(--accent); background: var(--bg-card-hover); }
-.prompt-template h4 { font-size: 0.875rem; margin-bottom: 0.25rem; }
-.prompt-template p { font-size: 0.75rem; color: var(--text-muted); }
-.tool-row { display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
-.tool-col { flex: 1; min-width: 200px; }
-.tool-label { display: block; color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.5rem; font-weight: 500; }
-.tool-select, .tool-input { width: 100%; padding: 0.625rem 0.875rem; background: var(--bg-primary); border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary); font-size: 0.875rem; }
-.tool-select:focus, .tool-input:focus { outline: none; border-color: var(--accent); }
-h1.tool-title { font-size: 2rem; font-weight: 800; margin-bottom: 1rem; background: linear-gradient(135deg, #6366f1, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-p.tool-desc { color: var(--text-secondary); font-size: 1.125rem; margin-bottom: 2rem; }
-@media (max-width: 640px) { h1.tool-title { font-size: 1.5rem; } }
-</style>
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Base64 Encoder & Decoder",
-      "description": "Encode or decode Base64 strings instantly. Supports UTF-8 text.",
-      "applicationCategory": "DeveloperApplication",
-      "operatingSystem": "Any",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-      "browserRequirements": "Requires JavaScript"
-    }
-    </script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
 <header class="header">
     <div class="header-inner">
         <a href="../index.html" class="logo">
-            <div class="logo-icon">&#9889;</div>
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+            </div>
             FreeDevTools
         </a>
         <nav class="nav-links">
@@ -91,32 +31,64 @@ p.tool-desc { color: var(--text-secondary); font-size: 1.125rem; margin-bottom: 
     </div>
 </header>
 
-<main>
-    <h1 class="tool-title">Base64 Encoder & Decoder</h1>
-    <p class="tool-desc">Encode or decode Base64 strings instantly. Supports UTF-8 text.</p>
+<main style="max-width: 900px; margin-top: 2rem;">
+    <h1 class="tool-title">Base64 Encoder/Decoder</h1>
+    <p class="tool-desc">Encode plain text to Base64 formatting or translate Base64 keys back to standard UTF-8 strings.</p>
     
-    <textarea class="tool-textarea" id="b64Input" placeholder="Enter text to encode or Base64 to decode..."></textarea>
+    <label class="tool-label">Input Source Text</label>
+    <textarea class="tool-textarea" id="b64Input" placeholder="Enter text to encode or Base64 to decode..." style="min-height: 180px;"></textarea>
+    
     <div class="btn-group">
-        <button class="btn btn-primary" onclick="b64Encode()">&#128272; Encode</button>
-        <button class="btn btn-secondary" onclick="b64Decode()">&#128274; Decode</button>
-        <button class="btn btn-secondary copy-btn" onclick="copyText('b64Output')">Copy</button>
-    </div>
-    <div class="result-container">
-        <div class="tool-output" id="b64Output">Output will appear here...</div>
+        <button class="btn btn-primary" onclick="b64Encode()">Encode String</button>
+        <button class="btn btn-secondary" onclick="b64Decode()">Decode String</button>
+        <button class="btn btn-secondary copy-btn" onclick="copyText('b64Output')">Copy Output</button>
     </div>
     
+    <label class="tool-label">Conversion Output</label>
+    <div class="result-container">
+        <div class="tool-output" id="b64Output" style="min-height: 120px;">Output will appear here...</div>
+    </div>
 </main>
 
-<footer>
-    <p>&copy; 2025 FreeDevTools. All tools run in your browser — no data is sent to any server. | <a href="https://github.com/dini163/free-tools" target="_blank">GitHub</a></p>
+<footer class="footer">
+    <p>&copy; 2026 FreeDevTools. All tools run 100% locally in your web browser — absolutely no data is transmitted to any server. Check the <a href="https://github.com/dini163/free-tools" target="_blank">GitHub Repository</a>.</p>
 </footer>
 
 <script>
-
-    function b64Encode() { try { document.getElementById('b64Output').textContent = btoa(unescape(encodeURIComponent(document.getElementById('b64Input').value))); } catch(e) { document.getElementById('b64Output').textContent = 'Error: ' + e.message; } }
-    function b64Decode() { try { document.getElementById('b64Output').textContent = decodeURIComponent(escape(atob(document.getElementById('b64Input').value.trim()))); } catch(e) { document.getElementById('b64Output').textContent = 'Error: Invalid Base64'; } }
-    function copyText(id) { const el = document.getElementById(id); navigator.clipboard.writeText(el.value || el.textContent).then(() => { const btn = document.querySelector('.copy-btn'); if (btn) { btn.textContent = 'Copied!'; setTimeout(() => btn.textContent = 'Copy', 1500); } }); }
-    
+function b64Encode() { 
+    try { 
+        const val = document.getElementById('b64Input').value;
+        if (!val) { document.getElementById('b64Output').textContent = 'Input is empty'; return; }
+        document.getElementById('b64Output').textContent = btoa(unescape(encodeURIComponent(val))); 
+    } catch(e) { 
+        document.getElementById('b64Output').textContent = 'Encoding Error: ' + e.message; 
+    } 
+}
+function b64Decode() { 
+    try { 
+        const val = document.getElementById('b64Input').value.trim();
+        if (!val) { document.getElementById('b64Output').textContent = 'Input is empty'; return; }
+        document.getElementById('b64Output').textContent = decodeURIComponent(escape(atob(val))); 
+    } catch(e) { 
+        document.getElementById('b64Output').textContent = 'Decoding Error: Invalid Base64 structure'; 
+    } 
+}
+function copyText(id) { 
+    const el = document.getElementById(id); 
+    navigator.clipboard.writeText(el.value || el.textContent).then(() => { 
+        const btn = document.querySelector('.copy-btn'); 
+        if (btn) { 
+            btn.textContent = 'Copied!'; 
+            btn.style.color = 'var(--success)';
+            btn.style.borderColor = 'var(--success)';
+            setTimeout(() => { 
+                btn.textContent = 'Copy Output'; 
+                btn.style.color = '';
+                btn.style.borderColor = '';
+            }, 1500); 
+        } 
+    }); 
+}
 </script>
 </body>
 </html>
