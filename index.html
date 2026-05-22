@@ -103,7 +103,7 @@
         <button class="cat-btn active" onclick="filterTools('all')" data-i18n="cat_all">All</button>
         <button class="cat-btn" onclick="filterTools('developer')" data-i18n="cat_dev">Developer</button>
         <button class="cat-btn" onclick="filterTools('text')" data-i18n="cat_text">Text Tools</button>
-        <button class="cat-btn" onclick="filterTools(\'converter\')" data-i18n="cat_conv">Converter</button>
+        <button class="cat-btn" onclick="filterTools('converter')" data-i18n="cat_conv">Converter</button>
         <button class="cat-btn" onclick="filterTools('generator')" data-i18n="cat_gen">Generator</button>
         <button class="cat-btn" onclick="filterTools('security')" data-i18n="cat_sec">Security</button>
         <button class="cat-btn" onclick="filterTools('design')" data-i18n="cat_design">Design</button>
@@ -123,8 +123,8 @@
                     </svg>
                 </div>
                 <h3 data-i18n="t_json_formatter">JSON Formatter</h3>
-                <p>Format, validate, and beautify JSON data instantly with syntax check.</p>
-                <span class="tool-tag">Developer</span>
+                <p data-i18n="d_json_formatter">Format, validate, and beautify JSON data instantly with syntax check.</p>
+                <span class="tool-tag" data-i18n="cat_dev">Developer</span>
             </div>
         </a>
 
@@ -141,8 +141,8 @@
                     </svg>
                 </div>
                 <h3 data-i18n="t_word_counter">Word Counter</h3>
-                <p>Count words, characters, sentences, paragraphs, and reading times.</p>
-                <span class="tool-tag">Text</span>
+                <p data-i18n="d_word_counter">Count words, characters, sentences, paragraphs, and reading times.</p>
+                <span class="tool-tag" data-i18n="cat_text">Text</span>
             </div>
         </a>
 
@@ -156,8 +156,8 @@
                     </svg>
                 </div>
                 <h3 data-i18n="t_base64">Base64 Encoder/Decoder</h3>
-                <p>Encode or decode Base64 strings instantly with support for UTF-8.</p>
-                <span class="tool-tag">Converter</span>
+                <p data-i18n="d_base64">Encode or decode Base64 strings instantly with support for UTF-8.</p>
+                <span class="tool-tag" data-i18n="cat_conv">Converter</span>
             </div>
         </a>
 
@@ -171,8 +171,8 @@
                     </svg>
                 </div>
                 <h3 data-i18n="t_password">Password Generator</h3>
-                <p>Generate highly secure, strong random passwords with customize criteria.</p>
-                <span class="tool-tag">Security</span>
+                <p data-i18n="d_password">Generate highly secure, strong random passwords with customize criteria.</p>
+                <span class="tool-tag" data-i18n="cat_sec">Security</span>
             </div>
         </a>
 
@@ -186,8 +186,8 @@
                     </svg>
                 </div>
                 <h3 data-i18n="t_markdown">Markdown Preview</h3>
-                <p>Write standard Markdown syntax and see rendered live HTML preview.</p>
-                <span class="tool-tag">Developer</span>
+                <p data-i18n="d_markdown">Write standard Markdown syntax and see rendered live HTML preview.</p>
+                <span class="tool-tag" data-i18n="cat_dev">Developer</span>
             </div>
         </a>
 
@@ -201,8 +201,8 @@
                 </svg>
             </div>
             <h3 data-i18n="t_url">URL Encoder/Decoder</h3>
-            <p>Encode or decode URL query strings safely for browser parameters.</p>
-            <span class="tool-tag">Converter</span>
+                <p data-i18n="d_url">Encode or decode URL query strings safely for browser parameters.</p>
+                <span class="tool-tag" data-i18n="cat_conv">Converter</span>
         </div>
 
         <!-- 7. Lorem Ipsum Generator -->
@@ -217,8 +217,8 @@
                     </svg>
                 </div>
                 <h3 data-i18n="t_lorem">Lorem Ipsum Generator</h3>
-                <p>Generate clean paragraph placeholder text for web design mockups.</p>
-                <span class="tool-tag">Generator</span>
+                <p data-i18n="d_lorem">Generate clean paragraph placeholder text for web design mockups.</p>
+                <span class="tool-tag" data-i18n="cat_gen">Generator</span>
             </div>
         </a>
 
@@ -235,8 +235,8 @@
                     </svg>
                 </div>
                 <h3 data-i18n="t_color">Color Picker & Converter</h3>
-                <p>Convert and inspect colors seamlessly between HEX, RGB, and HSL formats.</p>
-                <span class="tool-tag">Design</span>
+                <p data-i18n="d_color">Convert and inspect colors seamlessly between HEX, RGB, and HSL formats.</p>
+                <span class="tool-tag" data-i18n="cat_design">Design</span>
             </div>
         </a>
 
@@ -249,8 +249,8 @@
                 </svg>
             </div>
             <h3 data-i18n="t_timestamp">Timestamp Converter</h3>
-            <p>Translate Unix Epoch timestamps into human readable local and UTC dates.</p>
-            <span class="tool-tag">Converter</span>
+                <p data-i18n="d_timestamp">Translate Unix Epoch timestamps into human readable local and UTC dates.</p>
+                <span class="tool-tag" data-i18n="cat_conv">Converter</span>
         </div>
 
         <!-- 10. Case Converter -->
@@ -261,8 +261,8 @@
                 </svg>
             </div>
             <h3 data-i18n="t_case">Case Converter</h3>
-            <p>Convert text values to UPPER, lower, Title Case, camel, snake, or kebab formats.</p>
-            <span class="tool-tag">Text</span>
+                <p data-i18n="d_case">Convert text values to UPPER, lower, Title Case, camel, snake, or kebab formats.</p>
+                <span class="tool-tag" data-i18n="cat_text">Text</span>
         </div>
 
         <!-- 11. Slug Generator -->
@@ -274,8 +274,8 @@
                 </svg>
             </div>
             <h3 data-i18n="t_slug">Slug Generator</h3>
-            <p>Convert any text title into clean, SEO-friendly web URL slugs.</p>
-            <span class="tool-tag">Developer</span>
+                <p data-i18n="d_slug">Convert any text title into clean, SEO-friendly web URL slugs.</p>
+                <span class="tool-tag" data-i18n="cat_dev">Developer</span>
         </div>
 
         <!-- 12. AI Prompt Generator -->
@@ -288,8 +288,8 @@
                 </svg>
             </div>
             <h3 data-i18n="t_ai_prompt">AI Prompt Generator</h3>
-            <p>Optimize instructions and custom personas for ChatGPT, Claude, and LLMs.</p>
-            <span class="tool-tag">AI Helpers</span>
+                <p data-i18n="d_ai_prompt">Optimize instructions and custom personas for ChatGPT, Claude, and LLMs.</p>
+                <span class="tool-tag" data-i18n="cat_ai">AI Helpers</span>
         </div>
 
         <!-- 13. Hash Generator -->
@@ -303,8 +303,8 @@
                 </svg>
             </div>
             <h3 data-i18n="t_hash">Hash Generator</h3>
-            <p>Generate secure MD5, SHA-1, and SHA-256 cryptographic hashes for text.</p>
-            <span class="tool-tag">Security</span>
+                <p data-i18n="d_hash">Generate secure MD5, SHA-1, and SHA-256 cryptographic hashes for text.</p>
+                <span class="tool-tag" data-i18n="cat_sec">Security</span>
         </div>
 
         <!-- 14. HTML Encoder/Decoder -->
@@ -316,8 +316,8 @@
                 </svg>
             </div>
             <h3 data-i18n="t_html">HTML Entity Converter</h3>
-            <p>Safely encode or decode reserved HTML special character entities.</p>
-            <span class="tool-tag">Developer</span>
+                <p data-i18n="d_html">Safely encode or decode reserved HTML special character entities.</p>
+                <span class="tool-tag" data-i18n="cat_dev">Developer</span>
         </div>
 
         <!-- 15. Text Diff Checker -->
@@ -330,8 +330,8 @@
                 </svg>
             </div>
             <h3 data-i18n="t_diff">Text Diff Checker</h3>
-            <p>Compare two text revisions side by side and visually highlight line differences.</p>
-            <span class="tool-tag">Text</span>
+                <p data-i18n="d_diff">Compare two text revisions side by side and visually highlight line differences.</p>
+                <span class="tool-tag" data-i18n="cat_text">Text</span>
         </div>
 
         <!-- 16. QR Code Generator -->
@@ -346,8 +346,8 @@
                     </svg>
                 </div>
                 <h3 data-i18n="t_qr">QR Code Generator</h3>
-                <p>Generate highly readable vector QR codes for URLs, locations, or contact details.</p>
-                <span class="tool-tag">Generator</span>
+                <p data-i18n="d_qr">Generate highly readable vector QR codes for URLs, locations, or contact details.</p>
+                <span class="tool-tag" data-i18n="cat_gen">Generator</span>
             </div>
         </a>
 
@@ -361,8 +361,8 @@
                 </svg>
             </div>
             <h3 data-i18n="t_regex">Regex Tester</h3>
-            <p>Test standard regular expression patterns with real-time text matching.</p>
-            <span class="tool-tag">Developer</span>
+                <p data-i18n="d_regex">Test standard regular expression patterns with real-time text matching.</p>
+                <span class="tool-tag" data-i18n="cat_dev">Developer</span>
         </div>
 
         <!-- 18. CSV to JSON Converter -->
@@ -374,8 +374,8 @@
                 </svg>
             </div>
             <h3 data-i18n="t_csv">CSV to JSON Converter</h3>
-            <p>Instantly map tabular CSV text structures into standard nested JSON arrays.</p>
-            <span class="tool-tag">Converter</span>
+                <p data-i18n="d_csv">Instantly map tabular CSV text structures into standard nested JSON arrays.</p>
+                <span class="tool-tag" data-i18n="cat_conv">Converter</span>
         </div>
 
         <!-- 19. JWT Decoder -->
@@ -387,8 +387,8 @@
                 </svg>
             </div>
             <h3 data-i18n="t_jwt">JWT Decoder</h3>
-            <p>Deconstruct JSON Web Tokens to inspect header metadata and payload data claims.</p>
-            <span class="tool-tag">Security</span>
+                <p data-i18n="d_jwt">Deconstruct JSON Web Tokens to inspect header metadata and payload data claims.</p>
+                <span class="tool-tag" data-i18n="cat_sec">Security</span>
         </div>
 
         <!-- 20. Image to Base64 -->
@@ -401,8 +401,8 @@
                 </svg>
             </div>
             <h3 data-i18n="t_img_b64">Image to Base64</h3>
-            <p>Convert graphic files into optimized Base64 data string URIs for web styling.</p>
-            <span class="tool-tag">Converter</span>
+                <p data-i18n="d_img_b64">Convert graphic files into optimized Base64 data string URIs for web styling.</p>
+                <span class="tool-tag" data-i18n="cat_conv">Converter</span>
         </div>
 
         <!-- NEW TOOLS (21-28) -->
@@ -416,8 +416,8 @@
                 </svg>
             </div>
             <h3 data-i18n="t_json_yaml">JSON ⇄ YAML Converter</h3>
-            <p>Bidirectional schema translator to convert JSON configs to YAML and vice versa.</p>
-            <span class="tool-tag">Developer</span>
+                <p data-i18n="d_json_yaml">Bidirectional schema translator to convert JSON configs to YAML and vice versa.</p>
+                <span class="tool-tag" data-i18n="cat_dev">Developer</span>
         </div>
 
         <!-- 22. UUID/GUID Generator -->
@@ -430,8 +430,8 @@
                 </svg>
             </div>
             <h3 data-i18n="t_uuid">UUID/GUID Generator</h3>
-            <p>Bulk generate secure, unique RFC 4122 compliant version 4 UUID strings.</p>
-            <span class="tool-tag">Generator</span>
+                <p data-i18n="d_uuid">Bulk generate secure, unique RFC 4122 compliant version 4 UUID strings.</p>
+                <span class="tool-tag" data-i18n="cat_gen">Generator</span>
         </div>
 
         <!-- 23. Text to Speech Reader -->
@@ -443,8 +443,8 @@
                 </svg>
             </div>
             <h3 data-i18n="t_tts">Text to Speech Reader</h3>
-            <p>Listen to text read aloud natively using configurable browser vocal synthesizers.</p>
-            <span class="tool-tag">Text</span>
+                <p data-i18n="d_tts">Listen to text read aloud natively using configurable browser vocal synthesizers.</p>
+                <span class="tool-tag" data-i18n="cat_text">Text</span>
         </div>
 
         <!-- 24. CSS Glassmorphism Generator -->
@@ -456,8 +456,8 @@
                 </svg>
             </div>
             <h3 data-i18n="t_glass">CSS Glassmorphism Lab</h3>
-            <p>Design modern frosted-glass effects visually and copy optimized CSS code.</p>
-            <span class="tool-tag">Design</span>
+                <p data-i18n="d_glass">Design modern frosted-glass effects visually and copy optimized CSS code.</p>
+                <span class="tool-tag" data-i18n="cat_design">Design</span>
         </div>
 
         <!-- 25. Aspect Ratio Calculator -->
@@ -470,8 +470,8 @@
                 </svg>
             </div>
             <h3 data-i18n="t_aspect">Aspect Ratio Calculator</h3>
-            <p>Calculate missing proportions based on responsive image and video presets.</p>
-            <span class="tool-tag">Design</span>
+                <p data-i18n="d_aspect">Calculate missing proportions based on responsive image and video presets.</p>
+                <span class="tool-tag" data-i18n="cat_design">Design</span>
         </div>
 
         <!-- 26. PX to REM Converter -->
@@ -484,8 +484,8 @@
                 </svg>
             </div>
             <h3 data-i18n="t_px_rem">PX ⇄ REM Converter</h3>
-            <p>Calculate CSS unit conversions dynamically based on standard 16px roots.</p>
-            <span class="tool-tag">Developer</span>
+                <p data-i18n="d_px_rem">Calculate CSS unit conversions dynamically based on standard 16px roots.</p>
+                <span class="tool-tag" data-i18n="cat_dev">Developer</span>
         </div>
 
         <!-- 27. Base64 File Encoder/Decoder -->
@@ -496,8 +496,8 @@
                 </svg>
             </div>
             <h3 data-i18n="t_b64_file">Base64 File Encoder/Decoder</h3>
-            <p>Drag, drop, and encode binary files to Base64 strings or extract them back.</p>
-            <span class="tool-tag">Converter</span>
+                <p data-i18n="d_b64_file">Drag, drop, and encode binary files to Base64 strings or extract them back.</p>
+                <span class="tool-tag" data-i18n="cat_conv">Converter</span>
         </div>
 
         <!-- 28. Device & User-Agent Inspector -->
@@ -510,8 +510,8 @@
                 </svg>
             </div>
             <h3 data-i18n="t_device">Device & UA Inspector</h3>
-            <p>Parse client system configurations, viewport metrics, and User-Agent details.</p>
-            <span class="tool-tag">Developer</span>
+                <p data-i18n="d_device">Parse client system configurations, viewport metrics, and User-Agent details.</p>
+                <span class="tool-tag" data-i18n="cat_dev">Developer</span>
         </div>
 
     </div>
