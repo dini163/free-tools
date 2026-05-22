@@ -1,0 +1,81 @@
+// Initialize theme instantly to prevent flashing
+(function() {
+    const theme = localStorage.getItem('theme') || 'auto';
+    if (theme === 'auto') {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.classList.toggle('theme-light', !prefersDark);
+    } else if (theme === 'light') {
+        document.documentElement.classList.add('theme-light');
+    }
+})();
+
+// Wait for DOM to load to bind theme switcher UI
+document.addEventListener('DOMContentLoaded', () => {
+    const theme = localStorage.getItem('theme') || 'auto';
+    updateThemeUI(theme);
+    
+    // Watch system theme change if auto
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+        const currentTheme = localStorage.getItem('theme') || 'auto';
+        if (currentTheme === 'auto') {
+            applyTheme('auto');
+        }
+    });
+});
+
+function toggleThemeMenu(event) {
+    if (event) event.stopPropagation();
+    const menu = document.getElementById('themeMenu');
+    if (menu) menu.classList.toggle('active');
+}
+
+function setTheme(theme) {
+    localStorage.setItem('theme', theme);
+    applyTheme(theme);
+    const menu = document.getElementById('themeMenu');
+    if (menu) menu.classList.remove('active');
+}
+
+function applyTheme(theme) {
+    if (theme === 'auto') {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.classList.toggle('theme-light', !prefersDark);
+    } else {
+        document.documentElement.classList.toggle('theme-light', theme === 'light');
+    }
+    updateThemeUI(theme);
+}
+
+function updateThemeUI(theme) {
+    const btn = document.getElementById('themeToggleBtn');
+    if (!btn) return;
+    
+    // Set active class on menu items
+    const items = document.querySelectorAll('.theme-menu-item');
+    items.forEach(item => {
+        const action = item.getAttribute('onclick');
+        if (action && action.includes(`'${theme}'`)) {
+            item.classList.add('active');
+        } else {
+            item.classList.remove('active');
+        }
+    });
+
+    // Update active icon on the button
+    let iconSvg = '';
+    const sunIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`;
+    const moonIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`;
+    const monitorIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>`;
+    
+    if (theme === 'light') iconSvg = sunIcon;
+    else if (theme === 'dark') iconSvg = moonIcon;
+    else iconSvg = monitorIcon;
+    
+    btn.innerHTML = iconSvg;
+}
+
+// Close dropdown on click outside
+document.addEventListener('click', () => {
+    const menu = document.getElementById('themeMenu');
+    if (menu) menu.classList.remove('active');
+});
