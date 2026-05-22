@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-title-key="li_title">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="../css/style.css">
     <script src="../js/theme.js"></script>
+    <script src="../js/i18n.js"></script>
     
     <script type="application/ld+json">
     {
@@ -37,10 +38,30 @@
                     <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
                 </svg>
             </div>
-            FreeDevTools
+            <span data-i18n="logo">FreeDevTools</span>
         </a>
         <nav class="nav-links">
-            <a href="../index.html">All Tools</a>
+            <a href="../index.html" data-i18n="all_tools">All Tools</a>
+            <!-- Language Switcher -->
+            <div class="lang-switcher">
+                <button class="lang-btn" id="langToggleBtn" onclick="toggleLangMenu(event)" aria-label="Select language">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                    </svg>
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <button class="lang-menu-item" onclick="changeLanguage('en')">English</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('fr')">Français</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('es')">Español</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('pt')">Português</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ru')">Русский</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-CN')">简体中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-TW')">繁體中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ja')">日本語</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ko')">한국어</button>
+                </div>
+            </div>
             <!-- Theme Switcher -->
             <div class="theme-switcher">
                 <button class="theme-btn" id="themeToggleBtn" onclick="toggleThemeMenu(event)" aria-label="Toggle theme">
@@ -68,22 +89,22 @@
 </header>
 
 <main style="max-width: 900px; margin-top: 2rem;">
-    <h1 class="tool-title">Lorem Ipsum Generator</h1>
-    <p class="tool-desc">Generate placeholder Lorem Ipsum text for your designs and mockups.</p>
+    <h1 class="tool-title" data-i18n="li_title">Lorem Ipsum Generator</h1>
+    <p class="tool-desc" data-i18n="li_desc">Generate placeholder Lorem Ipsum text for your designs and mockups.</p>
     
     <div class="tool-row">
         <div class="tool-col">
-            <label class="tool-label">Number of Paragraphs</label>
+            <label class="tool-label" data-i18n="li_num_paras">Number of Paragraphs</label>
             <input type="number" class="tool-input" id="loremCount" value="3" min="1" max="50">
         </div>
         <div class="tool-col" style="display: flex; align-items: flex-end;">
-            <button class="btn btn-primary" onclick="generateLorem()" style="width: 100%;">Generate Placeholder</button>
+            <button class="btn btn-primary" onclick="generateLorem()" style="width: 100%;" data-i18n="li_btn_gen">Generate Placeholder</button>
         </div>
     </div>
     
-    <label class="tool-label">Generated Text</label>
+    <label class="tool-label" data-i18n="li_output">Generated Text</label>
     <div class="result-container">
-        <button class="btn btn-secondary copy-btn" onclick="copyText('loremOutput')">Copy Output</button>
+        <button class="btn btn-secondary copy-btn" onclick="copyText('loremOutput')" data-i18n="btn_copy">Copy Output</button>
         <div class="tool-output" id="loremOutput" style="min-height: 200px; padding-top: 2.75rem;">Click Generate to create Lorem Ipsum text...</div>
     </div>
 </main>
@@ -119,11 +140,13 @@
         navigator.clipboard.writeText(el.value || el.textContent).then(() => { 
             const btn = document.querySelector('.copy-btn'); 
             if (btn) { 
-                btn.textContent = 'Copied!'; 
+                const lang = document.documentElement.getAttribute('lang') || 'en';
+                const dict = TRANSLATIONS[lang] || TRANSLATIONS.en;
+                btn.textContent = dict.btn_copied || 'Copied!'; 
                 btn.style.color = 'var(--success)';
                 btn.style.borderColor = 'var(--success)';
                 setTimeout(() => { 
-                    btn.textContent = 'Copy Output'; 
+                    btn.textContent = dict.btn_copy || 'Copy Output'; 
                     btn.style.color = '';
                     btn.style.borderColor = '';
                 }, 1500); 

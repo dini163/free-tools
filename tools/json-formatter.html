@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-title-key="jf_title">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="../css/style.css">
     <script src="../js/theme.js"></script>
+    <script src="../js/i18n.js"></script>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -36,10 +37,30 @@
                     <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
                 </svg>
             </div>
-            FreeDevTools
+            <span data-i18n="logo">FreeDevTools</span>
         </a>
         <nav class="nav-links">
-            <a href="../index.html">All Tools</a>
+            <a href="../index.html" data-i18n="all_tools">All Tools</a>
+            <!-- Language Switcher -->
+            <div class="lang-switcher">
+                <button class="lang-btn" id="langToggleBtn" onclick="toggleLangMenu(event)" aria-label="Select language">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                    </svg>
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <button class="lang-menu-item" onclick="changeLanguage('en')">English</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('fr')">Français</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('es')">Español</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('pt')">Português</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ru')">Русский</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-CN')">简体中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-TW')">繁體中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ja')">日本語</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ko')">한국어</button>
+                </div>
+            </div>
             <!-- Theme Switcher -->
             <div class="theme-switcher">
                 <button class="theme-btn" id="themeToggleBtn" onclick="toggleThemeMenu(event)" aria-label="Toggle theme">
@@ -67,20 +88,20 @@
 </header>
 
 <main style="max-width: 900px; margin-top: 2rem;">
-    <h1 class="tool-title">JSON Formatter & Validator</h1>
-    <p class="tool-desc">Format, validate, and beautify JSON data instantly. Copy to clipboard, minify, and check JSON syntax for free.</p>
+    <h1 class="tool-title" data-i18n="jf_title">JSON Formatter & Validator</h1>
+    <p class="tool-desc" data-i18n="jf_desc">Format, validate, and beautify JSON data instantly. Copy to clipboard, minify, and check JSON syntax for free.</p>
     
-    <label class="tool-label">Paste Raw JSON</label>
+    <label class="tool-label" data-i18n="jf_paste">Paste Raw JSON</label>
     <textarea class="tool-textarea" id="jsonInput" placeholder='Paste JSON here... {"name": "John", "age": 30}' style="min-height: 200px;"></textarea>
     
     <div class="btn-group">
-        <button class="btn btn-primary" onclick="formatJson()">Beautify JSON</button>
-        <button class="btn btn-secondary" onclick="minifyJson()">Minify JSON</button>
-        <button class="btn btn-secondary" onclick="validateJson()">Validate JSON</button>
-        <button class="btn btn-secondary copy-btn" onclick="copyText('jsonOutput')">Copy Output</button>
+        <button class="btn btn-primary" onclick="formatJson()" data-i18n="jf_btn_beautify">Beautify JSON</button>
+        <button class="btn btn-secondary" onclick="minifyJson()" data-i18n="jf_btn_minify">Minify JSON</button>
+        <button class="btn btn-secondary" onclick="validateJson()" data-i18n="jf_btn_validate">Validate JSON</button>
+        <button class="btn btn-secondary copy-btn" onclick="copyText('jsonOutput')" data-i18n="btn_copy">Copy Output</button>
     </div>
     
-    <label class="tool-label">Conversion Output</label>
+    <label class="tool-label" data-i18n="jf_output">Conversion Output</label>
     <div class="result-container">
         <div class="tool-output" id="jsonOutput" style="min-height: 150px;">Output will appear here...</div>
     </div>
@@ -129,11 +150,13 @@
         navigator.clipboard.writeText(el.value || el.textContent).then(() => { 
             const btn = document.querySelector('.copy-btn'); 
             if (btn) { 
-                btn.textContent = 'Copied!'; 
+                const lang = document.documentElement.getAttribute('lang') || 'en';
+                const dict = TRANSLATIONS[lang] || TRANSLATIONS.en;
+                btn.textContent = dict.btn_copied || 'Copied!'; 
                 btn.style.color = 'var(--success)';
                 btn.style.borderColor = 'var(--success)';
                 setTimeout(() => { 
-                    btn.textContent = 'Copy Output'; 
+                    btn.textContent = dict.btn_copy || 'Copy Output'; 
                     btn.style.color = '';
                     btn.style.borderColor = '';
                 }, 1500); 

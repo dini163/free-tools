@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-title-key="wc_title">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="../css/style.css">
     <script src="../js/theme.js"></script>
+    <script src="../js/i18n.js"></script>
 </head>
 <body>
 
@@ -24,10 +25,30 @@
                     <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
                 </svg>
             </div>
-            FreeDevTools
+            <span data-i18n="logo">FreeDevTools</span>
         </a>
         <nav class="nav-links">
-            <a href="../index.html">All Tools</a>
+            <a href="../index.html" data-i18n="all_tools">All Tools</a>
+            <!-- Language Switcher -->
+            <div class="lang-switcher">
+                <button class="lang-btn" id="langToggleBtn" onclick="toggleLangMenu(event)" aria-label="Select language">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                    </svg>
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <button class="lang-menu-item" onclick="changeLanguage('en')">English</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('fr')">Français</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('es')">Español</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('pt')">Português</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ru')">Русский</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-CN')">简体中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-TW')">繁體中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ja')">日本語</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ko')">한국어</button>
+                </div>
+            </div>
             <!-- Theme Switcher -->
             <div class="theme-switcher">
                 <button class="theme-btn" id="themeToggleBtn" onclick="toggleThemeMenu(event)" aria-label="Toggle theme">
@@ -55,20 +76,20 @@
 </header>
 
 <main style="max-width: 900px; margin-top: 2rem;">
-    <h1 class="tool-title">Word Counter</h1>
-    <p class="tool-desc">Count words, characters, sentences, paragraphs, and reading times dynamically as you type.</p>
+    <h1 class="tool-title" data-i18n="wc_title">Word Counter</h1>
+    <p class="tool-desc" data-i18n="wc_desc">Count words, characters, sentences, paragraphs, and reading times dynamically as you type.</p>
     
-    <label class="tool-label">Enter or Paste Your Text</label>
+    <label class="tool-label" data-i18n="wc_enter">Enter or Paste Your Text</label>
     <textarea class="tool-textarea" id="wordInput" placeholder="Type or paste your text here..." oninput="countWords()" style="min-height: 200px;"></textarea>
     
-    <label class="tool-label">Real-time Analytics</label>
+    <label class="tool-label" data-i18n="wc_stats">Real-time Analytics</label>
     <div class="stats-row" id="wordStats">
-        <div class="stat-box"><div class="stat-value" id="wc">0</div><div class="stat-label">Words</div></div>
-        <div class="stat-box"><div class="stat-value" id="cc">0</div><div class="stat-label">Characters</div></div>
-        <div class="stat-box"><div class="stat-value" id="ccns">0</div><div class="stat-label">No Spaces</div></div>
-        <div class="stat-box"><div class="stat-value" id="sc">0</div><div class="stat-label">Sentences</div></div>
-        <div class="stat-box"><div class="stat-value" id="pc">0</div><div class="stat-label">Paragraphs</div></div>
-        <div class="stat-box"><div class="stat-value" id="rt">0m</div><div class="stat-label">Read Time</div></div>
+        <div class="stat-box"><div class="stat-value" id="wc">0</div><div class="stat-label" data-i18n="wc_words">Words</div></div>
+        <div class="stat-box"><div class="stat-value" id="cc">0</div><div class="stat-label" data-i18n="wc_chars">Characters</div></div>
+        <div class="stat-box"><div class="stat-value" id="ccns">0</div><div class="stat-label" data-i18n="wc_no_spaces">No Spaces</div></div>
+        <div class="stat-box"><div class="stat-value" id="sc">0</div><div class="stat-label" data-i18n="wc_sentences">Sentences</div></div>
+        <div class="stat-box"><div class="stat-value" id="pc">0</div><div class="stat-label" data-i18n="wc_paragraphs">Paragraphs</div></div>
+        <div class="stat-box"><div class="stat-value" id="rt">0m</div><div class="stat-label" data-i18n="wc_reading">Read Time</div></div>
     </div>
 </main>
 

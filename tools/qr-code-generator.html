@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-title-key="qr_title">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="../css/style.css">
     <script src="../js/theme.js"></script>
+    <script src="../js/i18n.js"></script>
     
     <script type="application/ld+json">
     {
@@ -37,10 +38,30 @@
                     <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
                 </svg>
             </div>
-            FreeDevTools
+            <span data-i18n="logo">FreeDevTools</span>
         </a>
         <nav class="nav-links">
-            <a href="../index.html">All Tools</a>
+            <a href="../index.html" data-i18n="all_tools">All Tools</a>
+            <!-- Language Switcher -->
+            <div class="lang-switcher">
+                <button class="lang-btn" id="langToggleBtn" onclick="toggleLangMenu(event)" aria-label="Select language">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                    </svg>
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <button class="lang-menu-item" onclick="changeLanguage('en')">English</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('fr')">Français</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('es')">Español</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('pt')">Português</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ru')">Русский</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-CN')">简体中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-TW')">繁體中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ja')">日本語</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ko')">한국어</button>
+                </div>
+            </div>
             <!-- Theme Switcher -->
             <div class="theme-switcher">
                 <button class="theme-btn" id="themeToggleBtn" onclick="toggleThemeMenu(event)" aria-label="Toggle theme">
@@ -68,18 +89,18 @@
 </header>
 
 <main style="max-width: 900px; margin-top: 2rem;">
-    <h1 class="tool-title">QR Code Generator</h1>
-    <p class="tool-desc">Generate QR codes for URLs, text, or contact info instantly. Customizable size and colors.</p>
+    <h1 class="tool-title" data-i18n="qr_title">QR Code Generator</h1>
+    <p class="tool-desc" data-i18n="qr_desc">Generate QR codes for URLs, text, or contact info instantly. Customizable size and colors.</p>
     
     <div class="tool-row" style="align-items: stretch;">
         <!-- Left configuration side -->
         <div class="tool-col" style="flex: 1.4; min-width: 300px;">
-            <label class="tool-label">Text or URL</label>
+            <label class="tool-label" data-i18n="qr_enter">Text or URL</label>
             <textarea class="tool-textarea" id="qrText" placeholder="Enter text or URL to encode..." style="min-height: 120px; margin-bottom: 1rem;">https://example.com</textarea>
             
             <div class="tool-row">
                 <div class="tool-col">
-                    <label class="tool-label">Size</label>
+                    <label class="tool-label" data-i18n="qr_size">Size</label>
                     <select class="tool-select" id="qrSize">
                         <option value="150">Small (150px)</option>
                         <option value="250" selected>Medium (250px)</option>
@@ -99,30 +120,30 @@
             
             <div class="tool-row" style="margin-top: 1rem;">
                 <div class="tool-col">
-                    <label class="tool-label">FG Color</label>
+                    <label class="tool-label" data-i18n="qr_fg">FG Color</label>
                     <input type="color" id="qrColor" value="#fafafa" style="width: 100%; height: 38px; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; background: transparent; padding: 2px;">
                 </div>
                 <div class="tool-col">
-                    <label class="tool-label">BG Color</label>
+                    <label class="tool-label" data-i18n="qr_bg">BG Color</label>
                     <input type="color" id="qrBgColor" value="#09090b" style="width: 100%; height: 38px; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; background: transparent; padding: 2px;">
                 </div>
             </div>
             
             <button class="btn btn-primary" onclick="generateQr()" style="width: 100%; margin-top: 1.5rem; height: 46px;">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><rect x="7" y="7" width="3" height="3"></rect><rect x="14" y="7" width="3" height="3"></rect><rect x="7" y="14" width="3" height="3"></rect><rect x="14" y="14" width="3" height="3"></rect></svg>
-                Generate QR Code
+                <span data-i18n="qr_btn_gen">Generate QR Code</span>
             </button>
         </div>
         
         <!-- Right preview card -->
         <div class="tool-col" style="flex: 1; min-width: 280px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; position: relative;">
-            <label class="tool-label" style="align-self: flex-start; margin-bottom: 1rem;">Preview</label>
+            <label class="tool-label" style="align-self: flex-start; margin-bottom: 1rem;"><span data-i18n="qr_preview">Preview</span></label>
             <div id="qrResult" style="display: flex; justify-content: center; align-items: center; min-height: 250px; width: 100%;">
                 <!-- Dynamic QR Image Injected Here -->
             </div>
             <button class="btn btn-secondary" onclick="downloadQr()" id="dlBtn" style="margin-top: 1.5rem; width: 100%; display: none;">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                Download QR Code
+                <span data-i18n="qr_btn_down">Download QR Code</span>
             </button>
         </div>
     </div>
