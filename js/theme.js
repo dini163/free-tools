@@ -79,3 +79,70 @@ document.addEventListener('click', () => {
     const menu = document.getElementById('themeMenu');
     if (menu) menu.classList.remove('active');
 });
+
+// Toast Notification System
+function showToast(message, type = 'info', duration = 3000) {
+    // Create toast container if it doesn't exist
+    let container = document.querySelector('.toast-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.className = 'toast-container';
+        document.body.appendChild(container);
+    }
+
+    // Create toast element
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+
+    // Set icon based on type
+    let icon = '';
+    switch (type) {
+        case 'success':
+            icon = '✅';
+            break;
+        case 'warning':
+            icon = '⚠️';
+            break;
+        case 'error':
+            icon = '❌';
+            break;
+        default:
+            icon = 'ℹ️';
+    }
+
+    toast.innerHTML = `
+        <span class="toast-icon">${icon}</span>
+        <span class="toast-message">${message}</span>
+        <button class="toast-close" onclick="removeToast(this.parentElement)">&times;</button>
+    `;
+
+    container.appendChild(toast);
+
+    // Auto-remove after duration
+    setTimeout(() => {
+        removeToast(toast);
+    }, duration);
+
+    return toast;
+}
+
+function removeToast(toast) {
+    if (!toast || toast.classList.contains('removing')) return;
+    
+    toast.classList.add('removing');
+    setTimeout(() => {
+        if (toast.parentElement) {
+            toast.parentElement.removeChild(toast);
+        }
+        
+        // Remove container if no more toasts
+        const container = document.querySelector('.toast-container');
+        if (container && container.children.length === 0) {
+            container.parentElement.removeChild(container);
+        }
+    }, 300);
+}
+
+// Make showToast available globally
+window.showToast = showToast;
+window.removeToast = removeToast;
