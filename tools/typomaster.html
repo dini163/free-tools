@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en" data-title-key="t_typomaster">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9267698062788796" crossorigin="anonymous"></script>
+    <title>TypoMaster - Free Online Tool</title>
+    <meta name="description" content="Code typing trainer for developers - practice typing JS/Python/Go/Rust/SQL code snippets.">
+    <link rel="canonical" href="https://dini163.github.io/free-tools/tools/typomaster.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/theme.min.js" defer></script>
+    <script src="../js/i18n.min.js" defer></script>
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#667eea">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script><script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+    <style>
+    
+:root {
+  --bg: var(--bg-primary);
+  --surface: var(--bg-card);
+  --border: var(--border);
+  --text: var(--text-primary);
+  --text2: var(--text-secondary);
+  --text3: var(--text-muted);
+  --primary: var(--accent-light);
+  --primary-light: var(--accent-glow);
+  --primary-bg: var(--accent-glow);
+  --primary-dark: var(--accent);
+  --success: var(--success);
+  --warning: var(--warning);
+  --yellow: var(--warning);
+  --red: var(--error);
+  --danger: var(--error);
+  --shadow: var(--shadow);
+  --radius: var(--radius);
+  --radius-sm: var(--radius-sm);
+  --todo: rgba(99, 102, 241, 0.1);
+  --progress: rgba(245, 158, 11, 0.1);
+  --done: rgba(16, 185, 129, 0.1);
+  --white-key: #ffffff;
+  --black-key: #09090b;
+}
+.theme-light {
+  --primary: var(--accent);
+  --primary-dark: var(--accent-dark);
+  --primary-light: rgba(99, 102, 241, 0.08);
+  --primary-bg: rgba(99, 102, 241, 0.08);
+  --todo: #eff6ff;
+  --progress: #fef9c3;
+  --done: #dcfce7;
+  --white-key: #f4f4f5;
+  --black-key: #27272a;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+.tool-body-style { font-family:'SF Mono','Cascadia Code','Fira Code','JetBrains Mono',monospace; background:var(--bg); color:var(--text); min-height:100vh; line-height:1.5; }
+header { background:var(--surface); border-bottom:1px solid var(--border); padding:0 24px; height:52px; display:flex; align-items:center; justify-content:space-between; }
+.logo { font-weight:700; font-size:16px; color:var(--primary); display:flex; align-items:center; gap:8px; }
+.logo .badge { font-size:10px; background:var(--primary-bg); color:var(--primary); padding:2px 8px; border-radius:3px; }
+.header-actions { display:flex; gap:8px; }
+.btn { padding:7px 14px; border-radius:var(--radius-sm); border:1px solid var(--border); background:var(--surface); color:var(--text); font-size:12px; font-family:inherit; cursor:pointer; transition:all .15s; }
+.btn:hover { background:#21262d; border-color:#484f58; }
+.btn-primary { background:#238636; color:#fff; border-color:#238636; }
+.btn-primary:hover { background:#2ea043; }
+.btn-sm { padding:4px 10px; font-size:11px; }
+main { max-width:1100px; margin:0 auto; padding:20px 24px; }
+.layout { display:grid; grid-template-columns:280px 1fr; gap:20px; }
+@media (max-width:768px) { .layout { grid-template-columns:1fr; } }
+.sidebar { display:flex; flex-direction:column; gap:12px; }
+.card { background:var(--surface); border-radius:var(--radius); border:1px solid var(--border); padding:16px; }
+.card h3 { font-size:13px; font-weight:600; color:var(--text2); text-transform:uppercase; letter-spacing:.5px; margin-bottom:10px; }
+.lang-list { display:flex; flex-direction:column; gap:2px; }
+.lang-item { padding:8px 10px; border-radius:var(--radius-sm); cursor:pointer; font-size:13px; color:var(--text2); transition:all .1s; display:flex; align-items:center; gap:8px; }
+.lang-item:hover { background:#21262d; color:var(--text); }
+.lang-item.active { background:var(--primary-bg); color:var(--primary); }
+.lang-item .icon { font-size:16px; width:20px; text-align:center; }
+.stats-row { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.stat-box { background:#0d1117; border-radius:var(--radius-sm); padding:10px; text-align:center; }
+.stat-box .val { font-size:24px; font-weight:700; color:var(--green); }
+.stat-box .lbl { font-size:10px; color:var(--text3); text-transform:uppercase; margin-top:2px; }
+.stat-box.acc .val { color:var(--primary); }
+.stat-box.err .val { color:var(--red); }
+.editor-area { display:flex; flex-direction:column; gap:12px; }
+.code-display { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:16px 20px; position:relative; min-height:200px; max-height:450px; overflow-y:auto; font-size:14px; line-height:1.8; }
+.code-display pre { margin:0; white-space:pre-wrap; word-break:break-all; font-family:inherit; }
+.code-display pre code { font-family:inherit; background:none!important; padding:0!important; }
+.correct { color:var(--green)!important; }
+.incorrect { color:var(--red)!important; background:rgba(248,81,73,.15); border-radius:2px; }
+.current { background:rgba(88,166,255,.2); border-radius:2px; border-bottom:2px solid var(--primary); animation:pulse 1s infinite; }
+@keyframes pulse { 0%,100%{border-bottom-color:var(--primary)} 50%{border-bottom-color:transparent} }
+.untyped { color:var(--text3); }
+.typing-input { width:100%; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:12px 16px; color:var(--text); font-family:inherit; font-size:14px; resize:none; outline:none; }
+.typing-input:focus { border-color:var(--primary); }
+.typing-input:disabled { opacity:.5; }
+.controls { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+.timer { font-size:28px; font-weight:700; color:var(--text); font-family:inherit; }
+.snippet-info { color:var(--text2); font-size:12px; display:flex; gap:12px; }
+.progress-bar { height:3px; background:var(--border); border-radius:2px; overflow:hidden; margin-top:4px; }
+.progress-bar .fill { height:100%; background:var(--primary); border-radius:2px; transition:width .2s; }
+.result-overlay { position:fixed; inset:0; background:rgba(0,0,0,.6); display:flex; align-items:center; justify-content:center; z-index:100; }
+.result-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:32px; text-align:center; min-width:360px; }
+.result-card h2 { font-size:22px; margin-bottom:16px; }
+.result-card .big-num { font-size:48px; font-weight:700; color:var(--green); }
+.result-card .detail-row { display:flex; justify-content:center; gap:24px; margin:16px 0; }
+.result-card .detail { text-align:center; }
+.result-card .detail .num { font-size:18px; font-weight:600; }
+.result-card .detail .lbl { font-size:11px; color:var(--text3); }
+.weak-keys { margin:16px 0; }
+.weak-key { display:inline-block; padding:4px 10px; margin:3px; border-radius:3px; font-size:12px; background:#21262d; border:1px solid var(--border); }
+.weak-key.slow { border-color:var(--red); color:var(--red); }
+.history-list { max-height:300px; overflow-y:auto; }
+.history-row { display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid var(--border); font-size:12px; }
+.history-row .lang { color:var(--text3); width:60px; }
+.history-row .wpm { color:var(--green); font-weight:600; width:60px; text-align:right; }
+.history-row .acc { color:var(--primary); width:60px; text-align:right; }
+.empty-state { text-align:center; padding:40px; color:var(--text3); }
+.chart-area { margin-top:16px; }
+label { display:block; font-size:11px; color:var(--text2); margin-bottom:4px; text-transform:uppercase; }
+select { width:100%; padding:7px 10px; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius-sm); color:var(--text); font-family:inherit; font-size:12px; }
+select:focus { outline:none; border-color:var(--primary); }
+
+    </style>
+</head>
+<body class="tool-body-style">
+
+<header class="header">
+    <div class="header-inner">
+        <a href="../index.html" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+            </div>
+            <span data-i18n="logo">FreeDevTools</span>
+        </a>
+        <nav class="nav-links">
+            <a href="../index.html" data-i18n="all_tools">All Tools</a>
+            <div class="lang-switcher">
+                <button class="lang-btn" id="langToggleBtn" onclick="toggleLangMenu(event)" aria-label="Select language">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <button class="lang-menu-item" onclick="changeLanguage('en')">English</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('fr')">Français</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('es')">Español</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('pt')">Português</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ru')">Русский</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-CN')">简体中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-TW')">繁體中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ja')">日本語</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ko')">한국어</button>
+                </div>
+            </div>
+            <div class="theme-switcher">
+                <button class="theme-btn" id="themeToggleBtn" onclick="toggleThemeMenu(event)" aria-label="Toggle theme">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </button>
+                <div class="theme-menu" id="themeMenu">
+                    <button class="theme-menu-item" onclick="setTheme('light')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg> Light</button>
+                    <button class="theme-menu-item" onclick="setTheme('dark')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg> Dark</button>
+                    <button class="theme-menu-item" onclick="setTheme('auto')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg> System</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+
+<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:10px;"><div class="tool-toolbar" style="display:flex; gap:6px;">
+    <button class="btn btn-sm" onclick="switchTab('history')">History</button>
+    <button class="btn btn-sm" onclick="switchTab('stats')">Analytics</button>
+    <button class="btn btn-sm" onclick="switchTab('train')">Train</button>
+  </div></div><main id="tab-train">
+  <div class="layout">
+    <div class="sidebar">
+      <div class="card">
+        <h3>Language</h3>
+        <div class="lang-list" id="langList"></div>
+      </div>
+      <div class="card">
+        <h3>Live Stats</h3>
+        <div class="stats-row">
+          <div class="stat-box"><div class="val" id="liveWPM">0</div><div class="lbl">WPM</div></div>
+          <div class="stat-box acc"><div class="val" id="liveACC">100</div><div class="lbl">Accuracy %</div></div>
+          <div class="stat-box err"><div class="val" id="liveERR">0</div><div class="lbl">Errors</div></div>
+          <div class="stat-box"><div class="val" id="liveTIME">0s</div><div class="lbl">Time</div></div>
+        </div>
+        <div class="progress-bar" style="margin-top:10px"><div class="fill" id="progressFill" style="width:0%"></div></div>
+      </div>
+      <div class="card">
+        <h3>Difficulty</h3>
+        <select id="diffSelect" onchange="loadNewSnippet()">
+          <option value="easy">Easy (short)</option>
+          <option value="medium" selected>Medium</option>
+          <option value="hard">Hard (long)</option>
+        </select>
+      </div>
+    </div>
+    <div class="editor-area">
+      <div class="code-display" id="codeDisplay"><pre><code class="untyped">Select a language and click Start to begin...</code></pre></div>
+      <textarea class="typing-input" id="typingInput" placeholder="Type here..." disabled rows="3"></textarea>
+      <div class="controls">
+        <button class="btn btn-primary" id="btnStart" onclick="startTraining()">Start</button>
+        <button class="btn" id="btnReset" onclick="resetTraining()" style="display:none">Reset</button>
+        <span class="timer" id="timerDisplay" style="display:none">0:00</span>
+        <span class="snippet-info" id="snippetInfo"></span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<main id="tab-history" style="display:none">
+  <div class="card" style="max-width:700px;margin:0 auto">
+    <h3>Training History</h3>
+    <div class="history-list" id="historyList"><div class="empty-state">No records yet. Complete some training sessions!</div></div>
+    <button class="btn btn-sm" style="margin-top:12px" onclick="clearHistory()">Clear History</button>
+  </div>
+</main>
+
+<main id="tab-stats" style="display:none">
+  <div class="card" style="max-width:900px;margin:0 auto">
+    <h3>Performance Analytics</h3>
+    <div class="chart-area" id="wpmChart" style="min-height:300px"></div>
+    <div class="chart-area" id="keyHeatmap" style="min-height:350px;margin-top:16px"></div>
+  </div>
+</main>
+
+<div id="resultOverlay" class="result-overlay" style="display:none"></div>
+
+
+
+<footer class="footer">
+    <p>&copy; 2026 FreeDevTools. All tools run 100% locally in your web browser — absolutely no data is transmitted to any server.</p>
+</footer>
+
+<script>
+
+// === SNIPPETS DATABASE ===
+const snippets = {
+  javascript: {
+    easy: [
+      `function sum(a, b) {\n  return a + b;\n}\n\nconsole.log(sum(3, 5));`,
+      `const nums = [1, 2, 3, 4, 5];\nconst doubled = nums.map(n => n * 2);\nconsole.log(doubled);`,
+      `const name = "World";\nconsole.log(\`Hello, \${name}!\`);`,
+      `const isEven = (n) => n % 2 === 0;\nconsole.log(isEven(10));`,
+    ],
+    medium: [
+      `function fibonacci(n) {\n  if (n <= 1) return n;\n  let a = 0, b = 1;\n  for (let i = 2; i <= n; i++) {\n    [a, b] = [b, a + b];\n  }\n  return b;\n}\n\nconsole.log(fibonacci(10));`,
+      `const users = [\n  { name: "Alice", age: 28 },\n  { name: "Bob", age: 35 },\n  { name: "Charlie", age: 22 }\n];\n\nconst adults = users.filter(u => u.age >= 18);\nconst names = adults.map(u => u.name);\nconsole.log(names.join(", "));`,
+      `async function fetchUser(id) {\n  const response = await fetch(\n    \`https://api.example.com/users/\${id}\`\n  );\n  if (!response.ok) {\n    throw new Error(\`HTTP \${response.status}\`);\n  }\n  return response.json();\n}`,
+      `class EventEmitter {\n  constructor() {\n    this.events = {};\n  }\n  on(event, callback) {\n    if (!this.events[event]) {\n      this.events[event] = [];\n    }\n    this.events[event].push(callback);\n  }\n  emit(event, data) {\n    (this.events[event] || [])\n      .forEach(cb => cb(data));\n  }\n}`,
+    ],
+    hard: [
+      `function debounce(func, wait) {\n  let timeout;\n  return function executedFunction(...args) {\n    const later = () => {\n      clearTimeout(timeout);\n      func(...args);\n    };\n    clearTimeout(timeout);\n    timeout = setTimeout(later, wait);\n  };\n}\n\nconst handleSearch = debounce((query) => {\n  console.log("Searching for:", query);\n}, 300);`,
+      `class TreeNode {\n  constructor(value) {\n    this.value = value;\n    this.left = null;\n    this.right = null;\n  }\n}\n\nfunction inorderTraversal(root) {\n  const result = [];\n  function traverse(node) {\n    if (!node) return;\n    traverse(node.left);\n    result.push(node.value);\n    traverse(node.right);\n  }\n  traverse(root);\n  return result;\n}`,
+    ]
+  },
+  python: {
+    easy: [
+      `def greet(name):\n    return f"Hello, {name}!"\n\nprint(greet("World"))`,
+      `numbers = [1, 2, 3, 4, 5]\nsquared = [n ** 2 for n in numbers]\nprint(squared)`,
+      `def is_palindrome(s):\n    return s == s[::-1]\n\nprint(is_palindrome("radar"))`,
+    ],
+    medium: [
+      `def quicksort(arr):\n    if len(arr) <= 1:\n        return arr\n    pivot = arr[len(arr) // 2]\n    left = [x for x in arr if x < pivot]\n    middle = [x for x in arr if x == pivot]\n    right = [x for x in arr if x > pivot]\n    return quicksort(left) + middle + quicksort(right)\n\nprint(quicksort([3, 6, 8, 10, 1, 2, 1]))`,
+      `from collections import Counter\n\ndef most_frequent(text):\n    words = text.lower().split()\n    return Counter(words).most_common(3)\n\ntext = "the quick brown fox jumps over the lazy dog the fox"\nprint(most_frequent(text))`,
+      `class BankAccount:\n    def __init__(self, owner, balance=0):\n        self.owner = owner\n        self.balance = balance\n\n    def deposit(self, amount):\n        if amount > 0:\n            self.balance += amount\n            return self.balance\n\n    def withdraw(self, amount):\n        if 0 < amount <= self.balance:\n            self.balance -= amount\n            return self.balance\n        raise ValueError("Insufficient funds")`,
+    ],
+    hard: [
+      `import asyncio\n\nasync def fetch_data(url):\n    print(f"Fetching {url}...")\n    await asyncio.sleep(1)\n    return f"Data from {url}"\n\nasync def main():\n    urls = ["api/users", "api/posts", "api/comments"]\n    tasks = [fetch_data(url) for url in urls]\n    results = await asyncio.gather(*tasks)\n    for result in results:\n        print(result)\n\nasyncio.run(main())`,
+    ]
+  },
+  go: {
+    easy: [
+      `package main\n\nimport "fmt"\n\nfunc main() {\n    fmt.Println("Hello, Gopher!")\n}`,
+      `package main\n\nimport "fmt"\n\nfunc add(a, b int) int {\n    return a + b\n}\n\nfunc main() {\n    fmt.Println(add(3, 4))\n}`,
+    ],
+    medium: [
+      `package main\n\nimport (\n    "fmt"\n    "sync"\n)\n\nfunc main() {\n    var wg sync.WaitGroup\n    for i := 0; i < 5; i++ {\n        wg.Add(1)\n        go func(id int) {\n            defer wg.Done()\n            fmt.Printf("Worker %d done\\n", id)\n        }(i)\n    }\n    wg.Wait()\n    fmt.Println("All workers finished")\n}`,
+      `package main\n\nimport "fmt"\n\ntype Stack struct {\n    items []int\n}\n\nfunc (s *Stack) Push(item int) {\n    s.items = append(s.items, item)\n}\n\nfunc (s *Stack) Pop() (int, error) {\n    if len(s.items) == 0 {\n        return 0, fmt.Errorf("stack is empty")\n    }\n    item := s.items[len(s.items)-1]\n    s.items = s.items[:len(s.items)-1]\n    return item, nil\n}`,
+    ],
+    hard: [
+      `package main\n\nimport (\n    "fmt"\n    "sync"\n    "time"\n)\n\ntype RateLimiter struct {\n    mu       sync.Mutex\n    tokens   int\n    maxTokens int\n    interval  time.Duration\n}\n\nfunc NewRateLimiter(rate int) *RateLimiter {\n    rl := &RateLimiter{\n        maxTokens: rate,\n        tokens:    rate,\n        interval:  time.Second,\n    }\n    go rl.refill()\n    return rl\n}\n\nfunc (rl *RateLimiter) refill() {\n    ticker := time.NewTicker(rl.interval)\n    for range ticker.C {\n        rl.mu.Lock()\n        rl.tokens = rl.maxTokens\n        rl.mu.Unlock()\n    }\n}\n\nfunc (rl *RateLimiter) Allow() bool {\n    rl.mu.Lock()\n    defer rl.mu.Unlock()\n    if rl.tokens > 0 {\n        rl.tokens--\n        return true\n    }\n    return false\n}`,
+    ]
+  },
+  rust: {
+    easy: [
+      `fn main() {\n    println!("Hello, Rustacean!");\n}`,
+      `fn square(x: i32) -> i32 {\n    x * x\n}\n\nfn main() {\n    println!("{}", square(5));\n}`,
+    ],
+    medium: [
+      `use std::collections::HashMap;\n\nfn main() {\n    let mut scores = HashMap::new();\n    scores.insert("Alice", 95);\n    scores.insert("Bob", 82);\n\n    for (name, score) in &scores {\n        println!("{}: {}", name, score);\n    }\n\n    match scores.get("Alice") {\n        Some(score) => println!("Alice's score: {}", score),\n        None => println!("Alice not found"),\n    }\n}`,
+      `#[derive(Debug)]\nstruct Rectangle {\n    width: u32,\n    height: u32,\n}\n\nimpl Rectangle {\n    fn area(&self) -> u32 {\n        self.width * self.height\n    }\n\n    fn can_hold(&self, other: &Rectangle) -> bool {\n        self.width > other.width && self.height > other.height\n    }\n}\n\nfn main() {\n    let rect1 = Rectangle { width: 30, height: 50 };\n    let rect2 = Rectangle { width: 10, height: 40 };\n    println!("Area: {}", rect1.area());\n    println!("Can hold: {}", rect1.can_hold(&rect2));\n}`,
+    ],
+    hard: [
+      `use std::sync::{Arc, Mutex};\nuse std::thread;\n\nfn main() {\n    let counter = Arc::new(Mutex::new(0));\n    let mut handles = vec![];\n\n    for _ in 0..10 {\n        let counter = Arc::clone(&counter);\n        let handle = thread::spawn(move || {\n            let mut num = counter.lock().unwrap();\n            *num += 1;\n        });\n        handles.push(handle);\n    }\n\n    for handle in handles {\n        handle.join().unwrap();\n    }\n\n    println!("Result: {}", *counter.lock().unwrap());\n}`,
+    ]
+  },
+  sql: {
+    easy: [
+      `SELECT name, age\nFROM users\nWHERE age >= 18\nORDER BY name ASC;`,
+      `SELECT department, COUNT(*) as count\nFROM employees\nGROUP BY department\nHAVING count > 5;`,
+    ],
+    medium: [
+      `SELECT\n    u.name,\n    o.order_date,\n    o.total_amount\nFROM users u\nINNER JOIN orders o ON u.id = o.user_id\nWHERE o.order_date >= '2024-01-01'\nORDER BY o.total_amount DESC\nLIMIT 10;`,
+      `WITH ranked_sales AS (\n  SELECT\n    salesperson_id,\n    amount,\n    RANK() OVER (ORDER BY amount DESC) as rank\n  FROM sales\n  WHERE sale_date >= CURRENT_DATE - INTERVAL '30 days'\n)\nSELECT * FROM ranked_sales WHERE rank <= 3;`,
+    ],
+    hard: [
+      `SELECT\n    c.category_name,\n    DATE_TRUNC('month', o.order_date) as month,\n    SUM(oi.quantity * p.price) as revenue,\n    LAG(SUM(oi.quantity * p.price)) OVER (\n        PARTITION BY c.id ORDER BY DATE_TRUNC('month', o.order_date)\n    ) as prev_month_revenue,\n    ROUND(\n        (SUM(oi.quantity * p.price) - LAG(SUM(oi.quantity * p.price)) OVER (\n            PARTITION BY c.id ORDER BY DATE_TRUNC('month', o.order_date)\n        )) * 100.0 / NULLIF(LAG(SUM(oi.quantity * p.price)) OVER (\n            PARTITION BY c.id ORDER BY DATE_TRUNC('month', o.order_date)\n        ), 0), 2\n    ) as growth_pct\nFROM categories c\nJOIN products p ON p.category_id = c.id\nJOIN order_items oi ON oi.product_id = p.id\nJOIN orders o ON o.id = oi.order_id\nGROUP BY c.id, c.category_name, DATE_TRUNC('month', o.order_date)\nORDER BY c.category_name, month;`,
+    ]
+  }
+};
+
+const langNames = { javascript:'JavaScript', python:'Python', go:'Go', rust:'Rust', sql:'SQL' };
+const langIcons = { javascript:'🟨', python:'🐍', go:'🔵', rust:'🦀', sql:'🗄️' };
+
+let currentLang = 'javascript';
+let currentSnippet = '';
+let currentPos = 0;
+let training = false;
+let startTime = 0;
+let totalKeystrokes = 0;
+let errorKeystrokes = 0;
+let keyTimings = {};
+let timerInterval = null;
+let history = JSON.parse(localStorage.getItem('typomaster_history') || '[]');
+
+function initLangList() {
+  const list = $('#langList');
+  list.innerHTML = Object.keys(snippets).map(lang =>
+    `<div class="lang-item${lang===currentLang?' active':''}" data-lang="${lang}" onclick="selectLang('${lang}')">
+      <span class="icon">${langIcons[lang]}</span>${langNames[lang]}
+    </div>`
+  ).join('');
+}
+
+function selectLang(lang) {
+  currentLang = lang;
+  $$('.lang-item').forEach(el => el.classList.toggle('active', el.dataset.lang === lang));
+  resetTraining();
+  loadNewSnippet();
+}
+
+function loadNewSnippet() {
+  const diff = $('#diffSelect').value;
+  const pool = snippets[currentLang][diff] || snippets[currentLang].medium;
+  const idx = Math.floor(Math.random() * pool.length);
+  currentSnippet = pool[idx];
+  currentPos = 0;
+  totalKeystrokes = 0;
+  errorKeystrokes = 0;
+  keyTimings = {};
+  training = false;
+  renderCode();
+  updateLiveStats();
+  $('#typingInput').value = '';
+  $('#typingInput').disabled = true;
+  $('#btnStart').style.display = '';
+  $('#btnReset').style.display = 'none';
+  $('#timerDisplay').style.display = 'none';
+  $('#progressFill').style.width = '0%';
+  $('#snippetInfo').textContent = `${currentSnippet.length} chars | ${currentSnippet.split('\n').length} lines`;
+}
+
+function renderCode() {
+  const display = $('#codeDisplay');
+  let html = '<pre><code>';
+  for (let i = 0; i < currentSnippet.length; i++) {
+    let cls = 'untyped';
+    if (i < currentPos) {
+      cls = 'correct';
+    } else if (i === currentPos && training) {
+      cls = 'current';
+    }
+    const ch = currentSnippet[i] === '\n' ? '\n' : currentSnippet[i];
+    html += `<span class="${cls}">${escapeHtml(ch)}</span>`;
+  }
+  html += '</code></pre>';
+  display.innerHTML = html;
+  if (training && currentPos < currentSnippet.length) {
+    display.querySelector('.current')?.scrollIntoView({block:'center',behavior:'smooth'});
+  }
+}
+
+function escapeHtml(s) {
+  if (s === '\n') return '<br>';
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function startTraining() {
+  if (training) return;
+  training = true;
+  currentPos = 0;
+  totalKeystrokes = 0;
+  errorKeystrokes = 0;
+  startTime = Date.now();
+  keyTimings = {};
+  $('#typingInput').value = '';
+  $('#typingInput').disabled = false;
+  $('#typingInput').focus();
+  $('#btnStart').style.display = 'none';
+  $('#btnReset').style.display = '';
+  $('#timerDisplay').style.display = '';
+  renderCode();
+  updateLiveStats();
+  timerInterval = setInterval(updateTimer, 200);
+}
+
+function resetTraining() {
+  training = false;
+  clearInterval(timerInterval);
+  currentPos = 0;
+  totalKeystrokes = 0;
+  errorKeystrokes = 0;
+  keyTimings = {};
+  $('#typingInput').value = '';
+  $('#typingInput').disabled = true;
+  $('#btnStart').style.display = '';
+  $('#btnReset').style.display = 'none';
+  $('#timerDisplay').style.display = 'none';
+  renderCode();
+  updateLiveStats();
+}
+
+$('#typingInput').addEventListener('input', function(e) {
+  if (!training) return;
+  const typed = this.value;
+  const expected = currentSnippet;
+
+  // Handle backspace / correction
+  if (typed.length <= currentPos) {
+    currentPos = typed.length;
+    renderCode();
+    updateLiveStats();
+    return;
+  }
+
+  // Process new characters
+  for (let i = currentPos; i < typed.length; i++) {
+    if (i >= expected.length) {
+      this.value = typed.substring(0, i);
+      break;
+    }
+    totalKeystrokes++;
+    const ch = typed[i];
+    const exp = expected[i];
+    const now = Date.now();
+    const key = exp.toLowerCase();
+
+    if (!keyTimings[key]) keyTimings[key] = { count: 0, errors: 0, totalTime: 0, lastTime: now };
+    keyTimings[key].count++;
+    keyTimings[key].totalTime += now - keyTimings[key].lastTime;
+    keyTimings[key].lastTime = now;
+
+    if (ch !== exp) {
+      errorKeystrokes++;
+      keyTimings[key].errors++;
+      // Don't advance, mark as incorrect
+      currentPos = i;
+      renderCode();
+      // Show incorrect briefly
+      const display = $('#codeDisplay');
+      const spans = display.querySelectorAll('span');
+      if (spans[i]) {
+        spans[i].className = 'incorrect';
+        setTimeout(() => { if (currentPos > i) spans[i].className = 'correct'; }, 300);
+      }
+      // Truncate input
+      this.value = typed.substring(0, i);
+      updateLiveStats();
+      if (currentPos >= expected.length) finishTraining();
+      return;
+    }
+    currentPos = i + 1;
+  }
+  renderCode();
+  updateLiveStats();
+  if (currentPos >= expected.length) finishTraining();
+});
+
+function updateLiveStats() {
+  const elapsed = training ? (Date.now() - startTime) / 1000 : 0;
+  const minutes = Math.max(elapsed / 60, 0.0167);
+  const words = currentPos / 5;
+  const wpm = Math.round(words / minutes);
+  const acc = totalKeystrokes > 0 ? Math.round((1 - errorKeystrokes / totalKeystrokes) * 100) : 100;
+
+  $('#liveWPM').textContent = wpm;
+  $('#liveACC').textContent = acc;
+  $('#liveERR').textContent = errorKeystrokes;
+  $('#liveTIME').textContent = Math.floor(elapsed) + 's';
+  $('#progressFill').style.width = (currentPos / currentSnippet.length * 100) + '%';
+}
+
+function updateTimer() {
+  const elapsed = Math.floor((Date.now() - startTime) / 1000);
+  const min = Math.floor(elapsed / 60);
+  const sec = elapsed % 60;
+  $('#timerDisplay').textContent = min + ':' + String(sec).padStart(2, '0');
+}
+
+function finishTraining() {
+  training = false;
+  clearInterval(timerInterval);
+  $('#typingInput').disabled = true;
+  $('#btnStart').style.display = '';
+  $('#btnReset').style.display = 'none';
+
+  const elapsed = (Date.now() - startTime) / 1000;
+  const minutes = Math.max(elapsed / 60, 0.0167);
+  const words = currentSnippet.length / 5;
+  const wpm = Math.round(words / minutes);
+  const acc = totalKeystrokes > 0 ? Math.round((1 - errorKeystrokes / totalKeystrokes) * 100) : 100;
+
+  // Find weak keys
+  const weakKeys = [];
+  Object.entries(keyTimings).forEach(([k, v]) => {
+    if (v.count >= 3) {
+      const avgTime = v.totalTime / v.count;
+      const errRate = v.errors / v.count;
+      if (avgTime > 300 || errRate > 0.2) weakKeys.push({key:k, avgTime, errRate});
+    }
+  });
+  weakKeys.sort((a,b) => b.errRate - a.errRate);
+
+  // Save to history
+  const record = {
+    date: new Date().toISOString(),
+    lang: currentLang,
+    wpm, acc, errors: errorKeystrokes,
+    chars: currentSnippet.length,
+    time: Math.round(elapsed),
+    weakKeys: weakKeys.slice(0,5).map(k => k.key)
+  };
+  history.unshift(record);
+  if (history.length > 100) history = history.slice(0, 100);
+  localStorage.setItem('typomaster_history', JSON.stringify(history));
+
+  // Show result
+  showResult(wpm, acc, elapsed, weakKeys);
+  renderCode();
+}
+
+function showResult(wpm, acc, elapsed, weakKeys) {
+  const overlay = $('#resultOverlay');
+  const grade = wpm >= 80 ? '🏆' : wpm >= 60 ? '⭐' : wpm >= 40 ? '👍' : '💪';
+  const gradeLabel = wpm >= 80 ? 'Legendary' : wpm >= 60 ? 'Great' : wpm >= 40 ? 'Good' : 'Keep Practicing';
+
+  overlay.innerHTML = `
+    <div class="result-card">
+      <div style="font-size:40px;margin-bottom:8px">${grade}</div>
+      <h2>${gradeLabel}</h2>
+      <div class="big-num">${wpm} <span style="font-size:16px;color:var(--text2)">WPM</span></div>
+      <div class="detail-row">
+        <div class="detail"><div class="num" style="color:var(--primary)">${acc}%</div><div class="lbl">Accuracy</div></div>
+        <div class="detail"><div class="num" style="color:var(--red)">${errorKeystrokes}</div><div class="lbl">Errors</div></div>
+        <div class="detail"><div class="num">${Math.round(elapsed)}s</div><div class="lbl">Time</div></div>
+      </div>
+      ${weakKeys.length ? `<div class="weak-keys"><div style="font-size:11px;color:var(--text3);margin-bottom:6px">WEAK KEYS</div>
+        ${weakKeys.slice(0,8).map(k => `<span class="weak-key${k.errRate>0.3?' slow':''}">${k.key.toUpperCase()} ${Math.round(k.avgTime)}ms</span>`).join('')}
+      </div>` : ''}
+      <div style="display:flex;gap:8px;justify-content:center;margin-top:16px">
+        <button class="btn btn-primary" onclick="retrySnippet()">Retry</button>
+        <button class="btn" onclick="loadNewSnippet();closeResult()">Next</button>
+      </div>
+    </div>
+  `;
+  overlay.style.display = 'flex';
+}
+
+function closeResult() { $('#resultOverlay').style.display = 'none'; }
+function retrySnippet() { closeResult(); startTraining(); }
+$('#resultOverlay').addEventListener('click', function(e) { if (e.target === this) closeResult(); });
+
+function switchTab(tab) {
+  ['train','history','stats'].forEach(t => {
+    $('#tab-'+t).style.display = t === tab ? '' : 'none';
+  });
+  if (tab === 'history') renderHistory();
+  if (tab === 'stats') renderAnalytics();
+}
+
+function renderHistory() {
+  const list = $('#historyList');
+  if (!history.length) {
+    list.innerHTML = '<div class="empty-state">No records yet. Complete some training sessions!</div>';
+    return;
+  }
+  list.innerHTML = history.slice(0, 50).map((r, i) => `
+    <div class="history-row">
+      <span class="lang">${langNames[r.lang]||r.lang}</span>
+      <span style="color:var(--text3);flex:1;text-align:center">${new Date(r.date).toLocaleDateString()}</span>
+      <span class="wpm">${r.wpm} WPM</span>
+      <span class="acc">${r.acc}%</span>
+    </div>
+  `).join('');
+}
+
+function clearHistory() {
+  history = [];
+  localStorage.removeItem('typomaster_history');
+  renderHistory();
+}
+
+function renderAnalytics() {
+  if (history.length < 2) {
+    $('#wpmChart').innerHTML = '<div class="empty-state">Need at least 2 sessions to show analytics</div>';
+    $('#keyHeatmap').innerHTML = '';
+    return;
+  }
+
+  // WPM over time
+  const recent = history.slice(0, 30).reverse();
+  const wpmTrace = {
+    x: recent.map(r => new Date(r.date).toLocaleDateString()),
+    y: recent.map(r => r.wpm),
+    type: 'scatter', mode: 'lines+markers',
+    name: 'WPM', line: {color:'#58a6ff',width:2}, marker: {size:6}
+  };
+  const accTrace = {
+    x: recent.map(r => new Date(r.date).toLocaleDateString()),
+    y: recent.map(r => r.acc),
+    type: 'scatter', mode: 'lines+markers',
+    name: 'Accuracy %', line: {color:'#3fb950',width:2,dash:'dot'}, marker: {size:5}, yaxis:'y2'
+  };
+  Plotly.newPlot('wpmChart', [wpmTrace, accTrace], {
+    title: 'Performance Over Time',
+    xaxis: {title:'Date', gridcolor:'#21262d', color:'#8b949e'},
+    yaxis: {title:'WPM', gridcolor:'#21262d', color:'#8b949e'},
+    yaxis2: {title:'Accuracy %', overlaying:'y', side:'right', range:[0,105], color:'#8b949e'},
+    paper_bgcolor:'#0d1117', plot_bgcolor:'#0d1117',
+    font: {color:'#c9d1d9'}, margin: {t:30,r:60,b:50,l:50},
+    legend: {x:0,y:1.1,orientation:'h'}
+  }, {responsive:true});
+
+  // Weak key analysis
+  const allWeakKeys = {};
+  history.forEach(r => {
+    (r.weakKeys || []).forEach(k => {
+      allWeakKeys[k] = (allWeakKeys[k] || 0) + 1;
+    });
+  });
+  const sorted = Object.entries(allWeakKeys).sort((a,b) => b[1]-a[1]).slice(0, 15);
+  if (sorted.length) {
+    Plotly.newPlot('keyHeatmap', [{
+      x: sorted.map(s=>s[0].toUpperCase()),
+      y: sorted.map(s=>s[1]),
+      type: 'bar',
+      marker: {color: sorted.map(s => s[1]>3?'#f85149':'#d2991d')}
+    }], {
+      title: 'Most Frequent Weak Keys',
+      paper_bgcolor:'#0d1117', plot_bgcolor:'#0d1117',
+      font: {color:'#c9d1d9'}, margin: {t:30,r:20,b:40,l:40},
+      xaxis: {gridcolor:'#21262d'}, yaxis: {title:'Appearances',gridcolor:'#21262d'}
+    }, {responsive:true});
+  }
+}
+
+// Init
+initLangList();
+loadNewSnippet();
+
+</script>
+</body>
+</html>

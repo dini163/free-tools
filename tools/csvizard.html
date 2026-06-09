@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en" data-title-key="t_csvizard">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9267698062788796" crossorigin="anonymous"></script>
+    <title>CSVizard - Free Online Tool</title>
+    <meta name="description" content="CSV data analysis workbench - drag and drop, descriptive statistics, visual charts, and data cleaning.">
+    <link rel="canonical" href="https://dini163.github.io/free-tools/tools/csvizard.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/theme.min.js" defer></script>
+    <script src="../js/i18n.min.js" defer></script>
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#667eea">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script><script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+    <style>
+    
+:root {
+  --bg: var(--bg-primary);
+  --surface: var(--bg-card);
+  --border: var(--border);
+  --text: var(--text-primary);
+  --text2: var(--text-secondary);
+  --text3: var(--text-muted);
+  --primary: var(--accent-light);
+  --primary-light: var(--accent-glow);
+  --primary-bg: var(--accent-glow);
+  --primary-dark: var(--accent);
+  --success: var(--success);
+  --warning: var(--warning);
+  --yellow: var(--warning);
+  --red: var(--error);
+  --danger: var(--error);
+  --shadow: var(--shadow);
+  --radius: var(--radius);
+  --radius-sm: var(--radius-sm);
+  --todo: rgba(99, 102, 241, 0.1);
+  --progress: rgba(245, 158, 11, 0.1);
+  --done: rgba(16, 185, 129, 0.1);
+  --white-key: #ffffff;
+  --black-key: #09090b;
+}
+.theme-light {
+  --primary: var(--accent);
+  --primary-dark: var(--accent-dark);
+  --primary-light: rgba(99, 102, 241, 0.08);
+  --primary-bg: rgba(99, 102, 241, 0.08);
+  --todo: #eff6ff;
+  --progress: #fef9c3;
+  --done: #dcfce7;
+  --white-key: #f4f4f5;
+  --black-key: #27272a;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+.tool-body-style { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; background:var(--bg); color:var(--text); line-height:1.5; min-height:100vh; }
+header { background:var(--surface); border-bottom:1px solid var(--border); padding:0 24px; height:56px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; }
+.logo { font-weight:700; font-size:18px; color:var(--primary); display:flex; align-items:center; gap:8px; }
+.logo span { background:var(--primary); color:#fff; padding:2px 8px; border-radius:4px; font-size:11px; text-transform:uppercase; letter-spacing:.5px; }
+.header-actions { display:flex; gap:8px; align-items:center; }
+.btn { padding:8px 16px; border-radius:var(--radius-sm); border:1px solid var(--border); background:var(--surface); color:var(--text); font-size:13px; font-weight:500; cursor:pointer; transition:all .15s; display:inline-flex; align-items:center; gap:6px; white-space:nowrap; }
+.btn:hover { background:#f1f3f6; border-color:#cdd3dc; }
+.btn-primary { background:var(--primary); color:#fff; border-color:var(--primary); }
+.btn-primary:hover { background:var(--primary-dark); border-color:var(--primary-dark); }
+.btn-sm { padding:5px 10px; font-size:12px; }
+.btn-ghost { border:none; background:none; color:var(--text2); }
+.btn-ghost:hover { color:var(--text); background:#f1f3f6; }
+main { max-width:1400px; margin:0 auto; padding:20px 24px; }
+.drop-zone { border:2px dashed var(--border); border-radius:var(--radius); padding:48px 24px; text-align:center; transition:all .2s; cursor:pointer; background:var(--surface); margin-bottom:20px; }
+.drop-zone.active { border-color:var(--primary); background:var(--primary-light); }
+.drop-zone h2 { font-size:20px; margin-bottom:6px; }
+.drop-zone p { color:var(--text2); font-size:14px; }
+.drop-zone .sample-link { color:var(--primary); cursor:pointer; font-weight:500; margin-top:12px; display:inline-block; }
+.tabs { display:flex; gap:0; border-bottom:2px solid var(--border); margin-bottom:20px; overflow-x:auto; }
+.tab { padding:10px 20px; cursor:pointer; font-size:14px; font-weight:500; color:var(--text2); border-bottom:2px solid transparent; margin-bottom:-2px; transition:all .15s; white-space:nowrap; }
+.tab:hover { color:var(--text); }
+.tab.active { color:var(--primary); border-bottom-color:var(--primary); }
+.panel { display:none; }
+.panel.active { display:block; }
+.card { background:var(--surface); border-radius:var(--radius); border:1px solid var(--border); padding:20px; margin-bottom:16px; box-shadow:var(--shadow); }
+.card h3 { font-size:15px; font-weight:600; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+.stats-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px; }
+.stat-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-sm); padding:14px; }
+.stat-card .label { font-size:11px; text-transform:uppercase; letter-spacing:.5px; color:var(--text3); margin-bottom:4px; }
+.stat-card .value { font-size:22px; font-weight:700; }
+.stat-card .sub { font-size:11px; color:var(--text2); margin-top:2px; }
+table { width:100%; border-collapse:collapse; font-size:13px; }
+th, td { padding:8px 12px; text-align:left; border-bottom:1px solid var(--border); }
+th { background:#f8f9fb; font-weight:600; color:var(--text2); font-size:12px; text-transform:uppercase; letter-spacing:.3px; position:sticky; top:0; cursor:pointer; user-select:none; }
+th:hover { color:var(--text); }
+tr:hover td { background:#f8f9fb; }
+.table-wrap { max-height:500px; overflow:auto; border:1px solid var(--border); border-radius:var(--radius-sm); }
+.stat-table-wrap { max-height:400px; overflow:auto; border:1px solid var(--border); border-radius:var(--radius-sm); }
+.stat-table { font-size:12px; }
+.stat-table td:first-child { font-weight:600; min-width:120px; }
+.chart-container { min-height:400px; }
+.clean-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:768px) { .clean-grid { grid-template-columns:1fr; } }
+select, input[type="text"], input[type="number"] { padding:8px 10px; border:1px solid var(--border); border-radius:var(--radius-sm); font-size:13px; background:var(--surface); color:var(--text); width:100%; }
+select:focus, input:focus { outline:none; border-color:var(--primary); box-shadow:0 0 0 2px var(--primary-light); }
+.form-group { margin-bottom:12px; }
+.form-group label { display:block; font-size:12px; font-weight:600; color:var(--text2); margin-bottom:4px; text-transform:uppercase; letter-spacing:.3px; }
+.row { display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap; }
+.row > * { flex:1; min-width:120px; }
+.badge { display:inline-block; padding:2px 8px; border-radius:10px; font-size:11px; font-weight:600; }
+.badge-num { background:#eef1fe; color:var(--primary); }
+.badge-str { background:#fef3c7; color:#92400e; }
+.badge-date { background:#d1fae5; color:#065f46; }
+.badge-mixed { background:#fce7f3; color:#9d174d; }
+.toast { position:fixed; bottom:24px; right:24px; padding:12px 20px; background:#1a1d23; color:#fff; border-radius:var(--radius-sm); font-size:13px; z-index:999; opacity:0; transform:translateY(10px); transition:all .3s; pointer-events:none; }
+.toast.show { opacity:1; transform:translateY(0); }
+.empty-state { text-align:center; padding:60px 20px; color:var(--text2); }
+.empty-state .icon { font-size:48px; margin-bottom:12px; }
+.progress-bar { height:6px; background:var(--border); border-radius:3px; overflow:hidden; margin-top:4px; }
+.progress-bar .fill { height:100%; border-radius:3px; transition:width .3s; }
+.fill-good { background:var(--success); }
+.fill-warn { background:var(--warning); }
+.fill-bad { background:var(--danger); }
+.missing-bar { display:flex; align-items:center; gap:8px; }
+.missing-bar .bar { flex:1; }
+.tooltip { font-size:11px; color:var(--text3); margin-top:2px; }
+.export-actions { display:flex; gap:8px; margin-top:12px; flex-wrap:wrap; }
+
+    </style>
+</head>
+<body class="tool-body-style">
+
+<header class="header">
+    <div class="header-inner">
+        <a href="../index.html" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+            </div>
+            <span data-i18n="logo">FreeDevTools</span>
+        </a>
+        <nav class="nav-links">
+            <a href="../index.html" data-i18n="all_tools">All Tools</a>
+            <div class="lang-switcher">
+                <button class="lang-btn" id="langToggleBtn" onclick="toggleLangMenu(event)" aria-label="Select language">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <button class="lang-menu-item" onclick="changeLanguage('en')">English</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('fr')">Français</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('es')">Español</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('pt')">Português</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ru')">Русский</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-CN')">简体中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-TW')">繁體中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ja')">日本語</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ko')">한국어</button>
+                </div>
+            </div>
+            <div class="theme-switcher">
+                <button class="theme-btn" id="themeToggleBtn" onclick="toggleThemeMenu(event)" aria-label="Toggle theme">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </button>
+                <div class="theme-menu" id="themeMenu">
+                    <button class="theme-menu-item" onclick="setTheme('light')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg> Light</button>
+                    <button class="theme-menu-item" onclick="setTheme('dark')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg> Dark</button>
+                    <button class="theme-menu-item" onclick="setTheme('auto')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg> System</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+
+<main><div class="tool-toolbar" style="display:flex; gap:10px; margin-bottom:15px; flex-wrap:wrap;">
+    <button class="btn btn-sm" onclick="loadSample()" id="btnSample">Sample Data</button>
+    <button class="btn btn-primary btn-sm" onclick="document.getElementById('fileInput').click()">Import CSV</button>
+    <input type="file" id="fileInput" accept=".csv,.tsv,.txt" style="display:none" onchange="handleFile(this)">
+  </div>
+  <div class="drop-zone" id="dropZone">
+    <h2>Drop your CSV file here</h2>
+    <p>or click to browse. Supports .csv, .tsv. All processing happens locally in your browser.</p>
+    <span class="sample-link" onclick="loadSample()">Try with sample data →</span>
+  </div>
+
+  <div class="tabs" id="tabBar" style="display:none">
+    <div class="tab active" data-tab="data">Data Preview</div>
+    <div class="tab" data-tab="stats">Statistics</div>
+    <div class="tab" data-tab="viz">Visualization</div>
+    <div class="tab" data-tab="clean">Clean & Export</div>
+  </div>
+
+  <div class="panel active" id="panel-data">
+    <div class="card">
+      <h3>Data Preview <span style="font-weight:400;font-size:12px;color:var(--text2)" id="dataInfo"></span></h3>
+      <div style="margin-bottom:8px;display:flex;gap:8px;align-items:center">
+        <input type="text" placeholder="Search..." id="tableSearch" style="max-width:300px" oninput="renderTable()">
+      </div>
+      <div class="table-wrap" id="tableContainer">
+        <div class="empty-state"><div class="icon">📊</div><p>Import a CSV file to preview data</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" id="panel-stats">
+    <div class="stats-grid" id="quickStats"></div>
+    <div class="card" style="margin-top:16px">
+      <h3>Column Statistics</h3>
+      <div class="stat-table-wrap" id="statTableContainer"></div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <h3>Missing Values Analysis</h3>
+      <div id="missingAnalysis"></div>
+    </div>
+  </div>
+
+  <div class="panel" id="panel-viz">
+    <div class="card">
+      <h3>Create Chart</h3>
+      <div class="row" style="margin-bottom:12px">
+        <div class="form-group"><label>Chart Type</label><select id="chartType"><option value="scatter">Scatter Plot</option><option value="histogram">Histogram</option><option value="box">Box Plot</option><option value="heatmap">Correlation Heatmap</option><option value="bar">Bar Chart</option></select></div>
+        <div class="form-group" id="xColGroup"><label>X Column</label><select id="xCol"></select></div>
+        <div class="form-group" id="yColGroup"><label>Y Column</label><select id="yCol"></select></div>
+        <div class="form-group" id="colorGroup" style="display:none"><label>Color By</label><select id="colorCol"><option value="">None</option></select></div>
+        <div class="form-group"><label>&nbsp;</label><button class="btn btn-primary" onclick="renderChart()" style="width:100%">Generate</button></div>
+      </div>
+      <div class="chart-container" id="chartContainer">
+        <div class="empty-state"><div class="icon">📈</div><p>Configure chart options and click Generate</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" id="panel-clean">
+    <div class="clean-grid">
+      <div class="card">
+        <h3>Quick Actions</h3>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <button class="btn" onclick="cleanDuplicates()">Remove Duplicate Rows</button>
+          <button class="btn" onclick="cleanDropNA()">Drop Rows with Missing Values</button>
+          <button class="btn" onclick="cleanTrimWhitespace()">Trim Whitespace</button>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Fill Missing Values</h3>
+        <div class="form-group"><label>Column</label><select id="fillColumn"></select></div>
+        <div class="form-group"><label>Method</label>
+          <select id="fillMethod">
+            <option value="mean">Fill with Mean (numeric only)</option>
+            <option value="median">Fill with Median (numeric only)</option>
+            <option value="mode">Fill with Mode (most frequent)</option>
+            <option value="value">Fill with Custom Value</option>
+          </select>
+        </div>
+        <div class="form-group" id="fillValueGroup" style="display:none"><label>Custom Value</label><input type="text" id="fillValue"></div>
+        <button class="btn btn-primary btn-sm" onclick="fillMissing()">Apply Fill</button>
+      </div>
+      <div class="card">
+        <h3>Regex Replace</h3>
+        <div class="form-group"><label>Column</label><select id="regexColumn"></select></div>
+        <div class="form-group"><label>Pattern (Regex)</label><input type="text" id="regexPattern" placeholder="e.g. \s+"></div>
+        <div class="form-group"><label>Replacement</label><input type="text" id="regexReplace" placeholder="e.g. "></div>
+        <button class="btn btn-primary btn-sm" onclick="regexReplace()">Apply Replace</button>
+      </div>
+      <div class="card">
+        <h3>Export Cleaned Data</h3>
+        <p style="color:var(--text2);font-size:13px;margin-bottom:12px">Download the current state of your data after cleaning.</p>
+        <div class="export-actions">
+          <button class="btn btn-primary btn-sm" onclick="exportCSV()">Download CSV</button>
+          <button class="btn btn-sm" onclick="exportJSON()">Download JSON</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="toast" id="toast"></div>
+
+
+
+<footer class="footer">
+    <p>&copy; 2026 FreeDevTools. All tools run 100% locally in your web browser — absolutely no data is transmitted to any server.</p>
+</footer>
+
+<script>
+
+let rawData = [];
+let headers = [];
+let columnTypes = [];
+let cleanedIndices = null;
+
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+
+function showToast(msg) {
+  const t = $('#toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// === FILE HANDLING ===
+$('#dropZone').addEventListener('click', () => $('#fileInput').click());
+$('#dropZone').addEventListener('dragover', e => { e.preventDefault(); $('#dropZone').classList.add('active'); });
+$('#dropZone').addEventListener('dragleave', () => $('#dropZone').classList.remove('active'));
+$('#dropZone').addEventListener('drop', e => {
+  e.preventDefault(); $('#dropZone').classList.remove('active');
+  const f = e.dataTransfer.files[0];
+  if (f) parseFile(f);
+});
+
+function handleFile(input) {
+  const f = input.files[0];
+  if (f) parseFile(f);
+  input.value = '';
+}
+
+function parseFile(file) {
+  const ext = file.name.split('.').pop().toLowerCase();
+  const delim = ext === 'tsv' ? '\t' : ',';
+  Papa.parse(file, {
+    header: true, skipEmptyLines: true, delimiter: delim,
+    complete: results => {
+      if (results.errors.length && results.data.length === 0) {
+        showToast('Error parsing file: ' + results.errors[0].message);
+        return;
+      }
+      rawData = results.data.filter(r => Object.values(r).some(v => v !== '' && v !== null && v !== undefined));
+      headers = results.meta.fields || [];
+      detectTypes();
+      cleanedIndices = null;
+      onDataReady();
+    },
+    error: err => showToast('Failed to read file: ' + err.message)
+  });
+}
+
+function detectTypes() {
+  columnTypes = headers.map(h => {
+    let numCount = 0, dateCount = 0, total = 0;
+    for (let r of rawData) {
+      const v = r[h];
+      if (v === '' || v === null || v === undefined) continue;
+      total++;
+      if (!isNaN(v) && v.trim() !== '') numCount++;
+      if (!isNaN(Date.parse(v)) && isNaN(Number(v)) && v.length > 5) dateCount++;
+    }
+    if (total === 0) return 'empty';
+    if (numCount / total > 0.8) return 'number';
+    if (dateCount / total > 0.7) return 'date';
+    return 'string';
+  });
+}
+
+function getActiveData() {
+  if (cleanedIndices) return cleanedIndices.map(i => rawData[i]);
+  return rawData;
+}
+
+function onDataReady() {
+  $('#dropZone').style.display = 'none';
+  $('#tabBar').style.display = 'flex';
+  $('#dataInfo').textContent = `${rawData.length} rows × ${headers.length} columns`;
+  updateColumnSelects();
+  renderTable();
+  renderStats();
+  renderMissingAnalysis();
+  showToast(`Loaded ${rawData.length} rows, ${headers.length} columns`);
+  switchTab('data');
+}
+
+// === TABS ===
+$$('.tab').forEach(t => t.addEventListener('click', () => switchTab(t.dataset.tab)));
+
+function switchTab(name) {
+  $$('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === name));
+  $$('.panel').forEach(p => p.classList.toggle('active', p.id === 'panel-' + name));
+  if (name === 'stats') { renderStats(); renderMissingAnalysis(); }
+  if (name === 'viz') updateColumnSelects();
+  if (name === 'clean') updateColumnSelects();
+}
+
+// === TABLE ===
+function renderTable() {
+  const container = $('#tableContainer');
+  const data = getActiveData();
+  if (!data.length) { container.innerHTML = '<div class="empty-state"><div class="icon">📊</div><p>No data to display</p></div>'; return; }
+  const search = ($('#tableSearch').value || '').toLowerCase();
+  let filtered = data;
+  if (search) {
+    filtered = data.filter(r => Object.values(r).some(v => String(v).toLowerCase().includes(search)));
+  }
+  const display = filtered.slice(0, 200);
+  let html = '<table><thead><tr>';
+  html += '<th>#</th>';
+  headers.forEach(h => html += `<th onclick="sortTable('${h.replace(/'/g,"\\'")}')">${h}</th>`);
+  html += '</tr></thead><tbody>';
+  display.forEach((r, i) => {
+    html += '<tr><td style="color:var(--text3)">' + (i+1) + '</td>';
+    headers.forEach(h => {
+      let v = r[h];
+      if (v === null || v === undefined) v = '<span style="color:var(--text3);font-style:italic">null</span>';
+      else v = String(v).replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      html += `<td>${v}</td>`;
+    });
+    html += '</tr>';
+  });
+  html += '</tbody></table>';
+  if (filtered.length > 200) html += `<p style="padding:12px;color:var(--text2);font-size:12px">Showing 200 of ${filtered.length} rows. Use search to narrow down.</p>`;
+  container.innerHTML = html;
+}
+
+let sortDir = {};
+function sortTable(col) {
+  sortDir[col] = !(sortDir[col] || false);
+  const dir = sortDir[col] ? 1 : -1;
+  rawData.sort((a, b) => {
+    const va = a[col], vb = b[col];
+    if (va === vb) return 0;
+    if (va === null || va === undefined) return 1;
+    if (vb === null || vb === undefined) return -1;
+    const na = Number(va), nb = Number(vb);
+    if (!isNaN(na) && !isNaN(nb)) return (na - nb) * dir;
+    return String(va).localeCompare(String(vb)) * dir;
+  });
+  if (cleanedIndices) cleanedIndices = [...rawData.keys()];
+  renderTable();
+}
+
+// === STATISTICS ===
+function calcStats(values) {
+  const nums = values.filter(v => v !== null && v !== undefined && v !== '' && !isNaN(v)).map(Number);
+  if (!nums.length) return null;
+  nums.sort((a,b)=>a-b);
+  const n = nums.length;
+  const sum = nums.reduce((a,b)=>a+b,0);
+  const mean = sum / n;
+  const median = n%2===0 ? (nums[n/2-1]+nums[n/2])/2 : nums[(n-1)/2];
+  const variance = nums.reduce((s,v)=>s+(v-mean)**2,0) / (n-1);
+  const std = Math.sqrt(variance);
+  const q1 = nums[Math.floor(n*0.25)];
+  const q3 = nums[Math.floor(n*0.75)];
+  return { count:n, mean, median, std, min:nums[0], max:nums[n-1], q1, q3, sum };
+}
+
+function renderStats() {
+  const data = getActiveData();
+  if (!data.length) return;
+
+  // Quick stats
+  const totalRows = data.length;
+  const totalCols = headers.length;
+  const numCols = columnTypes.filter(t => t === 'number').length;
+  const strCols = columnTypes.filter(t => t === 'string').length;
+  let totalMissing = 0;
+  headers.forEach(h => {
+    data.forEach(r => { if (r[h] === '' || r[h] === null || r[h] === undefined) totalMissing++; });
+  });
+  const completeness = totalRows * totalCols > 0 ? ((1 - totalMissing / (totalRows * totalCols)) * 100).toFixed(1) : 100;
+
+  $('#quickStats').innerHTML = `
+    <div class="stat-card"><div class="label">Total Rows</div><div class="value">${totalRows.toLocaleString()}</div></div>
+    <div class="stat-card"><div class="label">Columns</div><div class="value">${totalCols}</div><div class="sub">${numCols} numeric, ${strCols} text</div></div>
+    <div class="stat-card"><div class="label">Completeness</div><div class="value">${completeness}%</div>
+      <div class="progress-bar"><div class="fill ${completeness>90?'fill-good':completeness>70?'fill-warn':'fill-bad'}" style="width:${completeness}%"></div></div></div>
+    <div class="stat-card"><div class="label">Missing Cells</div><div class="value">${totalMissing.toLocaleString()}</div></div>
+  `;
+
+  // Column stats table
+  let html = '<table class="stat-table"><thead><tr><th>Column</th><th>Type</th><th>Count</th><th>Missing</th><th>Unique</th>';
+  html += '<th>Mean</th><th>Median</th><th>Std Dev</th><th>Min</th><th>Max</th>';
+  html += '</tr></thead><tbody>';
+  headers.forEach((h, i) => {
+    const vals = data.map(r => r[h]);
+    const nonNull = vals.filter(v => v !== '' && v !== null && v !== undefined);
+    const missing = totalRows - nonNull.length;
+    const unique = new Set(nonNull).size;
+    const typeBadge = {number:'badge-num',string:'badge-str',date:'badge-date',empty:'badge-mixed'}[columnTypes[i]] || 'badge-str';
+    const typeLabel = columnTypes[i];
+    const stats = calcStats(vals);
+    html += '<tr>';
+    html += `<td><strong>${h}</strong></td>`;
+    html += `<td><span class="badge ${typeBadge}">${typeLabel}</span></td>`;
+    html += `<td>${nonNull.length.toLocaleString()}</td>`;
+    html += `<td style="color:${missing>0?'var(--danger)':'var(--text2)'}">${missing} (${(missing/totalRows*100).toFixed(1)}%)</td>`;
+    html += `<td>${unique.toLocaleString()}</td>`;
+    if (stats) {
+      html += `<td>${stats.mean.toFixed(2)}</td><td>${stats.median.toFixed(2)}</td><td>${stats.std.toFixed(2)}</td><td>${stats.min}</td><td>${stats.max}</td>`;
+    } else {
+      html += '<td colspan="5" style="color:var(--text3)">—</td>';
+    }
+    html += '</tr>';
+  });
+  html += '</tbody></table>';
+  $('#statTableContainer').innerHTML = html;
+}
+
+function renderMissingAnalysis() {
+  const data = getActiveData();
+  if (!data.length) return;
+  let html = '';
+  headers.forEach(h => {
+    const missing = data.filter(r => r[h] === '' || r[h] === null || r[h] === undefined).length;
+    const pct = (missing / data.length * 100).toFixed(1);
+    const color = missing === 0 ? 'var(--success)' : pct > 20 ? 'var(--danger)' : 'var(--warning)';
+    html += `<div class="missing-bar" style="margin-bottom:8px">
+      <span style="font-size:12px;width:120px;flex-shrink:0">${h}</span>
+      <div class="bar"><div class="progress-bar"><div class="fill" style="width:${pct}%;background:${color}"></div></div></div>
+      <span style="font-size:12px;width:60px;text-align:right;color:${color};flex-shrink:0">${missing} (${pct}%)</span>
+    </div>`;
+  });
+  $('#missingAnalysis').innerHTML = html || '<p style="color:var(--text2)">No missing values detected.</p>';
+}
+
+// === VISUALIZATION ===
+function updateColumnSelects() {
+  const numCols = headers.filter((h,i) => columnTypes[i] === 'number');
+  const allCols = headers;
+  [$('#xCol'), $('#yCol'), $('#fillColumn'), $('#regexColumn')].forEach(sel => {
+    sel.innerHTML = allCols.map(h => `<option value="${h}">${h}</option>`).join('');
+  });
+  $('#colorCol').innerHTML = '<option value="">None</option>' + allCols.map(h => `<option value="${h}">${h}</option>`).join('');
+  $('#chartType').dispatchEvent(new Event('change'));
+}
+
+$('#chartType').addEventListener('change', function() {
+  const t = this.value;
+  $('#xColGroup').style.display = (t === 'heatmap') ? 'none' : '';
+  $('#yColGroup').style.display = (t === 'histogram' || t === 'heatmap') ? 'none' : '';
+  $('#colorGroup').style.display = (t === 'scatter' || t === 'bar') ? '' : 'none';
+});
+
+function renderChart() {
+  const data = getActiveData();
+  const type = $('#chartType').value;
+  const container = $('#chartContainer');
+
+  if (type === 'heatmap') {
+    renderHeatmap(data, container);
+    return;
+  }
+
+  const xCol = $('#xCol').value;
+  const yCol = $('#yCol').value;
+  const colorCol = $('#colorCol').value;
+
+  if (type === 'histogram') {
+    const vals = data.map(r => Number(r[xCol])).filter(v => !isNaN(v));
+    Plotly.newPlot(container, [{
+      x: vals, type: 'histogram', marker: {color: '#4f6ef7', line: {color:'#fff',width:1}},
+      nbinsx: Math.min(50, Math.ceil(Math.sqrt(vals.length)))
+    }], {
+      title: `Distribution of ${xCol}`,
+      xaxis: {title: xCol}, yaxis: {title: 'Frequency'},
+      template: 'plotly_white', margin: {t:40,r:20,b:50,l:60}
+    }, {responsive:true});
+    return;
+  }
+
+  if (type === 'box') {
+    const groups = {};
+    data.forEach(r => { const v = Number(r[xCol]); if (!isNaN(v)) { (groups[xCol] = groups[xCol] || []).push(v); }});
+    Plotly.newPlot(container, Object.entries(groups).map(([k,v]) => ({y:v, type:'box', name:k, marker:{color:'#4f6ef7'}})), {
+      title: `Box Plot: ${xCol}`,
+      template: 'plotly_white', margin: {t:40,r:20,b:50,l:60}
+    }, {responsive:true});
+    return;
+  }
+
+  // Scatter / Bar
+  const xVals = data.map(r => columnTypes[headers.indexOf(xCol)] === 'number' ? Number(r[xCol]) : r[xCol]);
+  const yVals = data.map(r => Number(r[yCol]));
+  const validIndices = xVals.map((_,i) => i).filter(i => !isNaN(yVals[i]) && xVals[i] !== undefined);
+
+  if (type === 'scatter') {
+    const traces = [];
+    if (colorCol && $('#colorCol').value) {
+      const groups = {};
+      validIndices.forEach(i => {
+        const key = String(data[i][colorCol]);
+        (groups[key] = groups[key] || []).push(i);
+      });
+      Object.entries(groups).forEach(([key, indices]) => {
+        traces.push({
+          x: indices.map(i => xVals[i]), y: indices.map(i => yVals[i]),
+          type: 'scatter', mode: 'markers', name: key,
+          marker: {size:6, opacity:.7}
+        });
+      });
+    } else {
+      traces.push({x: validIndices.map(i => xVals[i]), y: validIndices.map(i => yVals[i]), type:'scatter', mode:'markers', marker:{size:6,color:'#4f6ef7',opacity:.7}});
+    }
+    Plotly.newPlot(container, traces, {
+      title: `${yCol} vs ${xCol}`,
+      xaxis: {title: xCol}, yaxis: {title: yCol},
+      template: 'plotly_white', margin: {t:40,r:20,b:50,l:60}
+    }, {responsive:true});
+  } else if (type === 'bar') {
+    const agg = {};
+    validIndices.forEach(i => { const k = String(xVals[i]); agg[k] = (agg[k] || 0) + yVals[i]; });
+    const keys = Object.keys(agg).slice(0, 30);
+    Plotly.newPlot(container, [{x: keys, y: keys.map(k=>agg[k]), type:'bar', marker:{color:'#4f6ef7'}}], {
+      title: `${yCol} by ${xCol}`,
+      template: 'plotly_white', margin: {t:40,r:20,b:80,l:60}
+    }, {responsive:true});
+  }
+}
+
+function renderHeatmap(data, container) {
+  const numHeaders = headers.filter((h,i) => columnTypes[i] === 'number');
+  if (numHeaders.length < 2) {
+    container.innerHTML = '<div class="empty-state"><p>Need at least 2 numeric columns for correlation heatmap.</p></div>';
+    return;
+  }
+  const matrix = [];
+  numHeaders.forEach(h1 => {
+    const row = [];
+    numHeaders.forEach(h2 => {
+      const vals1 = [], vals2 = [];
+      data.forEach(r => {
+        const v1 = Number(r[h1]), v2 = Number(r[h2]);
+        if (!isNaN(v1) && !isNaN(v2)) { vals1.push(v1); vals2.push(v2); }
+      });
+      row.push(pearsonCorrelation(vals1, vals2));
+    });
+    matrix.push(row);
+  });
+  Plotly.newPlot(container, [{
+    z: matrix, x: numHeaders, y: numHeaders, type: 'heatmap',
+    colorscale: [[0,'#ef4444'],[0.5,'#fff'],[1,'#4f6ef7']],
+    zmin: -1, zmax: 1,
+    text: matrix.map(r => r.map(v => v.toFixed(3))),
+    texttemplate: '%{text}',
+    hoverongaps: false
+  }], {
+    title: 'Correlation Matrix',
+    template: 'plotly_white', margin: {t:40,r:20,b:80,l:120}
+  }, {responsive:true});
+}
+
+function pearsonCorrelation(x, y) {
+  if (x.length < 3) return 0;
+  const n = x.length;
+  const meanX = x.reduce((a,b)=>a+b,0)/n;
+  const meanY = y.reduce((a,b)=>a+b,0)/n;
+  let num=0, denX=0, denY=0;
+  for (let i=0;i<n;i++) {
+    const dx = x[i]-meanX, dy = y[i]-meanY;
+    num += dx*dy; denX += dx*dx; denY += dy*dy;
+  }
+  return denX===0||denY===0 ? 0 : num / Math.sqrt(denX*denY);
+}
+
+// === CLEANING ===
+function applyCleaning(newData) {
+  rawData = newData;
+  cleanedIndices = null;
+  detectTypes();
+  $('#dataInfo').textContent = `${rawData.length} rows × ${headers.length} columns`;
+  renderTable();
+  renderStats();
+  renderMissingAnalysis();
+  showToast(`Data updated: ${rawData.length} rows`);
+}
+
+function cleanDuplicates() {
+  const seen = new Set();
+  const newData = rawData.filter(r => {
+    const key = headers.map(h => r[h]).join('|||');
+    if (seen.has(key)) return false;
+    seen.add(key); return true;
+  });
+  const removed = rawData.length - newData.length;
+  applyCleaning(newData);
+  showToast(`Removed ${removed} duplicate rows`);
+}
+
+function cleanDropNA() {
+  const newData = rawData.filter(r => headers.every(h => r[h] !== '' && r[h] !== null && r[h] !== undefined));
+  applyCleaning(newData);
+  showToast(`Kept ${newData.length} complete rows`);
+}
+
+function cleanTrimWhitespace() {
+  const newData = rawData.map(r => {
+    const row = {};
+    headers.forEach(h => { row[h] = typeof r[h] === 'string' ? r[h].trim() : r[h]; });
+    return row;
+  });
+  applyCleaning(newData);
+  showToast('Whitespace trimmed from all text columns');
+}
+
+function fillMissing() {
+  const col = $('#fillColumn').value;
+  const method = $('#fillMethod').value;
+  const customVal = $('#fillValue').value;
+  const data = getActiveData();
+  const vals = data.map(r => r[col]);
+
+  let fillVal;
+  if (method === 'value') {
+    fillVal = customVal;
+  } else if (method === 'mean' || method === 'median') {
+    const nums = vals.filter(v => v !== '' && v !== null && v !== undefined && !isNaN(v)).map(Number);
+    if (!nums.length) { showToast('No numeric values in column'); return; }
+    nums.sort((a,b)=>a-b);
+    fillVal = method === 'mean' ? nums.reduce((a,b)=>a+b,0)/nums.length : nums[Math.floor((nums.length-1)/2)];
+  } else {
+    const freq = {};
+    vals.forEach(v => { if (v !== '' && v !== null && v !== undefined) { const k = String(v); freq[k] = (freq[k]||0)+1; }});
+    fillVal = Object.entries(freq).sort((a,b)=>b[1]-a[1])[0]?.[0] || '';
+  }
+
+  const newData = rawData.map(r => {
+    const row = {...r};
+    if (row[col] === '' || row[col] === null || row[col] === undefined) row[col] = fillVal;
+    return row;
+  });
+  applyCleaning(newData);
+  showToast(`Filled missing values in "${col}" with ${method}`);
+}
+
+$('#fillMethod').addEventListener('change', function() {
+  $('#fillValueGroup').style.display = this.value === 'value' ? '' : 'none';
+});
+
+function regexReplace() {
+  const col = $('#regexColumn').value;
+  const pattern = $('#regexPattern').value;
+  const replacement = $('#regexReplace').value;
+  if (!pattern) { showToast('Enter a regex pattern'); return; }
+  try { new RegExp(pattern); } catch(e) { showToast('Invalid regex: ' + e.message); return; }
+  const re = new RegExp(pattern, 'g');
+  const newData = rawData.map(r => {
+    const row = {...r};
+    if (typeof row[col] === 'string') row[col] = row[col].replace(re, replacement);
+    return row;
+  });
+  applyCleaning(newData);
+  showToast(`Applied regex replace on "${col}"`);
+}
+
+// === EXPORT ===
+function exportCSV() {
+  const data = getActiveData();
+  if (!data.length) { showToast('No data to export'); return; }
+  const csv = Papa.unparse(data);
+  downloadBlob(csv, 'csvizard-export.csv', 'text/csv');
+}
+
+function exportJSON() {
+  const data = getActiveData();
+  if (!data.length) { showToast('No data to export'); return; }
+  downloadBlob(JSON.stringify(data, null, 2), 'csvizard-export.json', 'application/json');
+}
+
+function downloadBlob(content, filename, mime) {
+  const blob = new Blob([content], {type: mime});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename; a.click();
+  URL.revokeObjectURL(url);
+  showToast(`Downloaded: ${filename}`);
+}
+
+// === SAMPLE DATA ===
+function loadSample() {
+  const sampleCSV = `Name,Age,City,Salary,Department,Rating,Experience
+Alice Johnson,28,New York,75000,Engineering,4.2,3
+Bob Smith,35,San Francisco,95000,Engineering,4.5,8
+Carol White,42,Chicago,82000,Marketing,3.8,12
+David Lee,31,New York,68000,Design,4.0,4
+Eva Martinez,29,San Francisco,105000,Engineering,4.8,6
+Frank Brown,45,Chicago,78000,Marketing,3.5,15
+Grace Kim,33,New York,88000,Design,4.3,7
+Henry Davis,38,San Francisco,115000,Engineering,4.6,10
+Iris Chen,27,Chicago,62000,Marketing,3.9,2
+Jack Wilson,50,New York,92000,Design,3.7,20
+Kate Taylor,30,San Francisco,86000,Engineering,4.1,5
+Liam O'Brien,40,Chicago,73000,Marketing,3.6,14
+Mia Johnson,26,New York,58000,Design,4.4,1
+Noah Garcia,44,San Francisco,108000,Engineering,4.7,16
+Olivia Park,32,Chicago,80000,Marketing,4.0,9
+Paul Adams,29,New York,91000,Engineering,3.3,3
+Quinn Baker,37,San Francisco,72000,Design,3.9,11
+Rachel Torres,41,Chicago,97000,Marketing,4.2,13
+Sam Walker,34,New York,84000,Engineering,4.5,7
+Tina Zhao,28,San Francisco,67000,Design,3.8,2`;
+  Papa.parse(sampleCSV, {
+    header: true, skipEmptyLines: true,
+    complete: results => {
+      rawData = results.data;
+      headers = results.meta.fields || [];
+      detectTypes();
+      cleanedIndices = null;
+      onDataReady();
+    }
+  });
+}
+
+</script>
+</body>
+</html>

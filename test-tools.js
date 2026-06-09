@@ -28,7 +28,7 @@ files.forEach(file => {
     }
 
     // 2. 检查多主题支持
-    if (!content.includes('theme.js')) {
+    if (!content.includes('theme.js') && !content.includes('theme.min.js')) {
         fileIssues.push('Missing theme.js');
     }
     if (!content.includes('themeToggleBtn')) {
@@ -39,7 +39,7 @@ files.forEach(file => {
     }
 
     // 3. 检查多语言支持
-    if (!content.includes('i18n.js')) {
+    if (!content.includes('i18n.js') && !content.includes('i18n.min.js')) {
         fileIssues.push('Missing i18n.js');
     }
     if (!content.includes('langToggleBtn')) {

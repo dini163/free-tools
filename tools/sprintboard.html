@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en" data-title-key="t_sprintboard">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9267698062788796" crossorigin="anonymous"></script>
+    <title>SprintBoard - Free Online Tool</title>
+    <meta name="description" content="Personal agile Kanban board with sprint milestones, card estimation, real-time timer, and burndown chart.">
+    <link rel="canonical" href="https://dini163.github.io/free-tools/tools/sprintboard.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/theme.min.js" defer></script>
+    <script src="../js/i18n.min.js" defer></script>
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#667eea">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+    <style>
+    
+:root {
+  --bg: var(--bg-primary);
+  --surface: var(--bg-card);
+  --border: var(--border);
+  --text: var(--text-primary);
+  --text2: var(--text-secondary);
+  --text3: var(--text-muted);
+  --primary: var(--accent-light);
+  --primary-light: var(--accent-glow);
+  --primary-bg: var(--accent-glow);
+  --primary-dark: var(--accent);
+  --success: var(--success);
+  --warning: var(--warning);
+  --yellow: var(--warning);
+  --red: var(--error);
+  --danger: var(--error);
+  --shadow: var(--shadow);
+  --radius: var(--radius);
+  --radius-sm: var(--radius-sm);
+  --todo: rgba(99, 102, 241, 0.1);
+  --progress: rgba(245, 158, 11, 0.1);
+  --done: rgba(16, 185, 129, 0.1);
+  --white-key: #ffffff;
+  --black-key: #09090b;
+}
+.theme-light {
+  --primary: var(--accent);
+  --primary-dark: var(--accent-dark);
+  --primary-light: rgba(99, 102, 241, 0.08);
+  --primary-bg: rgba(99, 102, 241, 0.08);
+  --todo: #eff6ff;
+  --progress: #fef9c3;
+  --done: #dcfce7;
+  --white-key: #f4f4f5;
+  --black-key: #27272a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+.tool-body-style {font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.5;min-height:100vh}
+header{background:var(--surface);border-bottom:1px solid var(--border);padding:0 20px;height:52px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:700;font-size:16px;color:var(--primary);display:flex;align-items:center;gap:8px}
+.logo span{background:var(--primary);color:#fff;font-size:10px;padding:2px 8px;border-radius:3px;text-transform:uppercase}
+.header-actions{display:flex;gap:8px;align-items:center}
+.btn{padding:7px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:13px;cursor:pointer;transition:all .15s;font-family:inherit}
+.btn:hover{background:#f3f4f6}
+.btn-primary{background:var(--primary);color:#fff;border-color:var(--primary)}
+.btn-primary:hover{background:#0550ae}
+.btn-sm{padding:4px 10px;font-size:12px}
+.btn-danger{color:var(--danger);border-color:var(--danger)}.btn-danger:hover{background:#fff1f0}
+nav{display:flex;gap:0;border-bottom:1px solid var(--border);background:var(--surface);padding:0 20px}
+.nav-tab{padding:10px 16px;font-size:13px;cursor:pointer;color:var(--text2);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .15s}
+.nav-tab:hover{color:var(--text)}
+.nav-tab.active{color:var(--primary);border-bottom-color:var(--primary);font-weight:600}
+main{padding:16px 20px;max-width:1400px;margin:0 auto}
+.board{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;min-height:400px}
+@media(max-width:900px){.board{grid-template-columns:1fr}}
+.column{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);display:flex;flex-direction:column;min-height:300px}
+.column-header{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.column-header h3{font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px}
+.column-header .count{background:var(--border);padding:1px 8px;border-radius:10px;font-size:11px;color:var(--text2)}
+.column-.tool-body-style {padding:8px;flex:1;display:flex;flex-direction:column;gap:6px;min-height:80px;transition:background .2s}
+.column-body.drag-over{background:var(--primary-light)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;cursor:grab;transition:all .15s;box-shadow:var(--shadow)}
+.card:hover{box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.card:active{cursor:grabbing}
+.card.dragging{opacity:.5;transform:rotate(2deg)}
+.card-title{font-size:13px;font-weight:600;margin-bottom:4px}
+.card-meta{display:flex;gap:12px;font-size:11px;color:var(--text2)}
+.card-tag{padding:1px 6px;border-radius:8px;font-size:10px;font-weight:600}
+.tag-feature{background:#ddf4ff;color:#0969da}
+.tag-bug{background:#ffebe9;color:#cf222e}
+.tag-chore{background:#dafbe1;color:#1a7f37}
+.tag-refactor{background:#fff8c5;color:#9a6700}
+.empty-drop{padding:20px;text-align:center;color:var(--text3);font-size:13px;border:2px dashed var(--border);border-radius:var(--radius-sm)}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;z-index:100}
+.modal{background:var(--surface);border-radius:var(--radius);padding:24px;min-width:420px;max-width:500px;box-shadow:0 8px 30px rgba(0,0,0,.15)}
+.modal h3{font-size:16px;margin-bottom:16px}
+.form-group{margin-bottom:12px}
+.form-group label{display:block;font-size:12px;font-weight:600;color:var(--text2);margin-bottom:4px;text-transform:uppercase;letter-spacing:.3px}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;font-family:inherit;background:var(--surface);color:var(--text)}
+.form-group textarea{resize:vertical;min-height:60px}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 2px var(--primary-light)}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:16px}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-bottom:20px}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;box-shadow:var(--shadow)}
+.stat-card .label{font-size:11px;text-transform:uppercase;color:var(--text3);letter-spacing:.3px}
+.stat-card .value{font-size:26px;font-weight:700;margin:4px 0}
+.stat-card .sub{font-size:11px;color:var(--text2)}
+.chart-area{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:16px;box-shadow:var(--shadow)}
+.chart-area h3{font-size:14px;margin-bottom:8px}
+.timer-bar{display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--warning);color:#fff;border-radius:var(--radius-sm);font-size:13px;font-weight:600;margin-bottom:8px}
+.timer-bar.running{background:var(--success);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.85}}
+.timer-bar button{background:rgba(255,255,255,.2);border:none;color:#fff;padding:2px 8px;border-radius:3px;cursor:pointer;font-size:11px}
+.sprint-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+.sprint-header .sprint-name{font-size:18px;font-weight:700}
+.sprint-header .sprint-date{font-size:13px;color:var(--text2)}
+input[type=date]{padding:6px 10px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;font-family:inherit}
+
+    </style>
+</head>
+<body class="tool-body-style">
+
+<header class="header">
+    <div class="header-inner">
+        <a href="../index.html" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+            </div>
+            <span data-i18n="logo">FreeDevTools</span>
+        </a>
+        <nav class="nav-links">
+            <a href="../index.html" data-i18n="all_tools">All Tools</a>
+            <div class="lang-switcher">
+                <button class="lang-btn" id="langToggleBtn" onclick="toggleLangMenu(event)" aria-label="Select language">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <button class="lang-menu-item" onclick="changeLanguage('en')">English</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('fr')">Français</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('es')">Español</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('pt')">Português</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ru')">Русский</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-CN')">简体中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-TW')">繁體中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ja')">日本語</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ko')">한국어</button>
+                </div>
+            </div>
+            <div class="theme-switcher">
+                <button class="theme-btn" id="themeToggleBtn" onclick="toggleThemeMenu(event)" aria-label="Toggle theme">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </button>
+                <div class="theme-menu" id="themeMenu">
+                    <button class="theme-menu-item" onclick="setTheme('light')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg> Light</button>
+                    <button class="theme-menu-item" onclick="setTheme('dark')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg> Dark</button>
+                    <button class="theme-menu-item" onclick="setTheme('auto')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg> System</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+
+<div style="display:flex; justify-content:space-between; align-items:center; background:var(--bg-card); border-bottom:1px solid var(--border); padding:0 20px; flex-wrap:wrap; gap:10px;"><nav style="border-bottom:none; padding:0;">
+  <div class="nav-tab active" data-tab="board" onclick="switchTab('board')">Board</div>
+  <div class="nav-tab" data-tab="analytics" onclick="switchTab('analytics')">Analytics</div>
+  <div class="nav-tab" data-tab="history" onclick="switchTab('history')">Sprints</div>
+</nav><div style="display:flex; gap:6px; align-items:center;">
+    <span id="activeTimer" style="display:none"></span>
+    <button class="btn btn-sm" onclick="startNewSprint()">+ New Sprint</button>
+    <button class="btn btn-sm btn-primary" onclick="openCardModal()">+ Add Card</button>
+  </div></div>
+
+<main id="tab-board">
+  <div class="sprint-header">
+    <span class="sprint-name" id="sprintName">Current Sprint</span>
+    <span class="sprint-date" id="sprintDate"></span>
+    <button class="btn btn-sm" onclick="editSprint()">Edit</button>
+  </div>
+  <div class="board" id="board">
+    <div class="column" data-status="todo">
+      <div class="column-header"><h3>📋 To Do <span class="count" id="count-todo">0</span></h3></div>
+      <div class="column-body" id="col-todo" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event,'todo')"></div>
+    </div>
+    <div class="column" data-status="in-progress">
+      <div class="column-header"><h3>⚡ In Progress <span class="count" id="count-in-progress">0</span></h3></div>
+      <div class="column-body" id="col-in-progress" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event,'in-progress')"></div>
+    </div>
+    <div class="column" data-status="done">
+      <div class="column-header"><h3>✅ Done <span class="count" id="count-done">0</span></h3></div>
+      <div class="column-body" id="col-done" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event,'done')"></div>
+    </div>
+  </div>
+</main>
+
+<main id="tab-analytics" style="display:none">
+  <div class="stats-grid" id="statsGrid"></div>
+  <div class="chart-area"><h3>Burndown Chart</h3><div id="burndownChart" style="min-height:300px"></div></div>
+  <div class="chart-area"><h3>Task Distribution</h3><div id="distChart" style="min-height:300px"></div></div>
+</main>
+
+<main id="tab-history" style="display:none">
+  <div id="sprintsList"></div>
+</main>
+
+<div class="modal-overlay" id="cardModal" style="display:none">
+  <div class="modal">
+    <h3 id="modalTitle">Add Card</h3>
+    <div class="form-group"><label>Title</label><input type="text" id="cardTitle" placeholder="Task title..."></div>
+    <div class="form-group"><label>Description</label><textarea id="cardDesc" placeholder="Details..."></textarea></div>
+    <div class="form-group"><label>Type</label>
+      <select id="cardType"><option value="feature">Feature</option><option value="bug">Bug</option><option value="chore">Chore</option><option value="refactor">Refactor</option></select>
+    </div>
+    <div class="form-group"><label>Story Points (estimate)</label><input type="number" id="cardPoints" value="3" min="1" max="21"></div>
+    <div class="modal-actions">
+      <button class="btn btn-danger btn-sm" id="btnDelete" style="display:none;margin-right:auto" onclick="deleteCard()">Delete</button>
+      <button class="btn" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveCard()">Save</button>
+    </div>
+  </div>
+</div>
+
+
+
+<footer class="footer">
+    <p>&copy; 2026 FreeDevTools. All tools run 100% locally in your web browser — absolutely no data is transmitted to any server.</p>
+</footer>
+
+<script>
+
+const COLUMNS = ['todo','in-progress','done'];
+const COL_LABELS = { 'todo':'To Do', 'in-progress':'In Progress', 'done':'Done' };
+
+let sprints = JSON.parse(localStorage.getItem('sb_sprints') || '[]');
+let currentSprintId = localStorage.getItem('sb_currentSprint');
+let cards = JSON.parse(localStorage.getItem('sb_cards') || '[]');
+let timerCardId = null;
+let timerInterval = null;
+let timerSeconds = 0;
+let editingCardId = null;
+
+function save() {
+  localStorage.setItem('sb_sprints', JSON.stringify(sprints));
+  localStorage.setItem('sb_cards', JSON.stringify(cards));
+  localStorage.setItem('sb_currentSprint', currentSprintId || '');
+}
+
+function getCurrentSprint() {
+  return sprints.find(s => s.id === currentSprintId);
+}
+
+function getSprintCards() {
+  return cards.filter(c => c.sprintId === currentSprintId);
+}
+
+function ensureSprint() {
+  if (!getCurrentSprint()) {
+    const s = {
+      id: 'sprint_' + Date.now(),
+      name: 'Sprint ' + (sprints.length + 1),
+      startDate: new Date().toISOString().split('T')[0],
+      endDate: new Date(Date.now() + 14*86400000).toISOString().split('T')[0]
+    };
+    sprints.push(s);
+    currentSprintId = s.id;
+    save();
+  }
+}
+
+// Board rendering
+function renderBoard() {
+  ensureSprint();
+  const sprint = getCurrentSprint();
+  document.getElementById('sprintName').textContent = sprint.name;
+  document.getElementById('sprintDate').textContent = `${sprint.startDate} → ${sprint.endDate}`;
+
+  const sprintCards = getSprintCards();
+  COLUMNS.forEach(col => {
+    const body = document.getElementById('col-' + col);
+    const colCards = sprintCards.filter(c => c.status === col);
+    document.getElementById('count-' + col).textContent = colCards.length;
+
+    if (!colCards.length) {
+      body.innerHTML = `<div class="empty-drop">Drop tasks here</div>`;
+      return;
+    }
+    body.innerHTML = colCards.map(c => {
+      const tagClass = 'tag-' + c.type;
+      const timeSpent = c.timeSpent || 0;
+      const timeStr = timeSpent > 0 ? `${Math.floor(timeSpent/60)}h ${timeSpent%60}m` : '';
+      const isTracking = timerCardId === c.id;
+      return `<div class="card${isTracking?' tracking':''}" draggable="true" data-id="${c.id}"
+        ondragstart="handleDragStart(event)" ondragend="handleDragEnd(event)"
+        ondblclick="openCardModal('${c.id}')">
+        <div class="card-title">${escapeHtml(c.title)}</div>
+        <div class="card-meta">
+          <span class="card-tag ${tagClass}">${c.type}</span>
+          <span>🎯 ${c.points || 0} pts</span>
+          ${timeStr ? `<span>⏱ ${timeStr}</span>` : ''}
+        </div>
+        <div style="margin-top:6px;display:flex;gap:4px">
+          ${!isTracking ? `<button class="btn btn-sm" onclick="event.stopPropagation();startTimer('${c.id}')" title="Start timer">▶</button>` :
+            `<button class="btn btn-sm" style="background:var(--success);color:#fff" onclick="event.stopPropagation();stopTimer()" title="Stop timer">⏹</button>`}
+          <button class="btn btn-sm" onclick="event.stopPropagation();openCardModal('${c.id}')" title="Edit">✎</button>
+        </div>
+      </div>`;
+    }).join('');
+  });
+}
+
+function escapeHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+// Drag & Drop
+let draggedCardId = null;
+function handleDragStart(e) {
+  draggedCardId = e.target.closest('.card').dataset.id;
+  e.target.closest('.card').classList.add('dragging');
+  e.dataTransfer.effectAllowed = 'move';
+}
+function handleDragEnd(e) {
+  e.target.closest('.card').classList.remove('dragging');
+  draggedCardId = null;
+  document.querySelectorAll('.column-body').forEach(b => b.classList.remove('drag-over'));
+}
+function handleDragOver(e) {
+  e.preventDefault();
+  e.dataTransfer.dropEffect = 'move';
+  e.currentTarget.classList.add('drag-over');
+}
+function handleDragLeave(e) {
+  e.currentTarget.classList.remove('drag-over');
+}
+function handleDrop(e, status) {
+  e.preventDefault();
+  e.currentTarget.classList.remove('drag-over');
+  if (!draggedCardId) return;
+  const card = cards.find(c => c.id === draggedCardId);
+  if (!card) return;
+  const oldStatus = card.status;
+  card.status = status;
+  if (status === 'done' && !card.completedAt) card.completedAt = new Date().toISOString();
+  if (status !== 'done') card.completedAt = null;
+  save();
+  renderBoard();
+}
+
+// Card modal
+function openCardModal(id) {
+  editingCardId = id || null;
+  const modal = document.getElementById('cardModal');
+  const titleEl = document.getElementById('modalTitle');
+  const btnDel = document.getElementById('btnDelete');
+
+  if (id) {
+    const card = cards.find(c => c.id === id);
+    if (!card) return;
+    titleEl.textContent = 'Edit Card';
+    document.getElementById('cardTitle').value = card.title;
+    document.getElementById('cardDesc').value = card.desc || '';
+    document.getElementById('cardType').value = card.type;
+    document.getElementById('cardPoints').value = card.points || 3;
+    btnDel.style.display = '';
+  } else {
+    titleEl.textContent = 'Add Card';
+    document.getElementById('cardTitle').value = '';
+    document.getElementById('cardDesc').value = '';
+    document.getElementById('cardType').value = 'feature';
+    document.getElementById('cardPoints').value = 3;
+    btnDel.style.display = 'none';
+  }
+  modal.style.display = 'flex';
+  document.getElementById('cardTitle').focus();
+}
+
+function closeModal() {
+  document.getElementById('cardModal').style.display = 'none';
+  editingCardId = null;
+}
+
+function saveCard() {
+  const title = document.getElementById('cardTitle').value.trim();
+  if (!title) return;
+  ensureSprint();
+
+  if (editingCardId) {
+    const card = cards.find(c => c.id === editingCardId);
+    if (card) {
+      card.title = title;
+      card.desc = document.getElementById('cardDesc').value;
+      card.type = document.getElementById('cardType').value;
+      card.points = parseInt(document.getElementById('cardPoints').value) || 3;
+    }
+  } else {
+    cards.push({
+      id: 'card_' + Date.now(),
+      sprintId: currentSprintId,
+      title, desc: document.getElementById('cardDesc').value,
+      type: document.getElementById('cardType').value,
+      points: parseInt(document.getElementById('cardPoints').value) || 3,
+      status: 'todo', timeSpent: 0, createdAt: new Date().toISOString(),
+      completedAt: null
+    });
+  }
+  save();
+  closeModal();
+  renderBoard();
+}
+
+function deleteCard() {
+  if (!editingCardId) return;
+  if (!confirm('Delete this card?')) return;
+  if (timerCardId === editingCardId) stopTimer();
+  cards = cards.filter(c => c.id !== editingCardId);
+  save();
+  closeModal();
+  renderBoard();
+}
+
+document.getElementById('cardModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// Timer
+function startTimer(cardId) {
+  if (timerCardId) stopTimer();
+  timerCardId = cardId;
+  timerSeconds = 0;
+  updateTimerDisplay();
+  timerInterval = setInterval(() => {
+    timerSeconds++;
+    updateTimerDisplay();
+    // Persist every 30s
+    if (timerSeconds % 30 === 0) persistTimer();
+  }, 1000);
+  renderBoard();
+}
+
+function stopTimer() {
+  if (!timerCardId) return;
+  clearInterval(timerInterval);
+  persistTimer();
+  timerCardId = null;
+  timerSeconds = 0;
+  updateTimerDisplay();
+  renderBoard();
+}
+
+function persistTimer() {
+  if (!timerCardId) return;
+  const card = cards.find(c => c.id === timerCardId);
+  if (card) {
+    card.timeSpent = (card.timeSpent || 0) + Math.floor(timerSeconds / 60);
+    save();
+  }
+  timerSeconds = 0;
+}
+
+function updateTimerDisplay() {
+  const el = document.getElementById('activeTimer');
+  if (timerCardId) {
+    const card = cards.find(c => c.id === timerCardId);
+    const m = Math.floor(timerSeconds/60), s = timerSeconds%60;
+    el.style.display = '';
+    el.innerHTML = `<span class="timer-bar running">⏱ Tracking: ${card?card.title:'...'} — ${m}:${String(s).padStart(2,'0')} <button onclick="stopTimer()">Stop</button></span>`;
+  } else {
+    el.style.display = 'none';
+  }
+}
+
+// Sprint management
+function startNewSprint() {
+  if (getSprintCards().some(c => c.status !== 'done')) {
+    if (!confirm('Current sprint has unfinished tasks. Archive and start new sprint?')) return;
+  }
+  const s = {
+    id: 'sprint_' + Date.now(),
+    name: 'Sprint ' + (sprints.length + 1),
+    startDate: new Date().toISOString().split('T')[0],
+    endDate: new Date(Date.now() + 14*86400000).toISOString().split('T')[0]
+  };
+  sprints.push(s);
+  currentSprintId = s.id;
+  save();
+  renderBoard();
+  renderAll();
+}
+
+function editSprint() {
+  const sprint = getCurrentSprint();
+  if (!sprint) return;
+  const name = prompt('Sprint name:', sprint.name);
+  if (name) sprint.name = name;
+  const start = prompt('Start date (YYYY-MM-DD):', sprint.startDate);
+  if (start) sprint.startDate = start;
+  const end = prompt('End date (YYYY-MM-DD):', sprint.endDate);
+  if (end) sprint.endDate = end;
+  save();
+  renderBoard();
+}
+
+// Analytics
+function renderAnalytics() {
+  const sprintCards = getSprintCards();
+  const sprint = getCurrentSprint();
+
+  const total = sprintCards.length;
+  const done = sprintCards.filter(c => c.status === 'done').length;
+  const inProgress = sprintCards.filter(c => c.status === 'in-progress').length;
+  const totalPoints = sprintCards.reduce((s,c) => s + (c.points||0), 0);
+  const donePoints = sprintCards.filter(c => c.status === 'done').reduce((s,c) => s + (c.points||0), 0);
+  const totalTime = sprintCards.reduce((s,c) => s + (c.timeSpent||0), 0);
+
+  document.getElementById('statsGrid').innerHTML = `
+    <div class="stat-card"><div class="label">Tasks</div><div class="value">${done}/${total}</div><div class="sub">${total?Math.round(done/total*100):0}% complete</div></div>
+    <div class="stat-card"><div class="label">Story Points</div><div class="value">${donePoints}/${totalPoints}</div><div class="sub">${totalPoints?Math.round(donePoints/totalPoints*100):0}% burned</div></div>
+    <div class="stat-card"><div class="label">Time Tracked</div><div class="value">${Math.floor(totalTime/60)}h ${totalTime%60}m</div><div class="sub">Across ${total} tasks</div></div>
+    <div class="stat-card"><div class="label">In Progress</div><div class="value">${inProgress}</div><div class="sub">Tasks currently active</div></div>
+  `;
+
+  // Burndown
+  if (sprint && sprintCards.length) {
+    const start = new Date(sprint.startDate);
+    const end = new Date(sprint.endDate);
+    const days = [];
+    const ideal = [];
+    const actual = [];
+    const totalDays = Math.max(1, Math.ceil((end - start) / 86400000));
+    let remaining = totalPoints;
+    for (let d = 0; d <= totalDays; d++) {
+      const date = new Date(start.getTime() + d * 86400000);
+      days.push(date.toLocaleDateString('en-US', {month:'short',day:'numeric'}));
+      ideal.push(totalPoints * (1 - d / totalDays));
+      const completedBefore = sprintCards.filter(c =>
+        c.status === 'done' && c.completedAt && new Date(c.completedAt) <= date
+      ).reduce((s,c) => s + (c.points||0), 0);
+      actual.push(totalPoints - completedBefore);
+    }
+    Plotly.newPlot('burndownChart', [
+      {x:days, y:ideal, type:'scatter', mode:'lines', name:'Ideal', line:{dash:'dash',color:'#8b949e',width:2}},
+      {x:days, y:actual, type:'scatter', mode:'lines+markers', name:'Actual', line:{color:'#0969da',width:3}, marker:{size:6}}
+    ], {
+      xaxis:{title:'Date'}, yaxis:{title:'Story Points Remaining'},
+      template:'plotly_white', margin:{t:20,r:20,b:50,l:50},
+      legend:{x:0,y:1.1,orientation:'h'}
+    }, {responsive:true});
+  }
+
+  // Distribution pie
+  const types = {};
+  sprintCards.forEach(c => { types[c.type] = (types[c.type]||0)+1; });
+  Plotly.newPlot('distChart', [{
+    labels: Object.keys(types).map(t => t.charAt(0).toUpperCase()+t.slice(1)),
+    values: Object.values(types),
+    type:'pie', hole:.4,
+    marker:{colors:['#0969da','#cf222e','#1a7f37','#9a6700']}
+  }], {
+    template:'plotly_white', margin:{t:20,r:20,b:20,l:20}
+  }, {responsive:true});
+}
+
+function renderSprints() {
+  const list = document.getElementById('sprintsList');
+  if (!sprints.length) {
+    list.innerHTML = '<div class="card" style="text-align:center;padding:40px;color:var(--text2)">No sprints yet. Start your first sprint!</div>';
+    return;
+  }
+  list.innerHTML = sprints.map(s => {
+    const sc = cards.filter(c => c.sprintId === s.id);
+    const done = sc.filter(c => c.status === 'done').length;
+    return `<div class="card" style="cursor:pointer;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center"
+      onclick="loadSprint('${s.id}')">
+      <div>
+        <div style="font-weight:600;font-size:14px">${s.name} ${s.id===currentSprintId?'<span style="color:var(--primary);font-size:11px">(active)</span>':''}</div>
+        <div style="font-size:12px;color:var(--text2)">${s.startDate} → ${s.endDate} · ${sc.length} tasks · ${done} done</div>
+      </div>
+      ${s.id !== currentSprintId ? `<button class="btn btn-sm" onclick="event.stopPropagation();loadSprint('${s.id}')">Load</button>` : ''}
+    </div>`;
+  }).join('');
+}
+
+function loadSprint(id) {
+  currentSprintId = id;
+  save();
+  renderAll();
+  switchTab('board');
+}
+
+function switchTab(tab) {
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
+  document.getElementById('tab-board').style.display = tab === 'board' ? '' : 'none';
+  document.getElementById('tab-analytics').style.display = tab === 'analytics' ? '' : 'none';
+  document.getElementById('tab-history').style.display = tab === 'history' ? '' : 'none';
+  if (tab === 'analytics') renderAnalytics();
+  if (tab === 'history') renderSprints();
+}
+
+function renderAll() {
+  renderBoard();
+  if (document.getElementById('tab-analytics').style.display !== 'none') renderAnalytics();
+}
+
+// Init
+ensureSprint();
+renderAll();
+
+// Periodic save for timer
+setInterval(() => { if (timerCardId) persistTimer(); }, 30000);
+
+</script>
+</body>
+</html>

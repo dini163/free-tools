@@ -45,7 +45,7 @@ def minify_js(js_content):
     return js_content
 
 def main():
-    base_dir = Path("/Users/richard/workspace/free-tools")
+    base_dir = Path(__file__).resolve().parent
     
     print("🚀 开始压缩 CSS 和 JS 文件...\n")
     

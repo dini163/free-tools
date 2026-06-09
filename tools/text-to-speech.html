@@ -106,6 +106,7 @@
         <button class="btn btn-primary" onclick="speakTts()" id="ttsSpeakBtn">🔊 Speak</button>
         <button class="btn btn-secondary" onclick="pauseTts()" id="ttsPauseBtn">⏸ Pause</button>
         <button class="btn btn-secondary" onclick="stopTts()">⏹ Stop</button>
+        <button class="btn btn-secondary" onclick="downloadTts()" id="ttsDownloadBtn">📥 Download MP3</button>
     </div>
 </main>
 
@@ -149,6 +150,77 @@ function stopTts() { speechSynthesis.cancel(); document.getElementById('ttsSpeak
 function updateTtsSettings() {
     document.getElementById('ttsRateVal').textContent = document.getElementById('ttsRate').value;
     document.getElementById('ttsPitchVal').textContent = document.getElementById('ttsPitch').value;
+}
+function downloadTts() {
+    const text = document.getElementById('ttsInput').value.trim();
+    if (!text) return;
+    
+    const idx = parseInt(document.getElementById('ttsVoice').value) || 0;
+    const voice = ttsVoices[idx];
+    const lang = voice ? voice.lang : 'en-US';
+    
+    // Check if we are running on GitHub Pages (static environment) or file protocol
+    const isStaticHost = window.location.hostname.includes('github.io') || window.location.protocol === 'file:';
+    
+    if (isStaticHost) {
+        // Fall back to opening direct Google TTS link in a new tab
+        const baseLang = lang.split('-')[0].split('_')[0];
+        const trimmedText = text.substring(0, 200);
+        const url = `https://translate.google.com/translate_tts?ie=UTF-8&tl=${baseLang}&client=tw-ob&q=${encodeURIComponent(trimmedText)}`;
+        
+        window.open(url, '_blank');
+        
+        if (typeof showToast === 'function') {
+            if (text.length > 200) {
+                showToast('Static host: Opened first 200 chars in new tab. Right-click audio to save.', 'warning', 6000);
+            } else {
+                showToast('Static host: Opened audio in new tab. Right-click and choose "Save Audio As".', 'info', 5000);
+            }
+        }
+        return;
+    }
+    
+    const btn = document.getElementById('ttsDownloadBtn');
+    const originalText = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = '📥 Downloading...';
+    
+    const url = `/api/tts?text=${encodeURIComponent(text)}&lang=${encodeURIComponent(lang)}`;
+    
+    fetch(url)
+        .then(response => {
+            if (!response.ok) throw new Error('TTS generation failed');
+            return response.blob();
+        })
+        .then(blob => {
+            const blobUrl = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = blobUrl;
+            a.download = 'speech.mp3';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(blobUrl);
+            
+            if (typeof showToast === 'function') {
+                showToast('Audio downloaded successfully!', 'success');
+            }
+        })
+        .catch(error => {
+            console.error('Error downloading audio:', error);
+            // Fallback to new tab if server fails
+            const baseLang = lang.split('-')[0].split('_')[0];
+            const trimmedText = text.substring(0, 200);
+            const fallbackUrl = `https://translate.google.com/translate_tts?ie=UTF-8&tl=${baseLang}&client=tw-ob&q=${encodeURIComponent(trimmedText)}`;
+            window.open(fallbackUrl, '_blank');
+            if (typeof showToast === 'function') {
+                showToast('Server API failed. Opened audio in new tab instead.', 'warning', 5000);
+            }
+        })
+        .finally(() => {
+            btn.disabled = false;
+            btn.innerHTML = originalText;
+        });
 }
 </script>
 </body>

@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en" data-title-key="t_calendara">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9267698062788796" crossorigin="anonymous"></script>
+    <title>Calendara - Free Online Tool</title>
+    <meta name="description" content="Content marketing calendar planner with platform targeting, scheduling, idea generator, and visual stats.">
+    <link rel="canonical" href="https://dini163.github.io/free-tools/tools/calendara.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/theme.min.js" defer></script>
+    <script src="../js/i18n.min.js" defer></script>
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#667eea">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <style>
+    
+:root {
+  --bg: var(--bg-primary);
+  --surface: var(--bg-card);
+  --border: var(--border);
+  --text: var(--text-primary);
+  --text2: var(--text-secondary);
+  --text3: var(--text-muted);
+  --primary: var(--accent-light);
+  --primary-light: var(--accent-glow);
+  --primary-bg: var(--accent-glow);
+  --primary-dark: var(--accent);
+  --success: var(--success);
+  --warning: var(--warning);
+  --yellow: var(--warning);
+  --red: var(--error);
+  --danger: var(--error);
+  --shadow: var(--shadow);
+  --radius: var(--radius);
+  --radius-sm: var(--radius-sm);
+  --todo: rgba(99, 102, 241, 0.1);
+  --progress: rgba(245, 158, 11, 0.1);
+  --done: rgba(16, 185, 129, 0.1);
+  --white-key: #ffffff;
+  --black-key: #09090b;
+}
+.theme-light {
+  --primary: var(--accent);
+  --primary-dark: var(--accent-dark);
+  --primary-light: rgba(99, 102, 241, 0.08);
+  --primary-bg: rgba(99, 102, 241, 0.08);
+  --todo: #eff6ff;
+  --progress: #fef9c3;
+  --done: #dcfce7;
+  --white-key: #f4f4f5;
+  --black-key: #27272a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+.tool-body-style {font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.5;min-height:100vh}
+header{background:var(--surface);border-bottom:1px solid var(--border);padding:0 20px;height:52px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:700;font-size:16px;color:var(--primary);display:flex;align-items:center;gap:8px}
+nav{display:flex;gap:0;border-bottom:1px solid var(--border);background:var(--surface);padding:0 20px}
+.nav-tab{padding:10px 16px;font-size:13px;cursor:pointer;color:var(--text2);border-bottom:2px solid transparent;margin-bottom:-1px;transition:.15s}
+.nav-tab:hover{color:var(--text)}
+.nav-tab.active{color:var(--primary);border-bottom-color:var(--primary);font-weight:600}
+main{padding:16px 20px;max-width:1200px;margin:0 auto}
+.calendar-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.calendar-header h2{font-size:18px;font-weight:700}
+.calendar-nav{display:flex;align-items:center;gap:8px}
+.calendar-nav button{padding:5px 10px;border:1px solid var(--border);background:var(--surface);border-radius:var(--radius-sm);cursor:pointer;font-size:13px}
+.calendar-nav button:hover{background:var(--bg)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.cal-cell{background:var(--surface);min-height:100px;padding:4px;cursor:pointer;transition:all .15s}
+.cal-cell:hover{background:var(--primary-light)}
+.cal-cell.today{box-shadow:inset 0 0 0 2px var(--primary)}
+.cal-cell.other-month{background:#f8f9fb}
+.cal-cell .day-num{font-size:12px;font-weight:600;color:var(--text2);margin-bottom:2px}
+.cal-cell.today .day-num{color:var(--primary)}
+.cal-header{background:var(--surface);padding:8px 4px;text-align:center;font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase}
+.cal-event{font-size:10px;padding:2px 4px;border-radius:3px;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;color:#fff;display:flex;align-items:center;gap:3px}
+.cal-event .plat{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.plat-YouTube{background:var(--youtube)}.plat-TikTok{background:var(--tiktok)}
+.plat-Instagram{background:var(--instagram)}.plat-Blog{background:var(--blog)}
+.plat-Twitter{background:var(--twitter)}.plat-LinkedIn{background:var(--linkedin)}
+.event-YouTube{background:var(--youtube)}.event-TikTok{background:var(--tiktok)}
+.event-Instagram{background:var(--instagram)}.event-Blog{background:var(--blog)}
+.event-Twitter{background:var(--twitter)}.event-LinkedIn{background:var(--linkedin)}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;z-index:100}
+.modal{background:var(--surface);border-radius:var(--radius);padding:24px;min-width:420px;max-width:500px;box-shadow:0 8px 30px rgba(0,0,0,.15)}
+.modal h3{font-size:16px;margin-bottom:16px}
+.form-group{margin-bottom:12px}
+.form-group label{display:block;font-size:12px;font-weight:600;color:var(--text2);margin-bottom:4px;text-transform:uppercase;letter-spacing:.3px}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;font-family:inherit;background:var(--surface);color:var(--text)}
+.form-group textarea{resize:vertical;min-height:60px}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 2px var(--primary-light)}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:16px}
+.btn{padding:7px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:13px;cursor:pointer;transition:.15s;font-family:inherit}
+.btn:hover{background:#f3f4f6}
+.btn-primary{background:var(--primary);color:#fff;border-color:var(--primary)}.btn-primary:hover{background:#6d28d9}
+.btn-sm{padding:4px 10px;font-size:12px}
+.btn-danger{color:#cf222e;border-color:#cf222e}.btn-danger:hover{background:#fff1f0}
+.platform-tags{display:flex;gap:4px;flex-wrap:wrap}
+.platform-tag{padding:4px 10px;border-radius:12px;font-size:11px;cursor:pointer;border:2px solid transparent;transition:.15s;font-weight:600}
+.platform-tag.selected{border-color:var(--primary)}
+.platform-tag.yt{background:#ff000015;color:var(--youtube)}.platform-tag.yt.selected{border-color:var(--youtube)}
+.platform-tag.tt{background:#00000010;color:var(--tiktok)}.platform-tag.tt.selected{border-color:var(--tiktok)}
+.platform-tag.ig{background:#e1306c15;color:var(--instagram)}.platform-tag.ig.selected{border-color:var(--instagram)}
+.platform-tag.bl{background:#10b98115;color:var(--blog)}.platform-tag.bl.selected{border-color:var(--blog)}
+.platform-tag.tw{background:#1da1f215;color:var(--twitter)}.platform-tag.tw.selected{border-color:var(--twitter)}
+.platform-tag.li{background:#0a66c215;color:var(--linkedin)}.platform-tag.li.selected{border-color:var(--linkedin)}
+.idea-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;margin-bottom:8px;box-shadow:var(--shadow)}
+.idea-card h4{font-size:14px;margin-bottom:4px}
+.idea-card .meta{font-size:11px;color:var(--text2);display:flex;gap:12px}
+.idea-card button{margin-top:6px}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:20px}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;box-shadow:var(--shadow)}
+.stat-card .label{font-size:11px;text-transform:uppercase;color:var(--text3)}
+.stat-card .value{font-size:24px;font-weight:700;margin:4px 0}
+.stat-card .sub{font-size:11px;color:var(--text2)}
+.upcoming-item{display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:6px}
+.upcoming-item .date-badge{font-size:11px;font-weight:600;background:var(--primary);color:#fff;padding:3px 8px;border-radius:4px;min-width:90px;text-align:center}
+
+    </style>
+</head>
+<body class="tool-body-style">
+
+<header class="header">
+    <div class="header-inner">
+        <a href="../index.html" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+            </div>
+            <span data-i18n="logo">FreeDevTools</span>
+        </a>
+        <nav class="nav-links">
+            <a href="../index.html" data-i18n="all_tools">All Tools</a>
+            <div class="lang-switcher">
+                <button class="lang-btn" id="langToggleBtn" onclick="toggleLangMenu(event)" aria-label="Select language">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <button class="lang-menu-item" onclick="changeLanguage('en')">English</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('fr')">Français</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('es')">Español</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('pt')">Português</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ru')">Русский</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-CN')">简体中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-TW')">繁體中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ja')">日本語</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ko')">한국어</button>
+                </div>
+            </div>
+            <div class="theme-switcher">
+                <button class="theme-btn" id="themeToggleBtn" onclick="toggleThemeMenu(event)" aria-label="Toggle theme">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </button>
+                <div class="theme-menu" id="themeMenu">
+                    <button class="theme-menu-item" onclick="setTheme('light')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg> Light</button>
+                    <button class="theme-menu-item" onclick="setTheme('dark')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg> Dark</button>
+                    <button class="theme-menu-item" onclick="setTheme('auto')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg> System</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+
+<nav>
+  <div class="nav-tab active" data-tab="calendar" onclick="switchTab('calendar')">Calendar</div>
+  <div class="nav-tab" data-tab="upcoming" onclick="switchTab('upcoming')">Upcoming</div>
+  <div class="nav-tab" data-tab="ideas" onclick="switchTab('ideas')">Idea Generator</div>
+  <div class="nav-tab" data-tab="analytics" onclick="switchTab('analytics')">Analytics</div>
+</nav>
+
+<main id="tab-calendar">
+  <div class="calendar-header">
+    <h2 id="calMonthTitle">June 2026</h2>
+    <div class="calendar-nav">
+      <button onclick="prevMonth()">←</button>
+      <button onclick="goToday()">Today</button>
+      <button onclick="nextMonth()">→</button>
+    </div>
+  </div>
+  <div class="cal-grid" id="calGrid"></div>
+</main>
+
+<main id="tab-upcoming" style="display:none">
+  <h3 style="margin-bottom:12px">Upcoming Content</h3>
+  <div id="upcomingList"></div>
+</main>
+
+<main id="tab-ideas" style="display:none">
+  <h3 style="margin-bottom:12px">Content Idea Generator</h3>
+  <div style="display:flex;gap:8px;margin-bottom:16px;align-items:center;flex-wrap:wrap">
+    <select id="ideaPlatform" style="padding:7px 10px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px">
+      <option value="any">Any Platform</option>
+      <option value="YouTube">YouTube</option><option value="TikTok">TikTok</option>
+      <option value="Instagram">Instagram</option><option value="Blog">Blog</option>
+      <option value="Twitter">Twitter</option>
+      <option value="LinkedIn">LinkedIn</option>
+    </select>
+    <select id="ideaNiche" style="padding:7px 10px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px">
+      <option value="any">Any Niche</option><option value="tech">Tech & Programming</option>
+      <option value="business">Business & Startup</option><option value="lifestyle">Lifestyle & Wellness</option>
+      <option value="education">Education</option><option value="gaming">Gaming</option>
+      <option value="finance">Personal Finance</option>
+    </select>
+    <button class="btn btn-primary btn-sm" onclick="generateIdeas()">Generate Ideas</button>
+  </div>
+  <div id="ideasList"></div>
+</main>
+
+<main id="tab-analytics" style="display:none">
+  <div class="stats-grid" id="statsGrid"></div>
+  <div id="platformBreakdown"></div>
+</main>
+
+<div class="modal-overlay" id="eventModal" style="display:none">
+  <div class="modal">
+    <h3 id="modalTitle">New Content</h3>
+    <div class="form-group"><label>Title</label><input type="text" id="eventTitle" placeholder="Content title..."></div>
+    <div class="form-group"><label>Description</label><textarea id="eventDesc" placeholder="Brief description..."></textarea></div>
+    <div class="form-group"><label>Platforms</label>
+      <div class="platform-tags" id="platformTags">
+        <span class="platform-tag yt" data-plat="YouTube" onclick="togglePlat(this)">YouTube</span>
+        <span class="platform-tag tt" data-plat="TikTok" onclick="togglePlat(this)">TikTok</span>
+        <span class="platform-tag ig" data-plat="Instagram" onclick="togglePlat(this)">Instagram</span>
+        <span class="platform-tag bl" data-plat="Blog" onclick="togglePlat(this)">Blog</span>
+        <span class="platform-tag tw" data-plat="Twitter" onclick="togglePlat(this)">Twitter</span>
+        <span class="platform-tag li" data-plat="LinkedIn" onclick="togglePlat(this)">LinkedIn</span>
+      </div>
+    </div>
+    <div class="form-group"><label>Content Type</label>
+      <select id="eventType">
+        <option value="video">Video</option><option value="short">Short/Reel</option>
+        <option value="article">Article</option><option value="thread">Thread</option>
+        <option value="carousel">Carousel</option><option value="live">Live Stream</option>
+      </select>
+    </div>
+    <div class="form-group"><label>Date</label><input type="date" id="eventDate"></div>
+    <div class="form-group"><label>Status</label>
+      <select id="eventStatus">
+        <option value="idea">Idea</option><option value="draft">Draft</option>
+        <option value="scheduled">Scheduled</option><option value="published">Published</option>
+      </select>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-danger btn-sm" id="btnDelEvent" style="display:none;margin-right:auto" onclick="deleteEvent()">Delete</button>
+      <button class="btn" onclick="closeEventModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveEvent()">Save</button>
+    </div>
+  </div>
+</div>
+
+
+
+<footer class="footer">
+    <p>&copy; 2026 FreeDevTools. All tools run 100% locally in your web browser — absolutely no data is transmitted to any server.</p>
+</footer>
+
+<script>
+
+let events = JSON.parse(localStorage.getItem('cal_events') || '[]');
+let currentMonth = new Date().getMonth();
+let currentYear = new Date().getFullYear();
+let editingEventId = null;
+
+function save() { localStorage.setItem('cal_events', JSON.stringify(events)); }
+
+const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+// Calendar
+function renderCalendar() {
+  document.getElementById('calMonthTitle').textContent = `${MONTHS[currentMonth]} ${currentYear}`;
+
+  const grid = document.getElementById('calGrid');
+  let html = DAYS.map(d => `<div class="cal-header">${d}</div>`).join('');
+
+  const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+  const prevMonthDays = new Date(currentYear, currentMonth, 0).getDate();
+  const today = new Date().toDateString();
+
+  // Previous month days
+  for (let i = firstDay - 1; i >= 0; i--) {
+    const day = prevMonthDays - i;
+    html += `<div class="cal-cell other-month" onclick="openEventModal(null,'${currentYear}-${String(currentMonth).padStart(2,'0')}-${String(day).padStart(2,'0')}')">
+      <div class="day-num">${day}</div></div>`;
+  }
+
+  // Current month
+  for (let day = 1; day <= daysInMonth; day++) {
+    const dateStr = `${currentYear}-${String(currentMonth+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+    const isToday = new Date(currentYear, currentMonth, day).toDateString() === today;
+    const dayEvents = events.filter(e => e.date === dateStr);
+    html += `<div class="cal-cell${isToday?' today':''}" onclick="openEventModal(null,'${dateStr}')">
+      <div class="day-num">${day}</div>
+      ${dayEvents.map(e => {
+        const plat = e.platforms?.[0] || '';
+        return `<div class="cal-event event-${plat}" onclick="event.stopPropagation();openEventModal('${e.id}')" title="${e.title}">
+          <span class="plat plat-${plat}"></span>${e.title}
+        </div>`;
+      }).join('')}
+    </div>`;
+  }
+
+  // Next month days
+  const totalCells = firstDay + daysInMonth;
+  const remaining = (7 - (totalCells % 7)) % 7;
+  for (let i = 1; i <= remaining; i++) {
+    html += `<div class="cal-cell other-month"><div class="day-num">${i}</div></div>`;
+  }
+
+  grid.innerHTML = html;
+}
+
+function prevMonth() { currentMonth--; if(currentMonth<0){currentMonth=11;currentYear--;} renderCalendar(); }
+function nextMonth() { currentMonth++; if(currentMonth>11){currentMonth=0;currentYear++;} renderCalendar(); }
+function goToday() { currentMonth=new Date().getMonth();currentYear=new Date().getFullYear();renderCalendar(); }
+
+// Events
+function openEventModal(id, presetDate) {
+  editingEventId = id || null;
+  const modal = document.getElementById('eventModal');
+  document.getElementById('modalTitle').textContent = id ? 'Edit Content' : 'New Content';
+  document.getElementById('btnDelEvent').style.display = id ? '' : 'none';
+
+  // Reset platforms
+  document.querySelectorAll('.platform-tag').forEach(t => t.classList.remove('selected'));
+
+  if (id) {
+    const evt = events.find(e => e.id === id);
+    if (!evt) return;
+    document.getElementById('eventTitle').value = evt.title;
+    document.getElementById('eventDesc').value = evt.desc || '';
+    document.getElementById('eventType').value = evt.type || 'video';
+    document.getElementById('eventDate').value = evt.date;
+    document.getElementById('eventStatus').value = evt.status || 'idea';
+    (evt.platforms||[]).forEach(p => {
+      const tag = document.querySelector(`.platform-tag[data-plat="${p}"]`);
+      if (tag) tag.classList.add('selected');
+    });
+  } else {
+    document.getElementById('eventTitle').value = '';
+    document.getElementById('eventDesc').value = '';
+    document.getElementById('eventType').value = 'video';
+    document.getElementById('eventDate').value = presetDate || new Date().toISOString().split('T')[0];
+    document.getElementById('eventStatus').value = 'idea';
+  }
+  modal.style.display = 'flex';
+  document.getElementById('eventTitle').focus();
+}
+
+function closeEventModal() {
+  document.getElementById('eventModal').style.display = 'none';
+  editingEventId = null;
+}
+
+function togglePlat(el) { el.classList.toggle('selected'); }
+
+function saveEvent() {
+  const title = document.getElementById('eventTitle').value.trim();
+  if (!title) return;
+
+  const platforms = Array.from(document.querySelectorAll('.platform-tag.selected')).map(t => t.dataset.plat);
+  const data = {
+    title,
+    desc: document.getElementById('eventDesc').value,
+    platforms,
+    type: document.getElementById('eventType').value,
+    date: document.getElementById('eventDate').value,
+    status: document.getElementById('eventStatus').value
+  };
+
+  if (editingEventId) {
+    const evt = events.find(e => e.id === editingEventId);
+    if (evt) Object.assign(evt, data);
+  } else {
+    events.push({ id: 'evt_' + Date.now(), ...data, createdAt: new Date().toISOString() });
+  }
+
+  save();
+  closeEventModal();
+  renderAll();
+}
+
+function deleteEvent() {
+  if (!editingEventId || !confirm('Delete this content?')) return;
+  events = events.filter(e => e.id !== editingEventId);
+  save();
+  closeEventModal();
+  renderAll();
+}
+
+document.getElementById('eventModal').addEventListener('click', function(e) {
+  if (e.target === this) closeEventModal();
+});
+
+// Upcoming
+function renderUpcoming() {
+  const now = new Date().toISOString().split('T')[0];
+  const upcoming = events
+    .filter(e => e.date >= now)
+    .sort((a,b) => a.date.localeCompare(b.date));
+
+  const list = document.getElementById('upcomingList');
+  if (!upcoming.length) {
+    list.innerHTML = '<p style="color:var(--text3);text-align:center;padding:40px">No upcoming content. Add some!</p>';
+    return;
+  }
+
+  list.innerHTML = upcoming.map(e => {
+    const dateObj = new Date(e.date + 'T00:00:00');
+    const dayName = dateObj.toLocaleDateString('en-US', {weekday:'short'});
+    const monDay = dateObj.toLocaleDateString('en-US', {month:'short',day:'numeric'});
+    return `<div class="upcoming-item">
+      <span class="date-badge">${dayName}<br>${monDay}</span>
+      <div style="flex:1">
+        <strong>${e.title}</strong>
+        <div style="font-size:11px;color:var(--text2)">${e.platforms?.join(', ') || 'No platform'} · ${e.type} · <span style="text-transform:capitalize">${e.status}</span></div>
+      </div>
+      <button class="btn btn-sm" onclick="openEventModal('${e.id}')">Edit</button>
+    </div>`;
+  }).join('');
+}
+
+// Idea Generator
+const CONTENT_IDEAS = {
+  tech: [
+    {title:"I Built X in 24 Hours — Here's What Happened",type:"video"},
+    {title:"10 VS Code Extensions You're Not Using (But Should)",type:"short"},
+    {title:"System Design: How X Actually Works",type:"article"},
+    {title:"My $0 to $X MRR Journey in 90 Days",type:"thread"},
+    {title:"Comparing X vs Y: Performance Deep Dive",type:"video"},
+    {title:"The One Pattern That Changed How I Code",type:"carousel"},
+    {title:"How I Learned X as a Self-Taught Developer",type:"article"},
+    {title:"5 Terminal Tricks to 10x Your Productivity",type:"short"}
+  ],
+  business: [
+    {title:"How We Scaled From 0 to 10K Customers",type:"article"},
+    {title:"The Pivot That Saved Our Startup",type:"video"},
+    {title:"Framework: How to Validate Any Business Idea in 7 Days",type:"thread"},
+    {title:"Our Complete SaaS Tech Stack (with Costs)",type:"carousel"},
+    {title:"Cold Email Strategy: 40% Reply Rate Breakdown",type:"article"},
+    {title:"Behind the Scenes: Our Failed Product Launch",type:"video"}
+  ],
+  lifestyle: [
+    {title:"My Morning Routine (That Actually Sticks)",type:"short"},
+    {title:"How I Read 50 Books a Year While Working Full-Time",type:"article"},
+    {title:"Digital Detox: What 30 Days Without Social Media Taught Me",type:"video"},
+    {title:"10 Healthy Meals Under 15 Minutes",type:"carousel"},
+    {title:"The Minimalist Desk Setup Guide",type:"short"}
+  ],
+  education: [
+    {title:"X Explained in 60 Seconds",type:"short"},
+    {title:"The Complete Beginner's Guide to X",type:"article"},
+    {title:"Learn X By Building 3 Projects",type:"video"},
+    {title:"Common X Mistakes and How to Avoid Them",type:"carousel"},
+    {title:"Study Technique: How I Memorize Everything",type:"short"}
+  ],
+  gaming: [
+    {title:"X Game Review After 100 Hours",type:"video"},
+    {title:"Speedrun Strategy: X in Under Y Minutes",type:"short"},
+    {title:"The Hidden Lore of X Explained",type:"article"},
+    {title:"Top 10 Mods That Transform X",type:"video"},
+    {title:"X vs Y: Which Game Is Actually Better?",type:"article"}
+  ],
+  finance: [
+    {title:"How I Saved $X in 12 Months",type:"article"},
+    {title:"Investing 101: A Visual Guide",type:"carousel"},
+    {title:"Side Hustle Ideas That Actually Work in 2026",type:"video"},
+    {title:"My Monthly Budget Breakdown (with Real Numbers)",type:"short"},
+    {title:"FIRE Movement: The Math Behind Early Retirement",type:"thread"}
+  ]
+};
+
+function generateIdeas() {
+  const platform = document.getElementById('ideaPlatform').value;
+  const niche = document.getElementById('ideaNiche').value;
+
+  let pool = [];
+  if (niche === 'any') {
+    Object.values(CONTENT_IDEAS).forEach(arr => pool = pool.concat(arr));
+  } else {
+    pool = CONTENT_IDEAS[niche] || [];
+  }
+
+  // Filter by platform if specified
+  if (platform !== 'any') {
+    const platTypeMap = {
+      YouTube:'video',TikTok:'short',Instagram:'carousel',
+      Blog:'article',Twitter:'thread',LinkedIn:'carousel'
+    };
+    const preferred = platTypeMap[platform];
+    const filtered = pool.filter(i => i.type === preferred);
+    if (filtered.length > 0) pool = filtered;
+  }
+
+  // Shuffle and pick 6
+  const shuffled = pool.sort(() => Math.random() - 0.5).slice(0, 6);
+
+  const list = document.getElementById('ideasList');
+  if (!shuffled.length) {
+    list.innerHTML = '<p style="color:var(--text3);text-align:center">No ideas found for this combination. Try different filters.</p>';
+    return;
+  }
+
+  list.innerHTML = shuffled.map((idea, i) => {
+    const plat = platform !== 'any' ? platform : ['YouTube','TikTok','Blog'][i%3];
+    return `<div class="idea-card">
+      <h4>${idea.title}</h4>
+      <div class="meta"><span>📋 ${idea.type}</span><span>🏷 ${niche==='any'?'General':niche}</span></div>
+      <button class="btn btn-sm" onclick="addIdeaToCalendar('${escapeHtml(idea.title)}','${idea.type}','${plat}')">+ Add to Calendar</button>
+    </div>`;
+  }).join('');
+}
+
+function escapeHtml(s) { return s.replace(/'/g,"\\'").replace(/"/g,'&quot;'); }
+
+function addIdeaToCalendar(title, type, platform) {
+  const today = new Date().toISOString().split('T')[0];
+  events.push({
+    id: 'evt_' + Date.now(),
+    title: title.replace(/\\'/g,"'"),
+    desc: '',
+    platforms: [platform],
+    type, date: today,
+    status: 'idea',
+    createdAt: new Date().toISOString()
+  });
+  save();
+  renderAll();
+  alert('Added to today on calendar!');
+}
+
+// Analytics
+function renderAnalytics() {
+  const now = new Date();
+  const thisMonth = events.filter(e => {
+    const d = new Date(e.date + 'T00:00:00');
+    return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear();
+  });
+  const published = events.filter(e => e.status === 'published');
+  const byPlatform = {};
+  events.forEach(e => {
+    (e.platforms||[]).forEach(p => {
+      byPlatform[p] = (byPlatform[p]||0) + 1;
+    });
+  });
+  const byStatus = {};
+  events.forEach(e => { byStatus[e.status] = (byStatus[e.status]||0) + 1; });
+
+  document.getElementById('statsGrid').innerHTML = `
+    <div class="stat-card"><div class="label">Total Content</div><div class="value">${events.length}</div><div class="sub">All time</div></div>
+    <div class="stat-card"><div class="label">This Month</div><div class="value">${thisMonth.length}</div><div class="sub">${MONTHS[now.getMonth()]} ${now.getFullYear()}</div></div>
+    <div class="stat-card"><div class="label">Published</div><div class="value">${published.length}</div><div class="sub">${events.length?Math.round(published.length/events.length*100):0}% publish rate</div></div>
+    <div class="stat-card"><div class="label">Platforms Used</div><div class="value">${Object.keys(byPlatform).length}</div><div class="sub">Across all content</div></div>
+  `;
+
+  let platHTML = '<h3 style="margin-bottom:8px">Platform Distribution</h3><div style="display:flex;gap:8px;flex-wrap:wrap">';
+  Object.entries(byPlatform).sort((a,b) => b[1]-a[1]).forEach(([p,c]) => {
+    platHTML += `<div style="padding:8px 14px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);min-width:100px;text-align:center">
+      <div style="font-size:12px;color:var(--text2)">${p}</div>
+      <div style="font-weight:700;font-size:18px">${c}</div>
+    </div>`;
+  });
+  platHTML += '</div>';
+  document.getElementById('platformBreakdown').innerHTML = platHTML;
+}
+
+function switchTab(tab) {
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
+  ['calendar','upcoming','ideas','analytics'].forEach(t => {
+    document.getElementById('tab-'+t).style.display = t === tab ? '' : 'none';
+  });
+  if (tab === 'upcoming') renderUpcoming();
+  if (tab === 'analytics') renderAnalytics();
+}
+
+function renderAll() {
+  renderCalendar();
+  if (document.getElementById('tab-upcoming').style.display !== 'none') renderUpcoming();
+  if (document.getElementById('tab-analytics').style.display !== 'none') renderAnalytics();
+}
+
+// Init
+renderCalendar();
+generateIdeas();
+
+</script>
+</body>
+</html>

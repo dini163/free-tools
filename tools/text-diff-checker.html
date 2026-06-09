@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <script src="../js/theme.min.js" defer></script>
     <script src="../js/i18n.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/diff/dist/diff.min.js" defer></script>
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -37,6 +38,61 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <style>
+    .diff-line {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        padding: 6px 12px;
+        border-radius: 6px;
+        margin: 4px 0;
+        white-space: pre-wrap;
+        word-break: break-all;
+    }
+    .diff-equal {
+        color: var(--text-secondary);
+        opacity: 0.7;
+    }
+    .diff-removed {
+        color: var(--error);
+        background: var(--error-bg);
+        border-left: 4px solid var(--error);
+    }
+    .diff-added {
+        color: var(--success);
+        background: var(--success-bg);
+        border-left: 4px solid var(--success);
+    }
+    .diff-removed-highlight {
+        background-color: rgba(239, 68, 68, 0.25);
+        color: #ff9e9e;
+        border: 1px solid rgba(239, 68, 68, 0.4);
+        text-decoration: line-through;
+        border-radius: 3px;
+        padding: 1px 4px;
+        margin: 0 1px;
+        font-weight: 700;
+    }
+    .diff-added-highlight {
+        background-color: rgba(16, 185, 129, 0.25);
+        color: #86efac;
+        border: 1px solid rgba(16, 185, 129, 0.4);
+        border-radius: 3px;
+        padding: 1px 4px;
+        margin: 0 1px;
+        font-weight: 700;
+    }
+    .theme-light .diff-removed-highlight {
+        color: #b91c1c;
+        background-color: rgba(239, 68, 68, 0.18);
+        border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+    .theme-light .diff-added-highlight {
+        color: #15803d;
+        background-color: rgba(16, 185, 129, 0.18);
+        border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    </style>
 </head>
 <body>
 
@@ -105,20 +161,110 @@
 
 <script>
 function compareDiff() {
-    const a = document.getElementById('diffA').value.split('\n');
-    const b = document.getElementById('diffB').value.split('\n');
+    const textA = document.getElementById('diffA').value;
+    const textB = document.getElementById('diffB').value;
+    
+    const a = textA.split('\n');
+    const b = textB.split('\n');
     let result = '';
     const maxLen = Math.max(a.length, b.length);
+    
     for (let i = 0; i < maxLen; i++) {
         if (a[i] === b[i]) {
-            result += '<div style="color:var(--text-muted);opacity:0.6;font-family:\'JetBrains Mono\',monospace;">  ' + escapeHtml(a[i] || '') + '</div>';
+            result += '<div class="diff-line diff-equal">  ' + escapeHtml(a[i] || '') + '</div>';
         } else {
-            if (a[i] !== undefined) result += '<div style="color:var(--error);background:var(--error-bg);padding:2px 6px;border-radius:4px;margin:2px 0;font-family:\'JetBrains Mono\',monospace;">- ' + escapeHtml(a[i]) + '</div>';
-            if (b[i] !== undefined) result += '<div style="color:var(--success);background:var(--success-bg);padding:2px 6px;border-radius:4px;margin:2px 0;font-family:\'JetBrains Mono\',monospace;">+ ' + escapeHtml(b[i]) + '</div>';
+            if (a[i] !== undefined && b[i] !== undefined) {
+                // Both lines exist but are different: perform word-level diffing
+                const diff = (typeof Diff !== 'undefined') ? Diff.diffWords(a[i], b[i]) : diffWordsFallback(a[i], b[i]);
+                
+                let lineA = '';
+                let lineB = '';
+                
+                diff.forEach(part => {
+                    const value = escapeHtml(part.value);
+                    if (part.added) {
+                        lineB += `<span class="diff-added-highlight">${value}</span>`;
+                    } else if (part.removed) {
+                        lineA += `<span class="diff-removed-highlight">${value}</span>`;
+                    } else {
+                        lineA += value;
+                        lineB += value;
+                    }
+                });
+                
+                result += `<div class="diff-line diff-removed">- ${lineA}</div>`;
+                result += `<div class="diff-line diff-added">+ ${lineB}</div>`;
+            } else if (a[i] !== undefined) {
+                // Line only exists in A
+                result += `<div class="diff-line diff-removed">- ${escapeHtml(a[i])}</div>`;
+            } else if (b[i] !== undefined) {
+                // Line only exists in B
+                result += `<div class="diff-line diff-added">+ ${escapeHtml(b[i])}</div>`;
+            }
         }
     }
     document.getElementById('diffOutput').innerHTML = result || '<span style="color:var(--success);">Original and modified texts are completely identical.</span>';
 }
+
+function diffWordsFallback(lineA, lineB) {
+    const tokenize = (str) => {
+        return str.match(/[\w\u4e00-\u9fa5]+|[^\w\u4e00-\u9fa5]/g) || [];
+    };
+    const wordsA = tokenize(lineA);
+    const wordsB = tokenize(lineB);
+    
+    // Performance safeguard for extremely long lines
+    if (wordsA.length > 300 || wordsB.length > 300) {
+        return [
+            { value: lineA, removed: true },
+            { value: lineB, added: true }
+        ];
+    }
+    
+    const dp = Array(wordsA.length + 1).fill(null).map(() => Array(wordsB.length + 1).fill(0));
+    
+    for (let i = 1; i <= wordsA.length; i++) {
+        for (let j = 1; j <= wordsB.length; j++) {
+            if (wordsA[i - 1] === wordsB[j - 1]) {
+                dp[i][j] = dp[i - 1][j - 1] + 1;
+            } else {
+                dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+            }
+        }
+    }
+    
+    let i = wordsA.length;
+    let j = wordsB.length;
+    const diff = [];
+    
+    while (i > 0 || j > 0) {
+        if (i > 0 && j > 0 && wordsA[i - 1] === wordsB[j - 1]) {
+            diff.unshift({ value: wordsA[i - 1] });
+            i--;
+            j--;
+        } else if (j > 0 && (i === 0 || dp[i][j - 1] >= dp[i - 1][j])) {
+            diff.unshift({ value: wordsB[j - 1], added: true });
+            j--;
+        } else {
+            diff.unshift({ value: wordsA[i - 1], removed: true });
+            i--;
+        }
+    }
+    
+    const merged = [];
+    for (const part of diff) {
+        if (merged.length > 0 && 
+            ((part.added && merged[merged.length - 1].added) ||
+             (part.removed && merged[merged.length - 1].removed) ||
+             (!part.added && !part.removed && !merged[merged.length - 1].added && !merged[merged.length - 1].removed))) {
+            merged[merged.length - 1].value += part.value;
+        } else {
+            merged.push({ ...part });
+        }
+    }
+    return merged;
+}
+
 function escapeHtml(s) {
     const d = document.createElement('div');
     d.textContent = s;

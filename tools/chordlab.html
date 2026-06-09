@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en" data-title-key="t_chordlab">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9267698062788796" crossorigin="anonymous"></script>
+    <title>ChordLab - Free Online Tool</title>
+    <meta name="description" content="Interactive music theory and chord explorer with visual piano, progression builder, and ear training.">
+    <link rel="canonical" href="https://dini163.github.io/free-tools/tools/chordlab.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/theme.min.js" defer></script>
+    <script src="../js/i18n.min.js" defer></script>
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#667eea">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <style>
+    
+:root {
+  --bg: var(--bg-primary);
+  --surface: var(--bg-card);
+  --border: var(--border);
+  --text: var(--text-primary);
+  --text2: var(--text-secondary);
+  --text3: var(--text-muted);
+  --primary: var(--accent-light);
+  --primary-light: var(--accent-glow);
+  --primary-bg: var(--accent-glow);
+  --primary-dark: var(--accent);
+  --success: var(--success);
+  --warning: var(--warning);
+  --yellow: var(--warning);
+  --red: var(--error);
+  --danger: var(--error);
+  --shadow: var(--shadow);
+  --radius: var(--radius);
+  --radius-sm: var(--radius-sm);
+  --todo: rgba(99, 102, 241, 0.1);
+  --progress: rgba(245, 158, 11, 0.1);
+  --done: rgba(16, 185, 129, 0.1);
+  --white-key: #ffffff;
+  --black-key: #09090b;
+}
+.theme-light {
+  --primary: var(--accent);
+  --primary-dark: var(--accent-dark);
+  --primary-light: rgba(99, 102, 241, 0.08);
+  --primary-bg: rgba(99, 102, 241, 0.08);
+  --todo: #eff6ff;
+  --progress: #fef9c3;
+  --done: #dcfce7;
+  --white-key: #f4f4f5;
+  --black-key: #27272a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+.tool-body-style {font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.5;min-height:100vh}
+header{background:var(--surface);border-bottom:1px solid var(--border);padding:0 20px;height:50px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:700;font-size:16px;color:var(--primary);display:flex;align-items:center;gap:8px}
+nav{display:flex;gap:0}
+.nav-tab{padding:8px 16px;font-size:13px;cursor:pointer;color:var(--text2);border-radius:var(--radius-sm);transition:all .15s}
+.nav-tab:hover{color:var(--text)}
+.nav-tab.active{background:var(--primary);color:#fff}
+main{max-width:1100px;margin:0 auto;padding:16px 20px}
+.piano-area{background:var(--surface);border-radius:var(--radius);padding:16px;margin-bottom:16px;overflow-x:auto}
+.piano{position:relative;height:140px;min-width:560px;display:flex}
+.white-key{flex:1;background:var(--white-key);border:1px solid #d0d0d8;border-radius:0 0 4px 4px;cursor:pointer;position:relative;min-width:32px;transition:background .05s}
+.white-key:hover{background:#e0e0f0}
+.white-key:active,.white-key.pressed{background:var(--primary);box-shadow:inset 0 2px 4px rgba(0,0,0,.2)}
+.white-key .label{position:absolute;bottom:6px;width:100%;text-align:center;font-size:10px;color:#888;pointer-events:none}
+.white-key.root{background:#ffe0e6}.white-key.root .label{color:var(--primary);font-weight:700}
+.black-key{position:absolute;width:22px;height:88px;background:var(--black-key);border-radius:0 0 3px 3px;cursor:pointer;z-index:2;transition:background .05s}
+.black-key:hover{background:#2a2a4e}
+.black-key:active,.black-key.pressed{background:var(--primary)}
+.panel-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:768px){.panel-grid{grid-template-columns:1fr}}
+.card{background:var(--surface);border-radius:var(--radius);padding:16px;border:1px solid var(--border)}
+.card h3{font-size:14px;font-weight:600;margin-bottom:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.5px}
+.chord-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:6px}
+.chord-btn{padding:8px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--bg);color:var(--text);cursor:pointer;font-size:12px;text-align:center;transition:all .15s;font-family:inherit}
+.chord-btn:hover{background:var(--accent);border-color:var(--primary)}
+.chord-btn.active{background:var(--primary);border-color:var(--primary);color:#fff}
+.info-display{font-size:14px;line-height:2}
+.info-display .note{display:inline-block;width:32px;height:32px;line-height:32px;text-align:center;border-radius:50%;margin:2px;font-size:12px;font-weight:600}
+.info-display .note.root{background:var(--primary);color:#fff}
+.info-display .note.chord{background:var(--accent);color:#fff}
+.info-display .note.scale{background:var(--border);color:var(--text)}
+.prog-bar{display:flex;gap:6px;align-items:center;margin:8px 0;flex-wrap:wrap}
+.prog-slot{padding:8px 14px;border-radius:var(--radius-sm);border:2px dashed var(--border);font-size:13px;cursor:pointer;min-width:60px;text-align:center;transition:all .15s;color:var(--text2)}
+.prog-slot:hover{border-color:var(--primary);color:var(--text)}
+.prog-slot.filled{border-style:solid;background:var(--accent);border-color:var(--primary);color:#fff;font-weight:600}
+.btn{padding:7px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:13px;cursor:pointer;transition:all .15s;font-family:inherit}
+.btn:hover{background:var(--accent)}
+.btn-primary{background:var(--primary);color:#fff;border-color:var(--primary)}.btn-primary:hover{background:#d13450}
+.btn-sm{padding:4px 10px;font-size:12px}
+.ear-train{text-align:center;padding:20px}
+.ear-train .question{font-size:24px;margin:16px 0;letter-spacing:2px}
+.ear-train .answer-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;max-width:500px;margin:16px auto}
+.scale-select{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.controls-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+select{padding:7px 10px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);color:var(--text);font-size:13px;font-family:inherit}
+select:focus{outline:none;border-color:var(--primary)}
+.fretboard{position:relative;margin-top:10px}
+.fretboard svg{width:100%}
+input[type=range]{width:100%}
+
+    </style>
+</head>
+<body class="tool-body-style">
+
+<header class="header">
+    <div class="header-inner">
+        <a href="../index.html" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+            </div>
+            <span data-i18n="logo">FreeDevTools</span>
+        </a>
+        <nav class="nav-links">
+            <a href="../index.html" data-i18n="all_tools">All Tools</a>
+            <div class="lang-switcher">
+                <button class="lang-btn" id="langToggleBtn" onclick="toggleLangMenu(event)" aria-label="Select language">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <button class="lang-menu-item" onclick="changeLanguage('en')">English</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('fr')">Français</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('es')">Español</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('pt')">Português</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ru')">Русский</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-CN')">简体中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-TW')">繁體中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ja')">日本語</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ko')">한국어</button>
+                </div>
+            </div>
+            <div class="theme-switcher">
+                <button class="theme-btn" id="themeToggleBtn" onclick="toggleThemeMenu(event)" aria-label="Toggle theme">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </button>
+                <div class="theme-menu" id="themeMenu">
+                    <button class="theme-menu-item" onclick="setTheme('light')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg> Light</button>
+                    <button class="theme-menu-item" onclick="setTheme('dark')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg> Dark</button>
+                    <button class="theme-menu-item" onclick="setTheme('auto')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg> System</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+
+<div style="background:var(--bg-card); border-bottom:1px solid var(--border); padding:8px 20px;"><nav style="display:flex; gap:8px;">
+    <div class="nav-tab active" data-tab="explorer" onclick="switchTab('explorer')">Chord Explorer</div>
+    <div class="nav-tab" data-tab="progressions" onclick="switchTab('progressions')">Progressions</div>
+    <div class="nav-tab" data-tab="scales" onclick="switchTab('scales')">Scales</div>
+    <div class="nav-tab" data-tab="ear" onclick="switchTab('ear')">Ear Training</div>
+  </nav></div><main id="tab-explorer">
+  <div class="piano-area"><div class="piano" id="piano"></div></div>
+  <div class="panel-grid">
+    <div class="card">
+      <h3>Select Chord</h3>
+      <div class="controls-row">
+        <select id="rootNote" onchange="updateChord()">
+          <option value="C">C</option><option value="C#">C#</option><option value="D">D</option>
+          <option value="D#">D#</option><option value="E">E</option><option value="F">F</option>
+          <option value="F#">F#</option><option value="G">G</option><option value="G#">G#</option>
+          <option value="A">A</option><option value="A#">A#</option><option value="B">B</option>
+        </select>
+        <select id="chordType" onchange="updateChord()">
+          <option value="major">Major</option><option value="minor">Minor</option>
+          <option value="dim">Diminished</option><option value="aug">Augmented</option>
+          <option value="maj7">Major 7th</option><option value="min7">Minor 7th</option>
+          <option value="dom7">Dominant 7th</option>
+          <option value="dim7">Diminished 7th</option>
+          <option value="maj9">Major 9th</option>
+          <option value="min9">Minor 9th</option>
+          <option value="sus2">Sus2</option><option value="sus4">Sus4</option>
+          <option value="add9">Add9</option>
+        </select>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="playCurrentChord()">▶ Play</button>
+      <button class="btn btn-sm" style="margin-left:4px" onclick="playArpeggio()">Arpeggio</button>
+    </div>
+    <div class="card">
+      <h3 id="chordName">C Major</h3>
+      <div class="info-display" id="chordInfo"></div>
+      <div style="margin-top:8px;font-size:12px;color:var(--text2)">Notes: <span id="chordNotes"></span></div>
+      <div style="font-size:12px;color:var(--text2)">Intervals: <span id="chordIntervals"></span></div>
+    </div>
+  </div>
+</main>
+
+<main id="tab-progressions" style="display:none">
+  <div class="card" style="margin-bottom:16px">
+    <h3>Chord Progression Builder</h3>
+    <div class="prog-bar" id="progBar"></div>
+    <div style="display:flex;gap:8px;margin-top:8px">
+      <button class="btn btn-primary btn-sm" onclick="playProgression()">▶ Play</button>
+      <button class="btn btn-sm" onclick="clearProgression()">Clear</button>
+      <select id="progTemplate" onchange="loadProgTemplate()" style="margin-left:auto">
+        <option value="">Load Template...</option>
+        <option value="I-V-vi-IV">I-V-vi-IV (Pop)</option>
+        <option value="ii-V-I">ii-V-I (Jazz)</option>
+        <option value="I-IV-V">I-IV-V (Blues)</option>
+        <option value="vi-IV-I-V">vi-IV-I-V (Epic)</option>
+        <option value="I-vi-IV-V">I-vi-IV-V (50s)</option>
+      </select>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Quick Chords</h3>
+    <div class="chord-grid" id="quickChords"></div>
+  </div>
+</main>
+
+<main id="tab-scales" style="display:none">
+  <div class="piano-area"><div class="piano" id="scalePiano"></div></div>
+  <div class="panel-grid">
+    <div class="card">
+      <h3>Scale</h3>
+      <div class="controls-row">
+        <select id="scaleRoot" onchange="updateScale()">
+          <option value="C">C</option><option value="C#">C#</option><option value="D">D</option>
+          <option value="D#">D#</option><option value="E">E</option><option value="F">F</option>
+          <option value="F#">F#</option><option value="G">G</option><option value="G#">G#</option>
+          <option value="A">A</option><option value="A#">A#</option><option value="B">B</option>
+        </select>
+        <select id="scaleType" onchange="updateScale()">
+          <option value="major">Major (Ionian)</option><option value="natural_minor">Natural Minor (Aeolian)</option>
+          <option value="harmonic_minor">Harmonic Minor</option><option value="melodic_minor">Melodic Minor</option>
+          <option value="dorian">Dorian</option><option value="phrygian">Phrygian</option>
+          <option value="lydian">Lydian</option><option value="mixolydian">Mixolydian</option>
+          <option value="locrian">Locrian</option>
+          <option value="pentatonic_major">Pentatonic Major</option><option value="pentatonic_minor">Pentatonic Minor</option>
+          <option value="blues">Blues</option>
+        </select>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="playScale()">▶ Play</button>
+    </div>
+    <div class="card">
+      <h3 id="scaleName">C Major Scale</h3>
+      <div class="info-display" id="scaleInfo"></div>
+      <div style="font-size:12px;color:var(--text2);margin-top:8px">Formula: <span id="scaleFormula"></span></div>
+    </div>
+  </div>
+</main>
+
+<main id="tab-ear" style="display:none">
+  <div class="card ear-train">
+    <h3>Ear Training</h3>
+    <p style="color:var(--text2);margin-bottom:12px">Identify the interval or chord by ear</p>
+    <select id="earMode" onchange="resetEarGame()" style="margin-bottom:12px">
+      <option value="interval">Interval Recognition</option>
+      <option value="chord">Chord Quality</option>
+    </select>
+    <div class="question" id="earQuestion">Click "Play" to hear the sound</div>
+    <button class="btn btn-primary" onclick="playEarSound()">🔊 Play</button>
+    <button class="btn btn-sm" onclick="playEarSound()" style="margin-left:4px">🔄 Replay</button>
+    <div class="answer-grid" id="earAnswers"></div>
+    <div id="earResult" style="margin-top:8px;font-weight:600"></div>
+    <div style="margin-top:12px;font-size:13px;color:var(--text2)">
+      Score: <span id="earScore" style="color:var(--gold);font-weight:700">0</span> /
+      <span id="earTotal">0</span>
+    </div>
+  </div>
+</main>
+
+
+
+<footer class="footer">
+    <p>&copy; 2026 FreeDevTools. All tools run 100% locally in your web browser — absolutely no data is transmitted to any server.</p>
+</footer>
+
+<script>
+
+const NOTES = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+const NOTE_FREQS = {};
+// A4 = 440
+NOTES.forEach((n, i) => {
+  const semitones = i - NOTES.indexOf('A') + (i < NOTES.indexOf('A') ? 12 : 0);
+  NOTE_FREQS[n] = 440 * Math.pow(2, semitones / 12);
+});
+
+const CHORD_INTERVALS = {
+  major: [0,4,7], minor: [0,3,7], dim: [0,3,6], aug: [0,4,8],
+  maj7: [0,4,7,11], min7: [0,3,7,10], dom7: [0,4,7,10], dim7: [0,3,6,9],
+  maj9: [0,4,7,11,14], min9: [0,3,7,10,14],
+  sus2: [0,2,7], sus4: [0,5,7], add9: [0,4,7,14]
+};
+
+const SCALE_INTERVALS = {
+  major: [0,2,4,5,7,9,11],
+  natural_minor: [0,2,3,5,7,8,10],
+  harmonic_minor: [0,2,3,5,7,8,11],
+  melodic_minor: [0,2,3,5,7,9,11],
+  dorian: [0,2,3,5,7,9,10],
+  phrygian: [0,1,3,5,7,8,10],
+  lydian: [0,2,4,6,7,9,11],
+  mixolydian: [0,2,4,5,7,9,10],
+  locrian: [0,1,3,5,6,8,10],
+  pentatonic_major: [0,2,4,7,9],
+  pentatonic_minor: [0,3,5,7,10],
+  blues: [0,3,5,6,7,10]
+};
+
+const INTERVAL_NAMES = {
+  0:'Unison',1:'Minor 2nd',2:'Major 2nd',3:'Minor 3rd',4:'Major 3rd',
+  5:'Perfect 4th',6:'Tritone',7:'Perfect 5th',8:'Minor 6th',9:'Major 6th',
+  10:'Minor 7th',11:'Major 7th',12:'Octave'
+};
+
+let audioCtx = null;
+let progression = [];
+let earAnswer = null;
+let earScore = 0, earTotal = 0;
+
+function getAudioCtx() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  return audioCtx;
+}
+
+function playNote(noteName, octave=4, duration=0.5, startTime=0) {
+  const ctx = getAudioCtx();
+  const freq = NOTE_FREQS[noteName] * Math.pow(2, octave - 4);
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.type = 'triangle';
+  osc.frequency.value = freq;
+  gain.gain.setValueAtTime(0.3, ctx.currentTime + startTime);
+  gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + startTime + duration);
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+  osc.start(ctx.currentTime + startTime);
+  osc.stop(ctx.currentTime + startTime + duration);
+}
+
+function playNotes(notes, duration=0.6) {
+  notes.forEach((n, i) => playNote(n.note, n.octave, duration, i * 0.1));
+}
+
+function getNoteIndex(note) { return NOTES.indexOf(note); }
+
+function getChordNotes(root, type) {
+  const rootIdx = getNoteIndex(root);
+  return CHORD_INTERVALS[type].map(interval => {
+    const idx = (rootIdx + interval) % 12;
+    return { note: NOTES[idx], octave: 4 + Math.floor((rootIdx + interval) / 12) };
+  });
+}
+
+function getScaleNotes(root, type) {
+  const rootIdx = getNoteIndex(root);
+  return SCALE_INTERVALS[type].map(interval => {
+    const idx = (rootIdx + interval) % 12;
+    return { note: NOTES[idx], octave: 4 + Math.floor((rootIdx + interval) / 12) };
+  });
+}
+
+// Piano rendering
+function renderPiano(containerId, rootNotes=[]) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = '';
+  const octaves = [3,4,5];
+  let whiteIdx = 0;
+  const whitePositions = [];
+
+  octaves.forEach(oct => {
+    NOTES.forEach((note, i) => {
+      if (note.includes('#')) return;
+      const key = document.createElement('div');
+      key.className = 'white-key';
+      if (rootNotes.includes(note)) key.classList.add('root');
+      key.dataset.note = note;
+      key.dataset.octave = oct;
+      key.addEventListener('mousedown', () => {
+        playNote(note, oct, 0.5);
+        key.classList.add('pressed');
+        setTimeout(() => key.classList.remove('pressed'), 150);
+      });
+      key.innerHTML = `<span class="label">${note}${oct}</span>`;
+      container.appendChild(key);
+      whitePositions.push({ note, oct, el: key, idx: whiteIdx });
+      whiteIdx++;
+    });
+  });
+
+  // Black keys
+  const pattern = [1,0,1,1,0,1,0,1,1,0,1,0]; // 1=has black key after white
+  let whiteCount = 0;
+  octaves.forEach(oct => {
+    NOTES.forEach((note, i) => {
+      if (!note.includes('#')) {
+        whiteCount++;
+        return;
+      }
+      // Find position of previous white key
+      const prevWhite = document.querySelectorAll(`#${containerId} .white-key`)[whiteCount - 1];
+      if (!prevWhite) return;
+      const whiteWidth = prevWhite.offsetWidth;
+      const key = document.createElement('div');
+      key.className = 'black-key';
+      key.dataset.note = note;
+      key.dataset.octave = oct;
+      key.style.left = (prevWhite.offsetLeft + whiteWidth * 0.7) + 'px';
+      key.addEventListener('mousedown', () => {
+        playNote(note, oct, 0.4);
+        key.classList.add('pressed');
+        setTimeout(() => key.classList.remove('pressed'), 150);
+      });
+      container.appendChild(key);
+    });
+  });
+}
+
+// Chord Explorer
+function updateChord() {
+  const root = document.getElementById('rootNote').value;
+  const type = document.getElementById('chordType').value;
+  const notes = getChordNotes(root, type);
+
+  document.getElementById('chordName').textContent = `${root} ${type.replace(/_/g,' ').replace(/\b\w/g,l=>l.toUpperCase())}`;
+  document.getElementById('chordNotes').textContent = notes.map(n => n.note).join(' - ');
+  document.getElementById('chordIntervals').textContent = CHORD_INTERVALS[type].map(i => i + ' semitones').join(', ');
+
+  const info = document.getElementById('chordInfo');
+  info.innerHTML = notes.map((n, i) => {
+    const cls = i === 0 ? 'note root' : 'note chord';
+    return `<span class="${cls}">${n.note}</span>`;
+  }).join('');
+
+  renderPiano('piano', notes.map(n => n.note));
+}
+
+function playCurrentChord() {
+  const root = document.getElementById('rootNote').value;
+  const type = document.getElementById('chordType').value;
+  playNotes(getChordNotes(root, type), 0.8);
+}
+
+function playArpeggio() {
+  const root = document.getElementById('rootNote').value;
+  const type = document.getElementById('chordType').value;
+  const notes = getChordNotes(root, type);
+  notes.forEach((n, i) => playNote(n.note, n.octave, 0.5, i * 0.15));
+  // Descending
+  notes.slice().reverse().slice(1).forEach((n, i) => playNote(n.note, n.octave, 0.5, (notes.length + i) * 0.15));
+}
+
+// Scale
+function updateScale() {
+  const root = document.getElementById('scaleRoot').value;
+  const type = document.getElementById('scaleType').value;
+  const notes = getScaleNotes(root, type);
+  const typeName = type.replace(/_/g,' ').replace(/\b\w/g,l=>l.toUpperCase());
+  document.getElementById('scaleName').textContent = `${root} ${typeName}`;
+  document.getElementById('scaleFormula').textContent = SCALE_INTERVALS[type].join(' - ') + ' semitones';
+
+  const info = document.getElementById('scaleInfo');
+  info.innerHTML = notes.map((n, i) => {
+    const cls = i === 0 ? 'note root' : 'note scale';
+    return `<span class="${cls}">${n.note}</span>`;
+  }).join('');
+
+  renderPiano('scalePiano', notes.map(n => n.note));
+}
+
+function playScale() {
+  const root = document.getElementById('scaleRoot').value;
+  const type = document.getElementById('scaleType').value;
+  const notes = getScaleNotes(root, type);
+  notes.forEach((n, i) => playNote(n.note, n.octave, 0.3, i * 0.15));
+}
+
+// Progression
+function renderQuickChords() {
+  const grid = document.getElementById('quickChords');
+  const chords = [
+    {name:'C', type:'major'},{name:'Dm', type:'minor'},{name:'Em', type:'minor'},
+    {name:'F', type:'major'},{name:'G', type:'major'},{name:'Am', type:'minor'},
+    {name:'Bdim', type:'dim'},{name:'C7', type:'dom7'},{name:'Dm7', type:'min7'},
+    {name:'G7', type:'dom7'},{name:'Am7', type:'min7'},{name:'Fmaj7', type:'maj7'}
+  ];
+  grid.innerHTML = chords.map(c => {
+    const root = c.name.replace(/[^A-G#]/g,'');
+    return `<button class="chord-btn" onclick="addToProgression('${root}','${c.type}')">${c.name}</button>`;
+  }).join('');
+}
+
+function addToProgression(root, type) {
+  if (progression.length >= 8) return;
+  progression.push({root, type});
+  renderProgBar();
+}
+
+function renderProgBar() {
+  const bar = document.getElementById('progBar');
+  bar.innerHTML = progression.map((c, i) =>
+    `<span class="prog-slot filled" onclick="progression.splice(${i},1);renderProgBar()">${c.root}${c.type==='major'?'':c.type.replace('_','')}</span>`
+  ).join('');
+  for (let i = progression.length; i < 8; i++) {
+    bar.innerHTML += `<span class="prog-slot">+</span>`;
+  }
+}
+
+function clearProgression() { progression = []; renderProgBar(); }
+
+function playProgression() {
+  if (!progression.length) return;
+  progression.forEach((c, i) => {
+    const notes = getChordNotes(c.root, c.type);
+    notes.forEach(n => playNote(n.note, n.octave, 0.8, i * 1.0));
+  });
+}
+
+function loadProgTemplate() {
+  const tpl = document.getElementById('progTemplate').value;
+  if (!tpl) return;
+  const romanToChord = {
+    'I':{root:'C',type:'major'},'ii':{root:'D',type:'minor'},'iii':{root:'E',type:'minor'},
+    'IV':{root:'F',type:'major'},'V':{root:'G',type:'major'},'vi':{root:'A',type:'minor'},
+    'vii':{root:'B',type:'dim'}
+  };
+  progression = tpl.split('-').map(r => romanToChord[r] || {root:'C',type:'major'});
+  renderProgBar();
+  document.getElementById('progTemplate').value = '';
+}
+
+// Ear Training
+const EAR_INTERVALS = [1,2,3,4,5,6,7,8,9,10,11,12];
+const EAR_CHORD_TYPES = ['major','minor','dim','aug','dom7','maj7','min7'];
+
+function resetEarGame() {
+  const mode = document.getElementById('earMode').value;
+  const answers = document.getElementById('earAnswers');
+  if (mode === 'interval') {
+    answers.innerHTML = EAR_INTERVALS.map(i =>
+      `<button class="btn btn-sm" onclick="guessEar('${i}')">${INTERVAL_NAMES[i]}</button>`
+    ).join('');
+  } else {
+    answers.innerHTML = EAR_CHORD_TYPES.map(t =>
+      `<button class="btn btn-sm" onclick="guessEar('${t}')">${t.replace(/_/g,' ')}</button>`
+    ).join('');
+  }
+  generateEarQuestion();
+}
+
+function generateEarQuestion() {
+  const mode = document.getElementById('earMode').value;
+  document.getElementById('earResult').textContent = '';
+  document.getElementById('earQuestion').textContent = 'Click "Play" to hear the sound';
+  if (mode === 'interval') {
+    earAnswer = EAR_INTERVALS[Math.floor(Math.random() * EAR_INTERVALS.length)];
+  } else {
+    earAnswer = EAR_CHORD_TYPES[Math.floor(Math.random() * EAR_CHORD_TYPES.length)];
+  }
+}
+
+function playEarSound() {
+  const ctx = getAudioCtx();
+  const mode = document.getElementById('earMode').value;
+  const rootNote = NOTES[Math.floor(Math.random() * 12)];
+
+  if (mode === 'interval') {
+    const interval = parseInt(earAnswer);
+    const note2Idx = (getNoteIndex(rootNote) + interval) % 12;
+    const note2 = NOTES[note2Idx];
+    playNote(rootNote, 4, 0.8, 0);
+    playNote(note2, 4 + Math.floor((getNoteIndex(rootNote)+interval)/12), 0.8, 0.5);
+  } else {
+    const notes = getChordNotes(rootNote, earAnswer);
+    playNotes(notes, 1.0);
+  }
+}
+
+function guessEar(answer) {
+  if (String(answer) === String(earAnswer)) {
+    earScore++;
+    document.getElementById('earResult').innerHTML = '<span style="color:#3fb950">Correct!</span>';
+    document.getElementById('earResult').style.color = '#3fb950';
+  } else {
+    const correctLabel = document.getElementById('earMode').value === 'interval' ? INTERVAL_NAMES[earAnswer] : earAnswer;
+    document.getElementById('earResult').innerHTML = `<span style="color:#f85149">Wrong! It was ${correctLabel}</span>`;
+  }
+  earTotal++;
+  document.getElementById('earScore').textContent = earScore;
+  document.getElementById('earTotal').textContent = earTotal;
+  setTimeout(generateEarQuestion, 1500);
+}
+
+// Tab switching
+function switchTab(tab) {
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
+  ['explorer','progressions','scales','ear'].forEach(t => {
+    document.getElementById('tab-'+t).style.display = t === tab ? '' : 'none';
+  });
+  if (tab === 'scales') updateScale();
+  if (tab === 'ear') resetEarGame();
+}
+
+// Init
+updateChord();
+renderQuickChords();
+renderProgBar();
+resetEarGame();
+
+</script>
+</body>
+</html>

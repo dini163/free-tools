@@ -3,7 +3,7 @@
  * 实现缓存策略，提升网站加载速度
  */
 
-const CACHE_NAME = 'free-tools-v1.2.0';
+const CACHE_NAME = 'free-tools-v1.2.1';
 const ASSETS_TO_CACHE = [
     '/',
     '/index.html',

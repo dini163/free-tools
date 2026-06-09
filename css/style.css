@@ -317,8 +317,9 @@ main {
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4), var(--accent-glow);
     background: var(--bg-card-hover);
 }
+.tool-card-link.hidden,
 .tool-card.hidden {
-    display: none;
+    display: none !important;
 }
 .tool-icon {
     width: 42px;

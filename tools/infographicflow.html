@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en" data-title-key="t_infographicflow">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9267698062788796" crossorigin="anonymous"></script>
+    <title>InfographicFlow - Free Online Tool</title>
+    <meta name="description" content="Interactive infographic maker with drag-and-drop editor, chart visualization, and templates.">
+    <link rel="canonical" href="https://dini163.github.io/free-tools/tools/infographicflow.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/theme.min.js" defer></script>
+    <script src="../js/i18n.min.js" defer></script>
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#667eea">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.min.js"></script>
+    <style>
+    
+:root {
+  --bg: var(--bg-primary);
+  --surface: var(--bg-card);
+  --border: var(--border);
+  --text: var(--text-primary);
+  --text2: var(--text-secondary);
+  --text3: var(--text-muted);
+  --primary: var(--accent-light);
+  --primary-light: var(--accent-glow);
+  --primary-bg: var(--accent-glow);
+  --primary-dark: var(--accent);
+  --success: var(--success);
+  --warning: var(--warning);
+  --yellow: var(--warning);
+  --red: var(--error);
+  --danger: var(--error);
+  --shadow: var(--shadow);
+  --radius: var(--radius);
+  --radius-sm: var(--radius-sm);
+  --todo: rgba(99, 102, 241, 0.1);
+  --progress: rgba(245, 158, 11, 0.1);
+  --done: rgba(16, 185, 129, 0.1);
+  --white-key: #ffffff;
+  --black-key: #09090b;
+}
+.theme-light {
+  --primary: var(--accent);
+  --primary-dark: var(--accent-dark);
+  --primary-light: rgba(99, 102, 241, 0.08);
+  --primary-bg: rgba(99, 102, 241, 0.08);
+  --todo: #eff6ff;
+  --progress: #fef9c3;
+  --done: #dcfce7;
+  --white-key: #f4f4f5;
+  --black-key: #27272a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+.tool-body-style {font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.5;height:100vh;display:flex;flex-direction:column}
+header{background:var(--surface);border-bottom:1px solid var(--border);padding:0 16px;height:48px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.logo{font-weight:700;font-size:15px;color:var(--primary)}
+.header-actions{display:flex;gap:6px}
+.btn{padding:6px 12px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:12px;cursor:pointer;transition:all .15s;font-family:inherit}
+.btn:hover{background:#f3f4f6}
+.btn-primary{background:var(--primary);color:#fff;border-color:var(--primary)}.btn-primary:hover{background:#5558e6}
+.btn-sm{padding:4px 8px;font-size:11px}
+main{display:flex;flex:1;overflow:hidden}
+.sidebar{width:220px;background:var(--surface);border-right:1px solid var(--border);overflow-y:auto;flex-shrink:0;padding:12px}
+.sidebar h4{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--text3);margin:12px 0 6px}
+.sidebar h4:first-child{margin-top:0}
+.template-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.template-item{padding:10px 8px;border:1px solid var(--border);border-radius:var(--radius-sm);cursor:pointer;text-align:center;font-size:11px;transition:all .15s;background:var(--bg)}
+.template-item:hover{border-color:var(--primary);background:var(--primary-light)}
+.template-item .icon{font-size:22px;display:block;margin-bottom:4px}
+.canvas-area{flex:1;display:flex;align-items:center;justify-content:center;background:#e8eaef;overflow:auto;padding:20px}
+.canvas-wrapper{position:relative;background:#fff;box-shadow:0 4px 20px rgba(0,0,0,.1);border-radius:2px;min-width:600px;min-height:800px;width:800px}
+#infographicCanvas{width:100%;min-height:800px;padding:40px;position:relative}
+.block{position:relative;margin-bottom:12px;border:2px solid transparent;border-radius:var(--radius-sm);padding:8px;cursor:pointer;transition:all .15s;min-height:30px}
+.block:hover{border-color:var(--primary);background:var(--primary-light)}
+.block.selected{border-color:var(--primary);box-shadow:0 0 0 2px var(--primary-light)}
+.block .delete-btn{position:absolute;top:-8px;right:-8px;width:20px;height:20px;background:var(--danger);color:#fff;border:none;border-radius:50%;cursor:pointer;font-size:12px;display:none;align-items:center;justify-content:center;z-index:5}
+.block:hover .delete-btn,.block.selected .delete-btn{display:flex}
+.block-title{font-size:24px;font-weight:700;margin-bottom:4px;outline:none}
+.block-subtitle{font-size:16px;color:var(--text2);outline:none}
+.block-text{font-size:14px;line-height:1.6;outline:none}
+.block-chart{min-height:250px}
+.block-timeline{display:flex;flex-direction:column;gap:8px;padding-left:20px;border-left:3px solid var(--primary)}
+.timeline-item{position:relative;padding:8px 12px;background:var(--bg);border-radius:var(--radius-sm);font-size:13px}
+.timeline-item::before{content:'';position:absolute;left:-26px;top:12px;width:10px;height:10px;background:var(--primary);border-radius:50%}
+.block-comparison{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.compare-col{padding:12px;background:var(--bg);border-radius:var(--radius-sm)}
+.compare-col h4{font-size:14px;margin-bottom:6px}
+.block-stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}
+.stat-box{padding:14px;background:var(--primary-light);border-radius:var(--radius-sm);text-align:center}
+.stat-box .num{font-size:28px;font-weight:700;color:var(--primary)}
+.stat-box .lbl{font-size:11px;color:var(--text2);margin-top:2px}
+.block-flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center}
+.flow-node{padding:10px 16px;background:var(--primary);color:#fff;border-radius:20px;font-size:13px;font-weight:600}
+.flow-arrow{font-size:18px;color:var(--text3)}
+.block-image{text-align:center;padding:12px;background:var(--bg);border-radius:var(--radius-sm);min-height:100px;display:flex;align-items:center;justify-content:center;color:var(--text3);font-size:13px;cursor:pointer}
+.block-image img{max-width:100%;max-height:300px;border-radius:4px}
+.block-quote{padding:16px 20px;border-left:4px solid var(--primary);background:var(--bg);font-style:italic;font-size:16px}
+.block-list{padding-left:20px}
+.block-list li{margin-bottom:4px;font-size:14px;outline:none}
+.props-panel{width:240px;background:var(--surface);border-left:1px solid var(--border);overflow-y:auto;flex-shrink:0;padding:12px}
+.props-panel h4{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--text3);margin-bottom:8px}
+.prop-group{margin-bottom:10px}
+.prop-group label{display:block;font-size:11px;color:var(--text2);margin-bottom:3px}
+.prop-group input,.prop-group select,.prop-group textarea{width:100%;padding:6px 8px;border:1px solid var(--border);border-radius:4px;font-size:12px;font-family:inherit;background:var(--surface);color:var(--text)}
+.prop-group input:focus,.prop-group select:focus,.prop-group textarea:focus{outline:none;border-color:var(--primary)}
+.prop-group textarea{resize:vertical;min-height:50px}
+.color-presets{display:flex;gap:4px;flex-wrap:wrap}
+.color-dot{width:20px;height:20px;border-radius:50%;cursor:pointer;border:2px solid transparent}
+.color-dot:hover{border-color:var(--text)}
+.color-dot.active{border-color:var(--primary)}
+
+main { height: calc(100vh - 120px) !important; overflow: hidden !important; }
+
+    </style>
+</head>
+<body class="tool-body-style">
+
+<header class="header">
+    <div class="header-inner">
+        <a href="../index.html" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+            </div>
+            <span data-i18n="logo">FreeDevTools</span>
+        </a>
+        <nav class="nav-links">
+            <a href="../index.html" data-i18n="all_tools">All Tools</a>
+            <div class="lang-switcher">
+                <button class="lang-btn" id="langToggleBtn" onclick="toggleLangMenu(event)" aria-label="Select language">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <button class="lang-menu-item" onclick="changeLanguage('en')">English</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('fr')">Français</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('es')">Español</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('pt')">Português</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ru')">Русский</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-CN')">简体中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-TW')">繁體中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ja')">日本語</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ko')">한국어</button>
+                </div>
+            </div>
+            <div class="theme-switcher">
+                <button class="theme-btn" id="themeToggleBtn" onclick="toggleThemeMenu(event)" aria-label="Toggle theme">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </button>
+                <div class="theme-menu" id="themeMenu">
+                    <button class="theme-menu-item" onclick="setTheme('light')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg> Light</button>
+                    <button class="theme-menu-item" onclick="setTheme('dark')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg> Dark</button>
+                    <button class="theme-menu-item" onclick="setTheme('auto')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg> System</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+
+<div class="tool-toolbar" style="display:flex; gap:6px; padding:8px; background:var(--bg-card); border-bottom:1px solid var(--border); flex-wrap:wrap;">
+    <button class="btn btn-sm" onclick="addBlock('title')">+ Title</button>
+    <button class="btn btn-sm" onclick="addBlock('text')">+ Text</button>
+    <button class="btn btn-sm" onclick="addBlock('stats')">+ Stats</button>
+    <button class="btn btn-sm" onclick="addBlock('chart')">+ Chart</button>
+    <button class="btn btn-sm" onclick="addBlock('timeline')">+ Timeline</button>
+    <button class="btn btn-sm" onclick="addBlock('comparison')">+ Compare</button>
+    <button class="btn btn-sm" onclick="addBlock('flow')">+ Flow</button>
+    <button class="btn btn-sm" onclick="addBlock('quote')">+ Quote</button>
+    <button class="btn btn-sm" onclick="addBlock('list')">+ List</button>
+    <button class="btn btn-sm" onclick="addBlock('image')">+ Image</button>
+    <span style="color:var(--text3);margin:0 4px">|</span>
+    <button class="btn btn-sm btn-primary" onclick="exportPNG()">Export PNG</button>
+    <button class="btn btn-sm" onclick="clearAll()">Clear</button>
+  </div><main>
+  <div class="sidebar">
+    <h4>Templates</h4>
+    <div class="template-grid">
+      <div class="template-item" onclick="loadTemplate('report')"><span class="icon">📊</span>Report</div>
+      <div class="template-item" onclick="loadTemplate('timeline')"><span class="icon">📅</span>Timeline</div>
+      <div class="template-item" onclick="loadTemplate('comparison')"><span class="icon">⚖️</span>Compare</div>
+      <div class="template-item" onclick="loadTemplate('process')"><span class="icon">🔄</span>Process</div>
+      <div class="template-item" onclick="loadTemplate('stats')"><span class="icon">📈</span>Stats</div>
+      <div class="template-item" onclick="loadTemplate('howto')"><span class="icon">📝</span>How-To</div>
+    </div>
+    <h4>Theme</h4>
+    <div class="color-presets" id="themeColors">
+      <div class="color-dot active" style="background:#6366f1" data-primary="#6366f1" onclick="setTheme(this)"></div>
+      <div class="color-dot" style="background:#f59e0b" data-primary="#f59e0b" onclick="setTheme(this)"></div>
+      <div class="color-dot" style="background:#10b981" data-primary="#10b981" onclick="setTheme(this)"></div>
+      <div class="color-dot" style="background:#ef4444" data-primary="#ef4444" onclick="setTheme(this)"></div>
+      <div class="color-dot" style="background:#8b5cf6" data-primary="#8b5cf6" onclick="setTheme(this)"></div>
+      <div class="color-dot" style="background:#06b6d4" data-primary="#06b6d4" onclick="setTheme(this)"></div>
+    </div>
+  </div>
+
+  <div class="canvas-area" id="canvasArea">
+    <div class="canvas-wrapper">
+      <div id="infographicCanvas"></div>
+    </div>
+  </div>
+
+  <div class="props-panel" id="propsPanel">
+    <h4>Properties</h4>
+    <p style="font-size:12px;color:var(--text3)">Select a block to edit</p>
+  </div>
+</main>
+
+
+
+<footer class="footer">
+    <p>&copy; 2026 FreeDevTools. All tools run 100% locally in your web browser — absolutely no data is transmitted to any server.</p>
+</footer>
+
+<script>
+
+let blocks = [];
+let selectedBlockId = null;
+let themeColor = '#6366f1';
+
+function generateId() { return 'b_' + Date.now() + '_' + Math.random().toString(36).slice(2,6); }
+
+function addBlock(type) {
+  const id = generateId();
+  const block = { id, type };
+  switch(type) {
+    case 'title':
+      block.content = 'Infographic Title';
+      block.subtitle = 'Subtitle goes here';
+      break;
+    case 'text':
+      block.content = 'Write your paragraph here. Click to edit. You can add multiple text blocks to build your infographic.';
+      break;
+    case 'stats':
+      block.items = [
+        {num:'85%',lbl:'Growth Rate'},
+        {num:'2.4M',lbl:'Users'},
+        {num:'150+',lbl:'Countries'},
+        {num:'99.9%',lbl:'Uptime'}
+      ];
+      break;
+    case 'chart':
+      block.chartType = 'bar';
+      block.chartData = {labels:['Q1','Q2','Q3','Q4'],values:[45,62,78,95]};
+      break;
+    case 'timeline':
+      block.items = [
+        {date:'Jan 2024',text:'Project Kickoff'},
+        {date:'Mar 2024',text:'MVP Launch'},
+        {date:'Jun 2024',text:'Series A Funding'},
+        {date:'Sep 2024',text:'Global Expansion'}
+      ];
+      break;
+    case 'comparison':
+      block.leftTitle = 'Option A';
+      block.rightTitle = 'Option B';
+      block.leftItems = ['Feature 1','Feature 2','Feature 3'];
+      block.rightItems = ['Feature A','Feature B','Feature C'];
+      break;
+    case 'flow':
+      block.steps = ['Start','Process','Review','Complete'];
+      break;
+    case 'quote':
+      block.content = 'The best way to predict the future is to create it.';
+      block.author = 'Peter Drucker';
+      break;
+    case 'list':
+      block.items = ['First key point','Second key point','Third key point','Fourth key point'];
+      break;
+    case 'image':
+      block.src = '';
+      block.alt = 'Click to upload an image';
+      break;
+  }
+  blocks.push(block);
+  selectBlock(id);
+  renderAll();
+}
+
+function selectBlock(id) {
+  selectedBlockId = id;
+  renderAll();
+  renderProps();
+}
+
+function deleteBlock(id) {
+  blocks = blocks.filter(b => b.id !== id);
+  if (selectedBlockId === id) selectedBlockId = null;
+  renderAll();
+  renderProps();
+}
+
+function renderAll() {
+  const canvas = document.getElementById('infographicCanvas');
+  canvas.innerHTML = blocks.map(b => renderBlock(b)).join('');
+
+  // Attach event listeners
+  blocks.forEach(b => {
+    const el = document.getElementById(b.id);
+    if (!el) return;
+    el.addEventListener('click', e => {
+      e.stopPropagation();
+      selectBlock(b.id);
+    });
+    const delBtn = el.querySelector('.delete-btn');
+    if (delBtn) delBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      deleteBlock(b.id);
+    });
+  });
+
+  // Render charts after DOM
+  setTimeout(() => {
+    blocks.filter(b => b.type === 'chart').forEach(b => {
+      const chartEl = document.getElementById('chart_' + b.id);
+      if (chartEl && chartEl.innerHTML === '') {
+        renderChart(b, chartEl);
+      }
+    });
+  }, 100);
+}
+
+function renderBlock(b) {
+  const sel = b.id === selectedBlockId ? ' selected' : '';
+  const del = `<button class="delete-btn" title="Delete">×</button>`;
+
+  switch(b.type) {
+    case 'title':
+      return `<div class="block${sel}" id="${b.id}">${del}
+        <div class="block-title" contenteditable="true" data-id="${b.id}" data-field="content">${b.content}</div>
+        <div class="block-subtitle" contenteditable="true" data-id="${b.id}" data-field="subtitle">${b.subtitle}</div>
+      </div>`;
+    case 'text':
+      return `<div class="block${sel}" id="${b.id}">${del}
+        <div class="block-text" contenteditable="true" data-id="${b.id}" data-field="content">${b.content}</div>
+      </div>`;
+    case 'stats':
+      return `<div class="block${sel}" id="${b.id}">${del}
+        <div class="block-stats">${(b.items||[]).map((item,i) =>
+          `<div class="stat-box">
+            <div class="num" contenteditable="true" data-id="${b.id}" data-field="items.${i}.num">${item.num}</div>
+            <div class="lbl" contenteditable="true" data-id="${b.id}" data-field="items.${i}.lbl">${item.lbl}</div>
+          </div>`
+        ).join('')}</div>
+      </div>`;
+    case 'chart':
+      return `<div class="block${sel}" id="${b.id}">${del}
+        <div class="block-chart" id="chart_${b.id}"></div>
+      </div>`;
+    case 'timeline':
+      return `<div class="block${sel}" id="${b.id}">${del}
+        <div class="block-timeline">${(b.items||[]).map((item,i) =>
+          `<div class="timeline-item">
+            <strong contenteditable="true" data-id="${b.id}" data-field="items.${i}.date">${item.date}</strong>
+            <div contenteditable="true" data-id="${b.id}" data-field="items.${i}.text">${item.text}</div>
+          </div>`
+        ).join('')}</div>
+      </div>`;
+    case 'comparison':
+      return `<div class="block${sel}" id="${b.id}">${del}
+        <div class="block-comparison">
+          <div class="compare-col">
+            <h4 contenteditable="true" data-id="${b.id}" data-field="leftTitle">${b.leftTitle}</h4>
+            ${(b.leftItems||[]).map((item,i) =>
+              `<div contenteditable="true" data-id="${b.id}" data-field="leftItems.${i}">${item}</div>`
+            ).join('')}
+          </div>
+          <div class="compare-col">
+            <h4 contenteditable="true" data-id="${b.id}" data-field="rightTitle">${b.rightTitle}</h4>
+            ${(b.rightItems||[]).map((item,i) =>
+              `<div contenteditable="true" data-id="${b.id}" data-field="rightItems.${i}">${item}</div>`
+            ).join('')}
+          </div>
+        </div>
+      </div>`;
+    case 'flow':
+      return `<div class="block${sel}" id="${b.id}">${del}
+        <div class="block-flow">${(b.steps||[]).map((step,i) =>
+          `${i>0?'<span class="flow-arrow">→</span>':''}<span class="flow-node" contenteditable="true" data-id="${b.id}" data-field="steps.${i}">${step}</span>`
+        ).join('')}</div>
+      </div>`;
+    case 'quote':
+      return `<div class="block${sel}" id="${b.id}">${del}
+        <div class="block-quote">
+          <div contenteditable="true" data-id="${b.id}" data-field="content">${b.content}</div>
+          <div style="text-align:right;font-size:13px;color:var(--text2);margin-top:8px;font-style:normal" contenteditable="true" data-id="${b.id}" data-field="author">— ${b.author}</div>
+        </div>
+      </div>`;
+    case 'list':
+      return `<div class="block${sel}" id="${b.id}">${del}
+        <ul class="block-list">${(b.items||[]).map((item,i) =>
+          `<li contenteditable="true" data-id="${b.id}" data-field="items.${i}">${item}</li>`
+        ).join('')}</ul>
+      </div>`;
+    case 'image':
+      return `<div class="block${sel}" id="${b.id}">${del}
+        <div class="block-image" id="img_${b.id}" onclick="uploadImage('${b.id}')">
+          ${b.src ? `<img src="${b.src}" alt="${b.alt}">` : b.alt}
+        </div>
+      </div>`;
+    default: return '';
+  }
+}
+
+function renderChart(b, el) {
+  const data = b.chartData || {labels:[],values:[]};
+  const trace = {
+    x: data.labels, y: data.values,
+    type: b.chartType || 'bar',
+    marker: {color: themeColor}
+  };
+  const layout = {
+    margin: {t:10,r:10,b:40,l:40},
+    paper_bgcolor:'transparent', plot_bgcolor:'transparent',
+    font:{size:11}
+  };
+  Plotly.newPlot(el, [trace], layout, {responsive:true, displayModeBar:false});
+}
+
+function renderProps() {
+  const panel = document.getElementById('propsPanel');
+  const b = blocks.find(x => x.id === selectedBlockId);
+  if (!b) {
+    panel.innerHTML = '<h4>Properties</h4><p style="font-size:12px;color:var(--text3)">Select a block to edit</p>';
+    return;
+  }
+
+  let html = '<h4>Properties</h4>';
+  html += `<div class="prop-group"><label>Type</label><span style="font-size:12px;color:var(--text2)">${b.type}</span></div>`;
+
+  if (b.type === 'chart') {
+    html += `<div class="prop-group"><label>Chart Type</label>
+      <select onchange="updateProp('${b.id}','chartType',this.value)">
+        <option value="bar" ${b.chartType==='bar'?'selected':''}>Bar</option>
+        <option value="line" ${b.chartType==='line'?'selected':''}>Line</option>
+        <option value="pie" ${b.chartType==='pie'?'selected':''}>Pie</option>
+        <option value="scatter" ${b.chartType==='scatter'?'selected':''}>Scatter</option>
+      </select></div>`;
+    html += `<div class="prop-group"><label>Labels (comma-separated)</label>
+      <input value="${(b.chartData?.labels||[]).join(',')}" onchange="updateChartData('${b.id}','labels',this.value)"></div>`;
+    html += `<div class="prop-group"><label>Values (comma-separated)</label>
+      <input value="${(b.chartData?.values||[]).join(',')}" onchange="updateChartData('${b.id}','values',this.value)"></div>`;
+  }
+
+  if (b.type === 'stats') {
+    html += `<div class="prop-group"><label>Add Stat</label>
+      <button class="btn btn-sm" onclick="addStatItem('${b.id}')">+ Add</button></div>`;
+  }
+
+  if (b.type === 'timeline') {
+    html += `<div class="prop-group"><label>Add Event</label>
+      <button class="btn btn-sm" onclick="addTimelineItem('${b.id}')">+ Add</button></div>`;
+  }
+
+  if (b.type === 'flow') {
+    html += `<div class="prop-group"><label>Add Step</label>
+      <button class="btn btn-sm" onclick="addFlowStep('${b.id}')">+ Add</button></div>`;
+  }
+
+  if (b.type === 'list') {
+    html += `<div class="prop-group"><label>Add Item</label>
+      <button class="btn btn-sm" onclick="addListItem('${b.id}')">+ Add</button></div>`;
+  }
+
+  html += `<div class="prop-group"><label>Background</label>
+    <input type="color" value="${b.bgColor||'#ffffff'}" onchange="updateProp('${b.id}','bgColor',this.value)"></div>`;
+
+  panel.innerHTML = html;
+}
+
+function updateProp(id, field, value) {
+  const b = blocks.find(x => x.id === id);
+  if (!b) return;
+  b[field] = value;
+  renderAll();
+}
+
+function updateChartData(id, field, value) {
+  const b = blocks.find(x => x.id === id);
+  if (!b) return;
+  if (!b.chartData) b.chartData = {labels:[],values:[]};
+  b.chartData[field] = value.split(',').map(s => s.trim()).filter(Boolean);
+  if (field === 'values') b.chartData.values = b.chartData.values.map(Number);
+  renderAll();
+}
+
+function addStatItem(id) {
+  const b = blocks.find(x => x.id === id);
+  if (!b) return;
+  if (!b.items) b.items = [];
+  b.items.push({num:'0',lbl:'Label'});
+  renderAll();
+  renderProps();
+}
+
+function addTimelineItem(id) {
+  const b = blocks.find(x => x.id === id);
+  if (!b) return;
+  if (!b.items) b.items = [];
+  b.items.push({date:'New Date',text:'New event'});
+  renderAll();
+  renderProps();
+}
+
+function addFlowStep(id) {
+  const b = blocks.find(x => x.id === id);
+  if (!b) return;
+  if (!b.steps) b.steps = [];
+  b.steps.push('New Step');
+  renderAll();
+  renderProps();
+}
+
+function addListItem(id) {
+  const b = blocks.find(x => x.id === id);
+  if (!b) return;
+  if (!b.items) b.items = [];
+  b.items.push('New item');
+  renderAll();
+  renderProps();
+}
+
+// ContentEditable sync
+document.addEventListener('input', e => {
+  const el = e.target.closest('[contenteditable]');
+  if (!el) return;
+  const id = el.dataset.id;
+  const field = el.dataset.field;
+  const b = blocks.find(x => x.id === id);
+  if (!b) return;
+
+  const value = el.innerText.trim();
+  const parts = field.split('.');
+  if (parts.length === 1) {
+    b[field] = value;
+  } else if (parts.length === 2) {
+    if (!b[parts[0]]) b[parts[0]] = [];
+    b[parts[0]][parseInt(parts[1])] = value;
+  } else if (parts.length === 3) {
+    if (!b[parts[0]]) b[parts[0]] = [];
+    if (!b[parts[0]][parseInt(parts[1])]) b[parts[0]][parseInt(parts[1])] = {};
+    b[parts[0]][parseInt(parts[1])][parts[2]] = value;
+  }
+});
+
+// Image upload
+function uploadImage(id) {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'image/*';
+  input.onchange = e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      const b = blocks.find(x => x.id === id);
+      if (b) { b.src = ev.target.result; b.alt = file.name; }
+      renderAll();
+    };
+    reader.readAsDataURL(file);
+  };
+  input.click();
+}
+
+// Templates
+function loadTemplate(name) {
+  blocks = [];
+  switch(name) {
+    case 'report':
+      addBlockSilent('title', {content:'Q4 2025 Performance Report',subtitle:'Key metrics and highlights'});
+      addBlockSilent('stats', {items:[{num:'+32%',lbl:'Revenue Growth'},{num:'1.2M',lbl:'New Users'},{num:'98%',lbl:'Retention'},{num:'4.8/5',lbl:'Rating'}]});
+      addBlockSilent('chart', {chartType:'bar',chartData:{labels:['Q1','Q2','Q3','Q4'],values:[45,58,72,95]}});
+      addBlockSilent('text', {content:'This quarter saw exceptional growth across all key metrics. Revenue increased by 32% year-over-year, driven by strong product adoption and market expansion.'});
+      break;
+    case 'timeline':
+      addBlockSilent('title', {content:'Company Milestones',subtitle:'Our journey from startup to scale-up'});
+      addBlockSilent('timeline', {items:[
+        {date:'2020',text:'Company founded in San Francisco'},
+        {date:'2021',text:'Seed round: $2M raised'},
+        {date:'2022',text:'Product launch: 10K users'},
+        {date:'2023',text:'Series A: $15M, 100K users'},
+        {date:'2024',text:'Global expansion: 500K users'},
+        {date:'2025',text:'IPO on NASDAQ'}
+      ]});
+      break;
+    case 'comparison':
+      addBlockSilent('title', {content:'Product Comparison',subtitle:'Find the right plan for your team'});
+      addBlockSilent('comparison', {
+        leftTitle:'Starter Plan',rightTitle:'Pro Plan',
+        leftItems:['5 projects','Basic analytics','Email support','1GB storage'],
+        rightItems:['Unlimited projects','Advanced analytics','Priority support','100GB storage']
+      });
+      break;
+    case 'process':
+      addBlockSilent('title', {content:'Our Design Process',subtitle:'How we turn ideas into products'});
+      addBlockSilent('flow', {steps:['Research','Ideate','Prototype','Test','Launch','Iterate']});
+      addBlockSilent('text', {content:'Each phase involves close collaboration with stakeholders to ensure alignment with business goals and user needs.'});
+      break;
+    case 'stats':
+      addBlockSilent('title', {content:'Market Overview 2025',subtitle:'Key industry statistics'});
+      addBlockSilent('stats', {items:[{num:'$4.5T',lbl:'Market Size'},{num:'18.2%',lbl:'CAGR'},{num:'3.2B',lbl:'Users'},{num:'85%',lbl:'Mobile Share'}]});
+      addBlockSilent('chart', {chartType:'pie',chartData:{labels:['Mobile','Desktop','Tablet','Other'],values:[85,10,3,2]}});
+      break;
+    case 'howto':
+      addBlockSilent('title', {content:'How to Get Started',subtitle:'A step-by-step guide'});
+      addBlockSilent('list', {items:[
+        'Create your account in under 2 minutes',
+        'Set up your first project workspace',
+        'Invite team members and assign roles',
+        'Start tracking progress with built-in analytics',
+        'Scale with enterprise features as you grow'
+      ]});
+      break;
+  }
+  selectedBlockId = null;
+  renderAll();
+  renderProps();
+}
+
+function addBlockSilent(type, overrides) {
+  const id = generateId();
+  const block = { id, type, ...overrides };
+  blocks.push(block);
+}
+
+// Export
+async function exportPNG() {
+  selectedBlockId = null;
+  renderAll();
+  const el = document.getElementById('infographicCanvas');
+  try {
+    const dataUrl = await htmlToImage.toPng(el, {backgroundColor:'#ffffff',pixelRatio:2});
+    const a = document.createElement('a');
+    a.href = dataUrl;
+    a.download = 'infographic.png';
+    a.click();
+  } catch(e) {
+    alert('Export failed. Please try again.');
+  }
+}
+
+function clearAll() {
+  if (!confirm('Clear the entire infographic?')) return;
+  blocks = [];
+  selectedBlockId = null;
+  renderAll();
+  renderProps();
+}
+
+function setTheme(el) {
+  document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
+  el.classList.add('active');
+  themeColor = el.dataset.primary;
+  document.documentElement.style.setProperty('--primary', themeColor);
+  renderAll();
+}
+
+// Click outside to deselect
+document.getElementById('infographicCanvas').addEventListener('click', function(e) {
+  if (e.target === this) {
+    selectedBlockId = null;
+    renderAll();
+    renderProps();
+  }
+});
+
+// Init with template
+loadTemplate('report');
+
+</script>
+</body>
+</html>
