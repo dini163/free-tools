@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech to Text - Free Tools</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../i18n.css">
+    <link rel="stylesheet" href="../theme.css">
+</head>
+<body>
+    <header>
+        <div class="logo" onclick="location.href='../index.html'">
+            <span class="logo-icon">🎤</span>
+            <span class="logo-text">Free Tools</span>
+        </div>
+        <nav>
+            <a href="../index.html" data-i18n="nav_home">Home</a>
+            <a href="../index.html#tools" data-i18n="nav_tools">Tools</a>
+        </nav>
+        <div class="header-actions">
+            <div class="lang-switch">
+                <button onclick="setLang('en')">EN</button>
+                <button onclick="setLang('zh')">中文</button>
+            </div>
+            <div class="theme-switch">
+                <button onclick="setTheme('light')">☀️</button>
+                <button onclick="setTheme('dark')">🌙</button>
+                <button onclick="setTheme('auto')">🔄</button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="tool-hero">
+            <h1 data-i18n="stt_title">Speech to Text</h1>
+            <p data-i18n="stt_desc">Convert speech to text using Web Speech API.</p>
+        </section>
+        <section class="tool-container">
+            <div class="stt-controls">
+                <button class="btn" id="sttStartBtn" onclick="startListening()">
+                    <span data-i18n="stt_start">Start Listening</span>
+                </button>
+                <button class="btn btn-secondary" id="sttStopBtn" onclick="stopListening()" disabled>
+                    <span data-i18n="stt_stop">Stop</span>
+                </button>
+                <button class="btn btn-secondary" onclick="clearText()">
+                    <span data-i18n="stt_clear">Clear</span>
+                </button>
+            </div>
+            <div class="stt-status" id="sttStatus" data-i18n="stt_ready">Ready</div>
+            <textarea id="sttOutput" placeholder="Transcribed text will appear here..." rows="10"></textarea>
+            <div class="stt-actions">
+                <button class="btn btn-small" onclick="copyText()">
+                    <span data-i18n="copy">Copy</span>
+                </button>
+                <button class="btn btn-small" onclick="downloadText()">
+                    <span data-i18n="download">Download</span>
+                </button>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p data-i18n="footer_text">Free Tools - All tools are free and open source.</p>
+    </footer>
+    <script src="../i18n.js"></script>
+    <script src="../theme.js"></script>
+    <script>
+        let recognition = null;
+        let isListening = false;
+
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new SpeechRecognition();
+            recognition.continuous = true;
+            recognition.interimResults = true;
+            recognition.lang = 'en-US';
+
+            recognition.onstart = () => {
+                isListening = true;
+                updateUI();
+            };
+
+            recognition.onend = () => {
+                isListening = false;
+                updateUI();
+            };
+
+            recognition.onresult = (event) => {
+                let transcript = '';
+                for (let i = 0; i < event.results.length; i++) {
+                    transcript += event.results[i][0].transcript;
+                }
+                document.getElementById('sttOutput').value = transcript;
+            };
+
+            recognition.onerror = (event) => {
+                console.error('Speech recognition error:', event.error);
+                document.getElementById('sttStatus').textContent = 'Error: ' + event.error;
+                isListening = false;
+                updateUI();
+            };
+        } else {
+            document.getElementById('sttStatus').textContent = 'Speech recognition not supported in this browser.';
+        }
+
+        function startListening() {
+            if (recognition && !isListening) {
+                recognition.start();
+                document.getElementById('sttStatus').textContent = 'Listening...';
+            }
+        }
+
+        function stopListening() {
+            if (recognition && isListening) {
+                recognition.stop();
+                document.getElementById('sttStatus').textContent = 'Stopped.';
+            }
+        }
+
+        function updateUI() {
+            document.getElementById('sttStartBtn').disabled = isListening;
+            document.getElementById('sttStopBtn').disabled = !isListening;
+        }
+
+        function clearText() {
+            document.getElementById('sttOutput').value = '';
+        }
+
+        function copyText() {
+            const text = document.getElementById('sttOutput').value;
+            if (!text) return;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Text copied to clipboard!');
+            });
+        }
+
+        function downloadText() {
+            const text = document.getElementById('sttOutput').value;
+            if (!text) return;
+            const blob = new Blob([text], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'transcription.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Reader - Free Tools</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../i18n.css">
+    <link rel="stylesheet" href="../theme.css">
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo" onclick="location.href='../index.html'">
+            <span class="logo-icon">📷</span>
+            <span class="logo-text">Free Tools</span>
+        </div>
+        <nav>
+            <a href="../index.html" data-i18n="nav_home">Home</a>
+            <a href="../index.html#tools" data-i18n="nav_tools">Tools</a>
+        </nav>
+        <div class="header-actions">
+            <div class="lang-switch">
+                <button onclick="setLang('en')">EN</button>
+                <button onclick="setLang('zh')">中文</button>
+            </div>
+            <div class="theme-switch">
+                <button onclick="setTheme('light')">☀️</button>
+                <button onclick="setTheme('dark')">🌙</button>
+                <button onclick="setTheme('auto')">🔄</button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="tool-hero">
+            <h1 data-i18n="qr_title">QR Code Reader</h1>
+            <p data-i18n="qr_desc">Read QR codes from images or webcam.</p>
+        </section>
+        <section class="tool-container">
+            <div class="qr-modes">
+                <button class="qr-mode-btn active" onclick="switchQRMode('image')" data-i18n="qr_image">From Image</button>
+                <button class="qr-mode-btn" onclick="switchQRMode('webcam')" data-i18n="qr_webcam">From Webcam</button>
+            </div>
+
+            <!-- From Image -->
+            <div id="qrImageMode" class="qr-section">
+                <div class="qr-upload" id="qrDropZone">
+                    <input type="file" id="qrFileInput" accept="image/*" onchange="readQRFromFile()">
+                    <p data-i18n="qr_upload">Click or drop image here</p>
+                </div>
+                <canvas id="qrCanvas" style="display:none;"></canvas>
+            </div>
+
+            <!-- From Webcam -->
+            <div id="qrWebcamMode" class="qr-section" style="display:none;">
+                <video id="qrVideo" autoplay playsinline></video>
+                <button class="btn" onclick="startWebcamQR()" data-i18n="qr_start_webcam">Start Webcam</button>
+                <button class="btn btn-secondary" onclick="stopWebcamQR()" data-i18n="qr_stop_webcam">Stop</button>
+            </div>
+
+            <div class="qr-result" id="qrResult">
+                <h3 data-i18n="qr_result">Result:</h3>
+                <div class="qr-result-text" id="qrResultText"></div>
+                <button class="btn btn-small" onclick="copyQRResult()" data-i18n="copy">Copy</button>
+                <button class="btn btn-small" onclick="openQRResult()" data-i18n="open_link">Open Link</button>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p data-i18n="footer_text">Free Tools - All tools are free and open source.</p>
+    </footer>
+    <script src="../i18n.js"></script>
+    <script src="../theme.js"></script>
+    <script>
+        let qrVideoStream = null;
+
+        function switchQRMode(mode) {
+            document.querySelectorAll('.qr-mode-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            document.getElementById('qrImageMode').style.display = mode === 'image' ? 'block' : 'none';
+            document.getElementById('qrWebcamMode').style.display = mode === 'webcam' ? 'block' : 'none';
+            
+            if (mode !== 'webcam') stopWebcamQR();
+        }
+
+        function readQRFromFile() {
+            const fileInput = document.getElementById('qrFileInput');
+            const file = fileInput.files[0];
+            
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.getElementById('qrCanvas');
+                    const ctx = canvas.getContext('2d');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    ctx.drawImage(img, 0, 0);
+                    
+                    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                    const qrCode = jsQR(imageData.data, imageData.width, imageData.height);
+                    
+                    if (qrCode) {
+                        displayQRResult(qrCode.data);
+                    } else {
+                        document.getElementById('qrResultText').textContent = 'No QR code found in image.';
+                    }
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function startWebcamQR() {
+            const video = document.getElementById('qrVideo');
+            
+            navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+                .then(stream => {
+                    qrVideoStream = stream;
+                    video.srcObject = stream;
+                    scanWebcamQR();
+                })
+                .catch(err => {
+                    console.error('Webcam error:', err);
+                    document.getElementById('qrResultText').textContent = 'Webcam access denied.';
+                });
+        }
+
+        function scanWebcamQR() {
+            const video = document.getElementById('qrVideo');
+            if (video.readyState === video.HAVE_ENOUGH_DATA) {
+                const canvas = document.getElementById('qrCanvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                ctx.drawImage(video, 0, 0);
+                
+                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                const qrCode = jsQR(imageData.data, imageData.width, imageData.height);
+                
+                if (qrCode) {
+                    displayQRResult(qrCode.data);
+                    stopWebcamQR();
+                    return;
+                }
+            }
+            
+            if (qrVideoStream) {
+                requestAnimationFrame(scanWebcamQR);
+            }
+        }
+
+        function stopWebcamQR() {
+            if (qrVideoStream) {
+                qrVideoStream.getTracks().forEach(track => track.stop());
+                qrVideoStream = null;
+                document.getElementById('qrVideo').srcObject = null;
+            }
+        }
+
+        function displayQRResult(data) {
+            const resultDiv = document.getElementById('qrResultText');
+            resultDiv.textContent = data;
+            
+            // Check if it's a URL
+            const isURL = data.startsWith('http://') || data.startsWith('https://');
+            document.querySelector('[onclick="openQRResult()"]').style.display = isURL ? 'inline-block' : 'none';
+        }
+
+        function copyQRResult() {
+            const text = document.getElementById('qrResultText').textContent;
+            if (!text) return;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Copied to clipboard!');
+            });
+        }
+
+        function openQRResult() {
+            const text = document.getElementById('qrResultText').textContent;
+            if (text.startsWith('http://') || text.startsWith('https://')) {
+                window.open(text, '_blank');
+            }
+        }
+
+        // Drag and drop
+        const dropZone = document.getElementById('qrDropZone');
+        dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.style.borderColor = 'blue'; });
+        dropZone.addEventListener('dragleave', () => { dropZone.style.borderColor = '#ccc'; });
+        dropZone.addEventListener('drop', e => {
+            e.preventDefault();
+            dropZone.style.borderColor = '#ccc';
+            const file = e.dataTransfer.files[0];
+            if (file && file.type.startsWith('image/')) {
+                document.getElementById('qrFileInput').files = e.dataTransfer.files;
+                readQRFromFile();
+            }
+        });
+    </script>
+</body>
+</html>

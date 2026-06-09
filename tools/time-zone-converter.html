@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Zone Converter - Free Tools</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../i18n.css">
+    <link rel="stylesheet" href="../theme.css">
+</head>
+<body>
+    <header>
+        <div class="logo" onclick="location.href='../index.html'">
+            <span class="logo-icon">🕐</span>
+            <span class="logo-text">Free Tools</span>
+        </div>
+        <nav>
+            <a href="../index.html" data-i18n="nav_home">Home</a>
+            <a href="../index.html#tools" data-i18n="nav_tools">Tools</a>
+        </nav>
+        <div class="header-actions">
+            <div class="lang-switch">
+                <button onclick="setLang('en')">EN</button>
+                <button onclick="setLang('zh')">中文</button>
+            </div>
+            <div class="theme-switch">
+                <button onclick="setTheme('light')">☀️</button>
+                <button onclick="setTheme('dark')">🌙</button>
+                <button onclick="setTheme('auto')">🔄</button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="tool-hero">
+            <h1 data-i18n="tz_title">Time Zone Converter</h1>
+            <p data-i18n="tz_desc">Convert time between different time zones.</p>
+        </section>
+        <section class="tool-container">
+            <div class="tz-inputs">
+                <div class="tz-group">
+                    <label data-i18n="tz_from">From:</label>
+                    <input type="datetime-local" id="fromTime" onchange="convertTimeZone()">
+                    <select id="fromTZ" onchange="convertTimeZone()">
+                        <option value="-12">UTC-12 (Baker Island)</option>
+                        <option value="-11">UTC-11 (Samoa)</option>
+                        <option value="-10">UTC-10 (Hawaii)</option>
+                        <option value="-9">UTC-9 (Alaska)</option>
+                        <option value="-8">UTC-8 (Pacific)</option>
+                        <option value="-7">UTC-7 (Mountain)</option>
+                        <option value="-6">UTC-6 (Central)</option>
+                        <option value="-5">UTC-5 (Eastern)</option>
+                        <option value="-4">UTC-4 (Atlantic)</option>
+                        <option value="-3">UTC-3 (Brazil)</option>
+                        <option value="-2">UTC-2 (Mid-Atlantic)</option>
+                        <option value="-1">UTC-1 (Cape Verde)</option>
+                        <option value="0" selected>UTC+0 (London)</option>
+                        <option value="+1">UTC+1 (Paris)</option>
+                        <option value="+2">UTC+2 (Cairo)</option>
+                        <option value="+3">UTC+3 (Moscow)</option>
+                        <option value="+4">UTC+4 (Dubai)</option>
+                        <option value="+5">UTC+5 (Pakistan)</option>
+                        <option value="+6">UTC+6 (Bangladesh)</option>
+                        <option value="+7">UTC+7 (Bangkok)</option>
+                        <option value="+8">UTC+8 (Beijing)</option>
+                        <option value="+9">UTC+9 (Tokyo)</option>
+                        <option value="+10">UTC+10 (Sydney)</option>
+                        <option value="+11">UTC+11 (Solomon)</option>
+                        <option value="+12">UTC+12 (New Zealand)</option>
+                    </select>
+                </div>
+                <div class="tz-arrow">→</div>
+                <div class="tz-group">
+                    <label data-i18n="tz_to">To:</label>
+                    <input type="text" id="toTime" readonly>
+                    <select id="toTZ" onchange="convertTimeZone()">
+                        <option value="-12">UTC-12 (Baker Island)</option>
+                        <option value="-11">UTC-11 (Samoa)</option>
+                        <option value="-10">UTC-10 (Hawaii)</option>
+                        <option value="-9">UTC-9 (Alaska)</option>
+                        <option value="-8">UTC-8 (Pacific)</option>
+                        <option value="-7">UTC-7 (Mountain)</option>
+                        <option value="-6">UTC-6 (Central)</option>
+                        <option value="-5">UTC-5 (Eastern)</option>
+                        <option value="-4">UTC-4 (Atlantic)</option>
+                        <option value="-3">UTC-3 (Brazil)</option>
+                        <option value="-2">UTC-2 (Mid-Atlantic)</option>
+                        <option value="-1">UTC-1 (Cape Verde)</option>
+                        <option value="0">UTC+0 (London)</option>
+                        <option value="+1">UTC+1 (Paris)</option>
+                        <option value="+2">UTC+2 (Cairo)</option>
+                        <option value="+3">UTC+3 (Moscow)</option>
+                        <option value="+4">UTC+4 (Dubai)</option>
+                        <option value="+5">UTC+5 (Pakistan)</option>
+                        <option value="+6">UTC+6 (Bangladesh)</option>
+                        <option value="+7">UTC+7 (Bangkok)</option>
+                        <option value="+8" selected>UTC+8 (Beijing)</option>
+                        <option value="+9">UTC+9 (Tokyo)</option>
+                        <option value="+10">UTC+10 (Sydney)</option>
+                        <option value="+11">UTC+11 (Solomon)</option>
+                        <option value="+12">UTC+12 (New Zealand)</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p data-i18n="footer_text">Free Tools - All tools are free and open source.</p>
+    </footer>
+    <script src="../i18n.js"></script>
+    <script src="../theme.js"></script>
+    <script>
+        function convertTimeZone() {
+            const fromTime = document.getElementById('fromTime').value;
+            const fromTZ = parseInt(document.getElementById('fromTZ').value);
+            const toTZ = parseInt(document.getElementById('toTZ').value);
+            
+            if (!fromTime) {
+                document.getElementById('toTime').value = '';
+                return;
+            }
+            
+            const date = new Date(fromTime);
+            const offsetDiff = toTZ - fromTZ;
+            date.setHours(date.getHours() + offsetDiff);
+            
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+            
+            document.getElementById('toTime').value = `${year}-${month}-${day} ${hours}:${minutes}`;
+        }
+        
+        // Set default to current time
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        document.getElementById('fromTime').value = `${year}-${month}-${day}T${hours}:${minutes}`;
+        convertTimeZone();
+    </script>
+</body>
+</html>

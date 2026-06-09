@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Converter - Free Tools</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../i18n.css">
+    <link rel="stylesheet" href="../theme.css">
+</head>
+<body>
+    <header>
+        <div class="logo" onclick="location.href='../index.html'">
+            <span class="logo-icon">🛠️</span>
+            <span class="logo-text">Free Tools</span>
+        </div>
+        <nav>
+            <a href="../index.html" data-i18n="nav_home">Home</a>
+            <a href="../index.html#tools" data-i18n="nav_tools">Tools</a>
+        </nav>
+        <div class="header-actions">
+            <div class="lang-switch">
+                <button onclick="setLang('en')">EN</button>
+                <button onclick="setLang('zh')">中文</button>
+            </div>
+            <div class="theme-switch">
+                <button onclick="setTheme('light')">☀️</button>
+                <button onclick="setTheme('dark')">🌙</button>
+                <button onclick="setTheme('auto')">🔄</button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="tool-hero">
+            <h1 data-i18n="unit_title">Unit Converter</h1>
+            <p data-i18n="unit_desc">Convert between different units of length, weight, volume, temperature, and more.</p>
+        </section>
+        <section class="tool-container">
+            <div class="converter-options">
+                <label data-i18n="unit_category">Category:</label>
+                <select id="unitCategory" onchange="updateUnits()">
+                    <option value="length" data-i18n="unit_length">Length</option>
+                    <option value="weight" data-i18n="unit_weight">Weight</option>
+                    <option value="volume" data-i18n="unit_volume">Volume</option>
+                    <option value="temperature">Temperature</option>
+                    <option value="area" data-i18n="unit_area">Area</option>
+                    <option value="speed" data-i18n="unit_speed">Speed</option>
+                    <option value="time" data-i18n="unit_time">Time</option>
+                </select>
+            </div>
+            <div class="converter-inputs">
+                <div class="input-group">
+                    <input type="number" id="inputValue" placeholder="Enter value" oninput="convertUnit()">
+                    <select id="fromUnit"></select>
+                </div>
+                <div class="converter-arrow">→</div>
+                <div class="input-group">
+                    <input type="text" id="outputValue" readonly>
+                    <select id="toUnit"></select>
+                </div>
+            </div>
+            <button class="btn" onclick="swapUnits()" data-i18n="unit_swap">Swap Units</button>
+        </section>
+    </main>
+    <footer>
+        <p data-i18n="footer_text">Free Tools - All tools are free and open source.</p>
+    </footer>
+    <script src="../i18n.js"></script>
+    <script src="../theme.js"></script>
+    <script>
+        const units = {
+            length: [
+                { name: 'Meter (m)', factor: 1 },
+                { name: 'Kilometer (km)', factor: 1000 },
+                { name: 'Centimeter (cm)', factor: 0.01 },
+                { name: 'Millimeter (mm)', factor: 0.001 },
+                { name: 'Mile (mi)', factor: 1609.34 },
+                { name: 'Yard (yd)', factor: 0.9144 },
+                { name: 'Foot (ft)', factor: 0.3048 },
+                { name: 'Inch (in)', factor: 0.0254 }
+            ],
+            weight: [
+                { name: 'Kilogram (kg)', factor: 1 },
+                { name: 'Gram (g)', factor: 0.001 },
+                { name: 'Milligram (mg)', factor: 0.000001 },
+                { name: 'Pound (lb)', factor: 0.453592 },
+                { name: 'Ounce (oz)', factor: 0.0283495 },
+                { name: 'Ton (t)', factor: 1000 }
+            ],
+            volume: [
+                { name: 'Liter (L)', factor: 1 },
+                { name: 'Milliliter (mL)', factor: 0.001 },
+                { name: 'Cubic Meter (m³)', factor: 1000 },
+                { name: 'Gallon (gal)', factor: 3.78541 },
+                { name: 'Quart (qt)', factor: 0.946353 },
+                { name: 'Pint (pt)', factor: 0.473176 }
+            ],
+            temperature: [
+                { name: 'Celsius (°C)' },
+                { name: 'Fahrenheit (°F)' },
+                { name: 'Kelvin (K)' }
+            ],
+            area: [
+                { name: 'Square Meter (m²)', factor: 1 },
+                { name: 'Square Kilometer (km²)', factor: 1000000 },
+                { name: 'Square Centimeter (cm²)', factor: 0.0001 },
+                { name: 'Square Foot (ft²)', factor: 0.092903 },
+                { name: 'Acre', factor: 4046.86 },
+                { name: 'Hectare (ha)', factor: 10000 }
+            ],
+            speed: [
+                { name: 'Meter per Second (m/s)', factor: 1 },
+                { name: 'Kilometer per Hour (km/h)', factor: 0.277778 },
+                { name: 'Mile per Hour (mph)', factor: 0.44704 },
+                { name: 'Knot (kn)', factor: 0.514444 },
+                { name: 'Mach', factor: 340.3 }
+            ],
+            time: [
+                { name: 'Second (s)', factor: 1 },
+                { name: 'Minute (min)', factor: 60 },
+                { name: 'Hour (h)', factor: 3600 },
+                { name: 'Day (d)', factor: 86400 },
+                { name: 'Week (wk)', factor: 604800 },
+                { name: 'Month (30 days)', factor: 2592000 },
+                { name: 'Year (365 days)', factor: 31536000 }
+            ]
+        };
+
+        function updateUnits() {
+            const category = document.getElementById('unitCategory').value;
+            const fromUnit = document.getElementById('fromUnit');
+            const toUnit = document.getElementById('toUnit');
+            const unitList = units[category];
+            
+            fromUnit.innerHTML = '';
+            toUnit.innerHTML = '';
+            
+            unitList.forEach((unit, index) => {
+                fromUnit.add(new Option(unit.name, index));
+                toUnit.add(new Option(unit.name, index));
+            });
+            
+            toUnit.selectedIndex = 1;
+            convertUnit();
+        }
+
+        function convertUnit() {
+            const category = document.getElementById('unitCategory').value;
+            const inputValue = parseFloat(document.getElementById('inputValue').value);
+            const fromIndex = parseInt(document.getElementById('fromUnit').value);
+            const toIndex = parseInt(document.getElementById('toUnit').value);
+            
+            if (isNaN(inputValue)) {
+                document.getElementById('outputValue').value = '';
+                return;
+            }
+            
+            let result;
+            
+            if (category === 'temperature') {
+                result = convertTemperature(inputValue, fromIndex, toIndex);
+            } else {
+                const fromFactor = units[category][fromIndex].factor;
+                const toFactor = units[category][toIndex].factor;
+                result = inputValue * fromFactor / toFactor;
+            }
+            
+            document.getElementById('outputValue').value = result.toFixed(6).replace(/\.?0+$/, '');
+        }
+
+        function convertTemperature(value, from, to) {
+            // Convert to Celsius first
+            let celsius;
+            if (from === 0) celsius = value; // Celsius
+            else if (from === 1) celsius = (value - 32) * 5 / 9; // Fahrenheit
+            else if (from === 2) celsius = value - 273.15; // Kelvin
+            
+            // Convert from Celsius to target
+            if (to === 0) return celsius; // Celsius
+            else if (to === 1) return celsius * 9 / 5 + 32; // Fahrenheit
+            else if (to === 2) return celsius + 273.15; // Kelvin
+        }
+
+        function swapUnits() {
+            const fromUnit = document.getElementById('fromUnit');
+            const toUnit = document.getElementById('toUnit');
+            const tempIndex = fromUnit.selectedIndex;
+            fromUnit.selectedIndex = toUnit.selectedIndex;
+            toUnit.selectedIndex = tempIndex;
+            
+            const inputValue = document.getElementById('inputValue');
+            const outputValue = document.getElementById('outputValue');
+            inputValue.value = outputValue.value;
+            
+            convertUnit();
+        }
+
+        // Initialize
+        updateUnits();
+    </script>
+</body>
+</html>

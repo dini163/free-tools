@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roman Numerals Converter - Free Tools</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../i18n.css">
+    <link rel="stylesheet" href="../theme.css">
+</head>
+<body>
+    <header>
+        <div class="logo" onclick="location.href='../index.html'">
+            <span class="logo-icon">🏛️</span>
+            <span class="logo-text">Free Tools</span>
+        </div>
+        <nav>
+            <a href="../index.html" data-i18n="nav_home">Home</a>
+            <a href="../index.html#tools" data-i18n="nav_tools">Tools</a>
+        </nav>
+        <div class="header-actions">
+            <div class="lang-switch">
+                <button onclick="setLang('en')">EN</button>
+                <button onclick="setLang('zh')">中文</button>
+            </div>
+            <div class="theme-switch">
+                <button onclick="setTheme('light')">☀️</button>
+                <button onclick="setTheme('dark')">🌙</button>
+                <button onclick="setTheme('auto')">🔄</button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="tool-hero">
+            <h1 data-i18n="roman_title">Roman Numerals Converter</h1>
+            <p data-i18n="roman_desc">Convert between Arabic numbers and Roman numeras.</p>
+        </section>
+        <section class="tool-container">
+            <div class="roman-modes">
+                <button class="roman-mode-btn active" onclick="switchRomanMode('toRoman')" data-i18n="roman_to">To Roman</button>
+                <button class="roman-mode-btn" onclick="switchRomanMode('fromRoman')" data-i18n="roman_from">From Roman</button>
+            </div>
+
+            <!-- To Roman -->
+            <div id="toRomanSection" class="roman-section">
+                <div class="input-group">
+                    <label data-i18n="roman_number">Number (1-3999):</label>
+                    <input type="number" id="toRomanInput" min="1" max="3999" oninput="convertToRoman()">
+                </div>
+                <div class="roman-result" id="toRomanResult"></div>
+            </div>
+
+            <!-- From Roman -->
+            <div id="fromRomanSection" class="roman-section" style="display:none;">
+                <div class="input-group">
+                    <label data-i18n="roman_roman">Roman Numeral:</label>
+                    <input type="text" id="fromRomanInput" placeholder="e.g., XIV" oninput="convertFromRoman()" style="text-transform:uppercase;">
+                </div>
+                <div class="roman-result" id="fromRomanResult"></div>
+            </div>
+
+            <div class="roman-reference">
+                <h3 data-i18n="roman_ref">Reference:</h3>
+                <p>I=1, V=5, X=10, L=50, C=100, D=500, M=1000</p>
+                <p data-i18n="roman_rule">Smaller numeral before larger = subtract (IV=4, IX=9)</p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p data-i18n="footer_text">Free Tools - All tools are free and open source.</p>
+    </footer>
+    <script src="../i18n.js"></script>
+    <script src="../theme.js"></script>
+    <script>
+        function switchRomanMode(mode) {
+            document.querySelectorAll('.roman-mode-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            document.getElementById('toRomanSection').style.display = mode === 'toRoman' ? 'block' : 'none';
+            document.getElementById('fromRomanSection').style.display = mode === 'fromRoman' ? 'block' : 'none';
+        }
+
+        function convertToRoman() {
+            const num = parseInt(document.getElementById('toRomanInput').value);
+            
+            if (isNaN(num) || num < 1 || num > 3999) {
+                document.getElementById('toRomanResult').textContent = '';
+                return;
+            }
+            
+            const val = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
+            const sym = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I'];
+            let result = '';
+            let temp = num;
+            
+            for (let i = 0; i < val.length; i++) {
+                while (temp >= val[i]) {
+                    result += sym[i];
+                    temp -= val[i];
+                }
+            }
+            
+            document.getElementById('toRomanResult').innerHTML = `<h2>${result}</h2>`;
+        }
+
+        function convertFromRoman() {
+            const roman = document.getElementById('fromRomanInput').value.trim().toUpperCase();
+            
+            if (!roman) {
+                document.getElementById('fromRomanResult').textContent = '';
+                return;
+            }
+            
+            const romanMap = { 'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000 };
+            let result = 0;
+            
+            for (let i = 0; i < roman.length; i++) {
+                const current = romanMap[roman[i]];
+                const next = romanMap[roman[i + 1]];
+                
+                if (current < next) {
+                    result -= current;
+                } else {
+                    result += current;
+                }
+            }
+            
+            document.getElementById('fromRomanResult').innerHTML = `<h2>${result}</h2>`;
+        }
+    </script>
+</body>
+</html>

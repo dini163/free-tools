@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Base Converter - Free Tools</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../i18n.css">
+    <link rel="stylesheet" href="../theme.css">
+</head>
+<body>
+    <header>
+        <div class="logo" onclick="location.href='../index.html'">
+            <span class="logo-icon">🔢</span>
+            <span class="logo-text">Free Tools</span>
+        </div>
+        <nav>
+            <a href="../index.html" data-i18n="nav_home">Home</a>
+            <a href="../index.html#tools" data-i18n="nav_tools">Tools</a>
+        </nav>
+        <div class="header-actions">
+            <div class="lang-switch">
+                <button onclick="setLang('en')">EN</button>
+                <button onclick="setLang('zh')">中文</button>
+            </div>
+            <div class="theme-switch">
+                <button onclick="setTheme('light')">☀️</button>
+                <button onclick="setTheme('dark')">🌙</button>
+                <button onclick="setTheme('auto')">🔄</button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="tool-hero">
+            <h1 data-i18n="base_title">Number Base Converter</h1>
+            <p data-i18n="base_desc">Convert numbers between binary, octal, decimal, and hexadecimal.</p>
+        </section>
+        <section class="tool-container">
+            <div class="base-inputs">
+                <div class="base-group">
+                    <label>Binary (2):</label>
+                    <input type="text" id="binaryInput" placeholder="0b..." oninput="convertFromBase(2)">
+                </div>
+                <div class="base-group">
+                    <label>Octal (8):</label>
+                    <input type="text" id="octalInput" placeholder="0o..." oninput="convertFromBase(8)">
+                </div>
+                <div class="base-group">
+                    <label>Decimal (10):</label>
+                    <input type="text" id="decimalInput" placeholder="0..." oninput="convertFromBase(10)">
+                </div>
+                <div class="base-group">
+                    <label>Hexadecimal (16):</label>
+                    <input type="text" id="hexInput" placeholder="0x..." oninput="convertFromBase(16)">
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p data-i18n="footer_text">Free Tools - All tools are free and open source.</p>
+    </footer>
+    <script src="../i18n.js"></script>
+    <script src="../theme.js"></script>
+    <script>
+        function convertFromBase(base) {
+            let input;
+            let decimal;
+            
+            switch(base) {
+                case 2:
+                    input = document.getElementById('binaryInput').value.trim();
+                    if (!input) { clearAll(); return; }
+                    decimal = parseInt(input, 2);
+                    break;
+                case 8:
+                    input = document.getElementById('octalInput').value.trim();
+                    if (!input) { clearAll(); return; }
+                    decimal = parseInt(input, 8);
+                    break;
+                case 10:
+                    input = document.getElementById('decimalInput').value.trim();
+                    if (!input) { clearAll(); return; }
+                    decimal = parseInt(input, 10);
+                    break;
+                case 16:
+                    input = document.getElementById('hexInput').value.trim();
+                    if (!input) { clearAll(); return; }
+                    decimal = parseInt(input, 16);
+                    break;
+            }
+            
+            if (isNaN(decimal)) {
+                clearAll();
+                return;
+            }
+            
+            if (base !== 2) document.getElementById('binaryInput').value = decimal.toString(2);
+            if (base !== 8) document.getElementById('octalInput').value = decimal.toString(8);
+            if (base !== 10) document.getElementById('decimalInput').value = decimal.toString(10);
+            if (base !== 16) document.getElementById('hexInput').value = decimal.toString(16).toUpperCase();
+        }
+        
+        function clearAll() {
+            document.getElementById('binaryInput').value = '';
+            document.getElementById('octalInput').value = '';
+            document.getElementById('decimalInput').value = '';
+            document.getElementById('hexInput').value = '';
+        }
+    </script>
+</body>
+</html>
