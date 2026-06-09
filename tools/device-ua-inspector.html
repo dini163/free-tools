@@ -131,7 +131,7 @@
     // Feature detection
     const feats = [
         ['Online', navigator.onLine ? 'Yes' : 'No'],
-        ['JavaEnabled', navigator.javaEnabled ? 'Yes' : 'No'],
+        ['JavaEnabled', navigator.javaEnabled() ? 'Yes' : 'No'],
         ['Hardware Concurrency', navigator.hardwareConcurrency || 'N/A'],
         ['Max Touch Points', navigator.maxTouchPoints || '0'],
         ['Do Not Track', navigator.doNotTrack ? 'Yes' : 'No'],
