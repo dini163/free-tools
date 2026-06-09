@@ -146,3 +146,20 @@ function removeToast(toast) {
 // Make showToast available globally
 window.showToast = showToast;
 window.removeToast = removeToast;
+
+// Register Service Worker for performance caching
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        const swPath = location.pathname.includes('/tools/') 
+            ? '../sw.js' 
+            : './sw.js';
+        
+        navigator.serviceWorker.register(swPath)
+            .then((registration) => {
+                console.log('[SW] Registered successfully:', registration);
+            })
+            .catch((error) => {
+                console.error('[SW] Registration failed:', error);
+            });
+    });
+}

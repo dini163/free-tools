@@ -11,8 +11,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="../css/style.css">
-    <script src="../js/theme.js"></script>
-    <script src="../js/i18n.js"></script>
+    <script src="../js/theme.min.js" defer></script>
+    <script src="../js/i18n.min.js" defer></script>
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -27,6 +27,16 @@
     <meta name="twitter:title" content="Number Base Converter - Free Online Tool">
     <meta name="twitter:description" content="Number Base Converter - Free online tool for developers and designers.">
     <meta name="twitter:image" content="https://dini163.github.io/free-tools/assets/og-image.png">
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="css/style.min.css" as="style">
+    <link rel="preload" href="js/theme.min.js" as="script">
+    <link rel="preload" href="js/i18n.min.js" as="script">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#667eea">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 <body>
 
