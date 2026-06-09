@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9267698062788796" crossorigin="anonymous"></script>
+    <title>Image Resizer - Free Online Tool</title>
+    <meta name="description" content="Resize images online for free. Change image dimensions easily. Supports JPG, PNG, WebP.">
+    <meta name="keywords" content="image resizer, resize image, change image size, image dimensions">
+    <link rel="canonical" href="https://dini163.github.io/free-tools/tools/image-resizer.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/theme.js"></script>
+    <script src="../js/i18n.js"></script>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <a href="../index.html" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+            <span data-i18n="logo">FreeDevTools</span>
+        </a>
+        <nav class="nav-links">
+            <a href="../index.html" data-i18n="all_tools">All Tools</a>
+            <div class="lang-switcher">
+                <button class="lang-btn" id="langToggleBtn" onclick="toggleLangMenu(event)" aria-label="Select language">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <button class="lang-menu-item" onclick="changeLanguage('en')">English</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('fr')">Français</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('es')">Español</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('pt')">Português</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ru')">Русский</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-CN')">简体中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-TW')">繁體中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ja')">日本語</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ko')">한국어</button>
+                </div>
+            </div>
+            <div class="theme-switcher">
+                <button class="theme-btn" id="themeToggleBtn" onclick="toggleThemeMenu(event)" aria-label="Toggle theme">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </button>
+                <div class="theme-menu" id="themeMenu">
+                    <button class="theme-menu-item" onclick="setTheme('light')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg> Light</button>
+                    <button class="theme-menu-item" onclick="setTheme('dark')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg> Dark</button>
+                    <button class="theme-menu-item" onclick="setTheme('auto')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg> System</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main style="max-width: 900px; margin-top: 2rem;">
+    <h1>Image Resizer</h1>
+    <p style="color:var(--text-secondary); margin-bottom:1.5rem;">Resize images online for free. Change image dimensions easily.</p>
+
+    <div id="resizerDropZone" style="border:2px dashed var(--border); border-radius:var(--radius); padding:3rem; text-align:center; margin-bottom:1.5rem; cursor:pointer; transition:all 0.2s;" ondrop="handleResizerDrop(event)" ondragover="event.preventDefault(); this.style.borderColor='var(--primary)';" ondragleave="this.style.borderColor='var(--border)';">
+        <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" style="margin-bottom:1rem; color:var(--text-secondary);"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+        <p style="color:var(--text-secondary); margin-bottom:0.5rem;">Drag & drop image here, or click to select</p>
+        <p style="font-size:0.8rem; color:var(--text-secondary);">Supports: JPG, PNG, WebP (max 10MB)</p>
+        <input type="file" id="resizerInput" accept="image/jpeg,image/png,image/webp" style="display:none;" onchange="handleResizerSelect(event)">
+    </div>
+
+    <div id="resizerOptions" style="display:none; margin-bottom:1.5rem; padding:1.25rem; background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius);">
+        <div style="display:grid; gap:1rem;">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                <div>
+                    <label style="display:block; margin-bottom:0.3rem; font-weight:500;">Width (px)</label>
+                    <input type="number" class="tool-input" id="resizeWidth" min="1" style="width:100%;">
+                </div>
+                <div>
+                    <label style="display:block; margin-bottom:0.3rem; font-weight:500;">Height (px)</label>
+                    <input type="number" class="tool-input" id="resizeHeight" min="1" style="width:100%;">
+                </div>
+            </div>
+            <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.9rem;">
+                <input type="checkbox" id="resizeLockAspect" checked onchange="toggleAspectLock()"> Lock aspect ratio
+            </label>
+            <div>
+                <label style="display:block; margin-bottom:0.3rem; font-weight:500;">Output Format</label>
+                <select id="resizeFormat" style="width:100%; padding:0.6rem; border:1px solid var(--border); border-radius:var(--radius); background:var(--bg-card); color:var(--text-primary);">
+                    <option value="same">Same as input</option>
+                    <option value="image/jpeg">JPEG</option>
+                    <option value="image/png">PNG</option>
+                    <option value="image/webp">WebP</option>
+                </select>
+            </div>
+            <button class="btn btn-primary" onclick="resizeImage()" style="width:100%;">Resize Image</button>
+        </div>
+    </div>
+
+    <div id="resizerResult" style="display:none; margin-bottom:1.5rem;">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem;">
+            <div>
+                <h3 style="font-size:0.9rem; margin-bottom:0.5rem; color:var(--text-secondary);">Original: <span id="originalSize"></span></h3>
+                <img id="originalPreview" style="width:100%; border-radius:var(--radius); border:1px solid var(--border);">
+            </div>
+            <div>
+                <h3 style="font-size:0.9rem; margin-bottom:0.5rem; color:var(--text-secondary);">Resized: <span id="resizedSize"></span></h3>
+                <img id="resizedPreview" style="width:100%; border-radius:var(--radius); border:1px solid var(--border);">
+            </div>
+        </div>
+        <div style="text-align:center;">
+            <a id="downloadResized" class="btn btn-primary" download="resized.jpg" style="text-decoration:none; display:inline-block;">Download Resized Image</a>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <p>&copy; 2026 FreeDevTools. All tools run 100% locally in your web browser — absolutely no data is transmitted to any server.</p>
+</footer>
+
+<script>
+let resizerOriginalFile = null;
+let resizerAspectRatio = 1;
+
+document.getElementById('resizerDropZone').addEventListener('click', () => {
+    document.getElementById('resizerInput').click();
+});
+
+function handleResizerSelect(e) {
+    const file = e.target.files[0];
+    if (file) processResizerFile(file);
+}
+
+function handleResizerDrop(e) {
+    e.preventDefault();
+    e.currentTarget.style.borderColor = 'var(--border)';
+    const file = e.dataTransfer.files[0];
+    if (file && file.type.startsWith('image/')) processResizerFile(file);
+}
+
+function processResizerFile(file) {
+    if (file.size > 10 * 1024 * 1024) {
+        alert('File too large. Max 10MB.');
+        return;
+    }
+    resizerOriginalFile = file;
+    
+    const img = new Image();
+    img.onload = () => {
+        document.getElementById('resizeWidth').value = img.width;
+        document.getElementById('resizeHeight').value = img.height;
+        resizerAspectRatio = img.width / img.height;
+        document.getElementById('originalSize').textContent = formatBytes(file.size) + ` (${img.width}×${img.height})`;
+        document.getElementById('originalPreview').src = URL.createObjectURL(file);
+        document.getElementById('resizerOptions').style.display = 'block';
+        document.getElementById('resizerResult').style.display = 'none';
+    };
+    img.src = URL.createObjectURL(file);
+}
+
+function toggleAspectLock() {
+    const locked = document.getElementById('resizeLockAspect').checked;
+    if (locked) {
+        const img = new Image();
+        img.onload = () => {
+            resizerAspectRatio = img.width / img.height;
+        };
+        img.src = URL.createObjectURL(resizerOriginalFile);
+    }
+}
+
+document.getElementById('resizeWidth').addEventListener('input', function() {
+    if (document.getElementById('resizeLockAspect').checked) {
+        document.getElementById('resizeHeight').value = Math.round(this.value / resizerAspectRatio);
+    }
+});
+
+document.getElementById('resizeHeight').addEventListener('input', function() {
+    if (document.getElementById('resizeLockAspect').checked) {
+        document.getElementById('resizeWidth').value = Math.round(this.value * resizerAspectRatio);
+    }
+});
+
+function resizeImage() {
+    if (!resizerOriginalFile) return;
+    
+    const width = parseInt(document.getElementById('resizeWidth').value);
+    const height = parseInt(document.getElementById('resizeHeight').value);
+    const format = document.getElementById('resizeFormat').value;
+    const outputFormat = format === 'same' ? resizerOriginalFile.type : format;
+    
+    const img = new Image();
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    canvas.width = width;
+    canvas.height = height;
+    
+    img.onload = () => {
+        ctx.drawImage(img, 0, 0, width, height);
+        canvas.toBlob((blob) => {
+            const resizedUrl = URL.createObjectURL(blob);
+            document.getElementById('resizedSize').textContent = formatBytes(blob.size) + ` (${width}×${height})`;
+            document.getElementById('resizedPreview').src = resizedUrl;
+            
+            const ext = outputFormat === 'image/png' ? 'png' : outputFormat === 'image/webp' ? 'webp' : 'jpg';
+            document.getElementById('downloadResized').download = `resized.${ext}`;
+            document.getElementById('downloadResized').href = resizedUrl;
+            
+            document.getElementById('resizerResult').style.display = 'grid';
+        }, outputFormat);
+    };
+    img.src = URL.createObjectURL(resizerOriginalFile);
+}
+
+function formatBytes(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+}
+</script>
+</body>
+</html>

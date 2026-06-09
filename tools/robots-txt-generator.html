@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9267698062788796" crossorigin="anonymous"></script>
+    <title>Robots.txt Generator - Free Online Tool</title>
+    <meta name="description" content="Generate robots.txt file for SEO. Free online tool.">
+    <meta name="keywords" content="robots.txt generator, seo robots file, search engine robots">
+    <link rel="canonical" href="https://dini163.github.io/free-tools/tools/robots-txt-generator.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/theme.js"></script>
+    <script src="../js/i18n.js"></script>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <a href="../index.html" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+            <span data-i18n="logo">FreeDevTools</span>
+        </a>
+        <nav class="nav-links">
+            <a href="../index.html" data-i18n="all_tools">All Tools</a>
+            <div class="lang-switcher">
+                <button class="lang-btn" id="langToggleBtn" onclick="toggleLangMenu(event)" aria-label="Select language">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <button class="lang-menu-item" onclick="changeLanguage('en')">English</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('fr')">Français</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('es')">Español</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('pt')">Português</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ru')">Русский</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-CN')">简体中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-TW')">繁體中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ja')">日本語</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ko')">한국어</button>
+                </div>
+            </div>
+            <div class="theme-switcher">
+                <button class="theme-btn" id="themeToggleBtn" onclick="toggleThemeMenu(event)" aria-label="Toggle theme">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </button>
+                <div class="theme-menu" id="themeMenu">
+                    <button class="theme-menu-item" onclick="setTheme('light')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg> Light</button>
+                    <button class="theme-menu-item" onclick="setTheme('dark')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg> Dark</button>
+                    <button class="theme-menu-item" onclick="setTheme('auto')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg> System</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main style="max-width: 900px; margin-top: 2rem;">
+    <h1>Robots.txt Generator</h1>
+    <p style="color:var(--text-secondary); margin-bottom:1.5rem;">Generate robots.txt file for SEO</p>
+
+    <div style="display:grid; gap:1rem; margin-bottom:1.5rem;">
+        <div style="padding:1rem; background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius);">
+            <h3 style="font-size:0.95rem; margin-bottom:0.75rem;">Default Rules</h3>
+            <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:0.75rem;">
+                <label style="display:flex; align-items:center; gap:0.5rem;">
+                    <input type="radio" name="defaultRule" value="allow" checked> Allow All
+                </label>
+                <label style="display:flex; align-items:center; gap:0.5rem;">
+                    <input type="radio" name="defaultRule" value="disallow"> Disallow All
+                </label>
+            </div>
+        </div>
+
+        <div style="padding:1rem; background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius);">
+            <h3 style="font-size:0.95rem; margin-bottom:0.75rem;">Specific Rules</h3>
+            <div id="ruleList">
+                <div style="display:grid; gap:0.5rem; margin-bottom:0.75rem; padding:0.75rem; border:1px solid var(--border); border-radius:var(--radius);">
+                    <div style="display:flex; gap:0.5rem; align-items:center;">
+                        <select style="flex:0 0 120px; padding:0.4rem; border:1px solid var(--border); border-radius:var(--radius); background:var(--bg-card); color:var(--text-primary);">
+                            <option value="User-agent: *">User-agent: *</option>
+                            <option value="User-agent: Googlebot">Googlebot</option>
+                            <option value="User-agent: Bingbot">Bingbot</option>
+                            <option value="User-agent: Baiduspider">Baiduspider</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="font-size:0.85rem; display:block; margin-bottom:0.3rem;">Disallow</label>
+                        <input type="text" class="tool-input" placeholder="/private/" style="width:100%;">
+                    </div>
+                    <div>
+                        <label style="font-size:0.85rem; display:block; margin-bottom:0.3rem;">Allow (optional)</label>
+                        <input type="text" class="tool-input" placeholder="/public/" style="width:100%;">
+                    </div>
+                    <button onclick="removeRule(this)" style="padding:0.3rem 0.6rem; background:#ef4444; color:white; border:none; border-radius:var(--radius); cursor:pointer; font-size:0.8rem;">Remove</button>
+                </div>
+            </div>
+            <button class="btn btn-secondary" onclick="addRule()" style="font-size:0.85rem;">+ Add Rule</button>
+        </div>
+
+        <div style="padding:1rem; background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius);">
+            <h3 style="font-size:0.95rem; margin-bottom:0.75rem;">Sitemap (optional)</h3>
+            <input type="url" class="tool-input" id="sitemapUrl" placeholder="https://example.com/sitemap.xml" style="width:100%;">
+        </div>
+
+        <div style="padding:1rem; background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius);">
+            <h3 style="font-size:0.95rem; margin-bottom:0.75rem;">Crawl Delay (optional)</h3>
+            <input type="number" class="tool-input" id="crawlDelay" placeholder="10" min="1" max="120" style="width:100%;">
+            <div style="font-size:0.8rem; color:var(--text-secondary); margin-top:0.3rem;">Leave empty for no delay. Recommended: 10 seconds.</div>
+        </div>
+    </div>
+
+    <button class="btn btn-primary" onclick="generateRobotsTxt()" style="margin-bottom:1.5rem;">Generate robots.txt</button>
+
+    <div>
+        <label style="display:block; margin-bottom:0.5rem; font-weight:500;">Generated robots.txt</label>
+        <div class="result-container">
+            <pre id="robotsOutput" style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:1rem; font-family:monospace; font-size:0.85rem; white-space:pre-wrap; min-height:150px; overflow-x:auto;">Click "Generate robots.txt" to create...</pre>
+            <button class="btn btn-secondary copy-btn" onclick="copyRobotsTxt()" style="margin-top:0.75rem;">Copy robots.txt</button>
+        </div>
+    </div>
+
+    <div style="margin-top:1rem; padding:0.75rem; background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); font-size:0.85rem; color:var(--text-secondary);">
+        <strong>How to use:</strong> Save the generated content as <code>robots.txt</code> in the root directory of your website (e.g., <code>https://example.com/robots.txt</code>).
+    </div>
+</main>
+
+<footer class="footer">
+    <p>&copy; 2026 FreeDevTools. All tools run 100% locally in your web browser — absolutely no data is transmitted to any server.</p>
+</footer>
+
+<script>
+function addRule() {
+    const ruleList = document.getElementById('ruleList');
+    const newRule = document.createElement('div');
+    newRule.style = 'display:grid; gap:0.5rem; margin-bottom:0.75rem; padding:0.75rem; border:1px solid var(--border); border-radius:var(--radius);';
+    newRule.innerHTML = `
+        <div style="display:flex; gap:0.5rem; align-items:center;">
+            <select style="flex:0 0 120px; padding:0.4rem; border:1px solid var(--border); border-radius:var(--radius); background:var(--bg-card); color:var(--text-primary);">
+                <option value="User-agent: *">User-agent: *</option>
+                <option value="User-agent: Googlebot">Googlebot</option>
+                <option value="User-agent: Bingbot">Bingbot</option>
+                <option value="User-agent: Baiduspider">Baiduspider</option>
+            </select>
+        </div>
+        <div>
+            <label style="font-size:0.85rem; display:block; margin-bottom:0.3rem;">Disallow</label>
+            <input type="text" class="tool-input" placeholder="/private/" style="width:100%;">
+        </div>
+        <div>
+            <label style="font-size:0.85rem; display:block; margin-bottom:0.3rem;">Allow (optional)</label>
+            <input type="text" class="tool-input" placeholder="/public/" style="width:100%;">
+        </div>
+        <button onclick="removeRule(this)" style="padding:0.3rem 0.6rem; background:#ef4444; color:white; border:none; border-radius:var(--radius); cursor:pointer; font-size:0.8rem;">Remove</button>
+    `;
+    ruleList.appendChild(newRule);
+}
+
+function removeRule(btn) {
+    btn.parentElement.remove();
+}
+
+function generateRobotsTxt() {
+    const defaultRule = document.querySelector('input[name="defaultRule"]:checked').value;
+    const sitemap = document.getElementById('sitemapUrl').value.trim();
+    const crawlDelay = document.getElementById('crawlDelay').value.trim();
+
+    let output = '# robots.txt generated by FreeDevTools\n# https://dini163.github.io/free-tools/\n\n';
+
+    if (defaultRule === 'disallow') {
+        output += 'User-agent: *\nDisallow: /\n\n';
+    } else {
+        output += 'User-agent: *\nDisallow:\n\n';
+    }
+
+    // Specific rules
+    const rules = document.querySelectorAll('#ruleList > div');
+    rules.forEach(rule => {
+        const ua = rule.querySelector('select').value;
+        const disallow = rule.querySelectorAll('input')[0].value.trim();
+        const allow = rule.querySelectorAll('input')[1].value.trim();
+
+        output += `${ua}\n`;
+        if (disallow) output += `Disallow: ${disallow}\n`;
+        if (allow) output += `Allow: ${allow}\n`;
+        if (crawlDelay) output += `Crawl-delay: ${crawlDelay}\n`;
+        output += '\n';
+    });
+
+    if (sitemap) {
+        output += `Sitemap: ${sitemap}\n`;
+    }
+
+    document.getElementById('robotsOutput').textContent = output;
+}
+
+function copyRobotsTxt() {
+    const output = document.getElementById('robotsOutput').textContent;
+    navigator.clipboard.writeText(output).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        if (btn) { btn.textContent = 'Copied!'; setTimeout(() => { btn.textContent = 'Copy robots.txt'; }, 1500); }
+    });
+}
+
+generateRobotsTxt();
+</script>
+</body>
+</html>

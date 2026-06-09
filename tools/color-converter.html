@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9267698062788796" crossorigin="anonymous"></script>
+    <title>Color Converter - Free Online Tool</title>
+    <meta name="description" content="Convert colors between HEX, RGB, HSL, and CMYK. Free online tool.">
+    <meta name="keywords" content="color converter, hex to rgb, rgb to hex, hsl converter, cmyk converter">
+    <link rel="canonical" href="https://dini163.github.io/free-tools/tools/color-converter.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/theme.js"></script>
+    <script src="../js/i18n.js"></script>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <a href="../index.html" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+            <span data-i18n="logo">FreeDevTools</span>
+        </a>
+        <nav class="nav-links">
+            <a href="../index.html" data-i18n="all_tools">All Tools</a>
+            <div class="lang-switcher">
+                <button class="lang-btn" id="langToggleBtn" onclick="toggleLangMenu(event)" aria-label="Select language">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <button class="lang-menu-item" onclick="changeLanguage('en')">English</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('fr')">Français</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('es')">Español</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('pt')">Português</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ru')">Русский</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-CN')">简体中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-TW')">繁體中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ja')">日本語</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ko')">한국어</button>
+                </div>
+            </div>
+            <div class="theme-switcher">
+                <button class="theme-btn" id="themeToggleBtn" onclick="toggleThemeMenu(event)" aria-label="Toggle theme">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </button>
+                <div class="theme-menu" id="themeMenu">
+                    <button class="theme-menu-item" onclick="setTheme('light')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg> Light</button>
+                    <button class="theme-menu-item" onclick="setTheme('dark')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg> Dark</button>
+                    <button class="theme-menu-item" onclick="setTheme('auto')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg> System</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main style="max-width: 900px; margin-top: 2rem;">
+    <h1>Color Converter</h1>
+    <p style="color:var(--text-secondary); margin-bottom:1.5rem;">Convert colors between HEX, RGB, HSL, and CMYK.</p>
+
+    <div style="display:grid; gap:1rem; margin-bottom:1.5rem;">
+        <div>
+            <label style="display:block; margin-bottom:0.3rem; font-weight:500;">Color Input</label>
+            <div style="display:flex; gap:0.5rem; align-items:center;">
+                <input type="text" class="tool-input" id="colorInput" placeholder="#ff0000 or rgb(255,0,0)" style="flex:1;">
+                <input type="color" id="colorPicker" value="#ff0000" style="width:50px; height:40px; border:none; padding:0; cursor:pointer;">
+            </div>
+        </div>
+
+        <div id="colorPreview" style="height:80px; border-radius:var(--radius); border:1px solid var(--border); margin-bottom:1rem;"></div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+            <div>
+                <label style="display:block; margin-bottom:0.3rem; font-weight:500;">HEX</label>
+                <div class="result-container">
+                    <input type="text" class="tool-input" id="colorHex" readonly style="font-family:monospace;">
+                    <button class="btn btn-secondary copy-btn" onclick="copyColor('colorHex')" style="font-size:0.8rem;">Copy</button>
+                </div>
+            </div>
+            <div>
+                <label style="display:block; margin-bottom:0.3rem; font-weight:500;">RGB</label>
+                <div class="result-container">
+                    <input type="text" class="tool-input" id="colorRgb" readonly style="font-family:monospace;">
+                    <button class="btn btn-secondary copy-btn" onclick="copyColor('colorRgb')" style="font-size:0.8rem;">Copy</button>
+                </div>
+            </div>
+            <div>
+                <label style="display:block; margin-bottom:0.3rem; font-weight:500;">HSL</label>
+                <div class="result-container">
+                    <input type="text" class="tool-input" id="colorHsl" readonly style="font-family:monospace;">
+                    <button class="btn btn-secondary copy-btn" onclick="copyColor('colorHsl')" style="font-size:0.8rem;">Copy</button>
+                </div>
+            </div>
+            <div>
+                <label style="display:block; margin-bottom:0.3rem; font-weight:500;">CMYK</label>
+                <div class="result-container">
+                    <input type="text" class="tool-input" id="colorCmyk" readonly style="font-family:monospace;">
+                    <button class="btn btn-secondary copy-btn" onclick="copyColor('colorCmyk')" style="font-size:0.8rem;">Copy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <p>&copy; 2026 FreeDevTools. All tools run 100% locally in your web browser — absolutely no data is transmitted to any server.</p>
+</footer>
+
+<script>
+document.getElementById('colorInput').addEventListener('input', function() {
+    convertColor(this.value);
+});
+document.getElementById('colorPicker').addEventListener('input', function() {
+    document.getElementById('colorInput').value = this.value;
+    convertColor(this.value);
+});
+
+function convertColor(input) {
+    let r, g, b;
+    
+    // Parse input
+    if (input.match(/^#?([0-9A-Fa-f]{3}){1,2}$/)) {
+        const hex = input.replace('#', '');
+        r = parseInt(hex.substring(0,2), 16);
+        g = parseInt(hex.substring(2,4), 16);
+        b = parseInt(hex.substring(4,6), 16);
+    } else if (input.match(/rgb\s*\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*\)/i)) {
+        const match = input.match(/\d+/g);
+        r = parseInt(match[0]);
+        g = parseInt(match[1]);
+        b = parseInt(match[2]);
+    } else {
+        return;
+    }
+    
+    // Update color picker
+    const hex = `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase()}`;
+    document.getElementById('colorPicker').value = hex.toLowerCase();
+    document.getElementById('colorPreview').style.background = hex;
+    
+    // HEX
+    document.getElementById('colorHex').value = hex;
+    
+    // RGB
+    document.getElementById('colorRgb').value = `rgb(${r}, ${g}, ${b})`;
+    
+    // HSL
+    const hsl = rgbToHsl(r, g, b);
+    document.getElementById('colorHsl').value = `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
+    
+    // CMYK
+    const cmyk = rgbToCmyk(r, g, b);
+    document.getElementById('colorCmyk').value = `cmyk(${cmyk.c}%, ${cmyk.m}%, ${cmyk.y}%, ${cmyk.k}%)`;
+}
+
+function rgbToHsl(r, g, b) {
+    r /= 255; g /= 255; b /= 255;
+    const max = Math.max(r, g, b), min = Math.min(r, g, b);
+    let h, s, l = (max + min) / 2;
+    
+    if (max === min) {
+        h = s = 0;
+    } else {
+        const d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch (max) {
+            case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break;
+            case g: h = ((b - r) / d + 2) / 6; break;
+            case b: h = ((r - g) / d + 4) / 6; break;
+        }
+    }
+    return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) };
+}
+
+function rgbToCmyk(r, g, b) {
+    r /= 255; g /= 255; b /= 255;
+    const k = 1 - Math.max(r, g, b);
+    if (k === 1) return { c: 0, m: 0, y: 0, k: 100 };
+    const c = (1 - r - k) / (1 - k);
+    const m = (1 - g - k) / (1 - k);
+    const y = (1 - b - k) / (1 - k);
+    return { c: Math.round(c * 100), m: Math.round(m * 100), y: Math.round(y * 100), k: Math.round(k * 100) };
+}
+
+function copyColor(id) {
+    const el = document.getElementById(id);
+    el.select();
+    navigator.clipboard.writeText(el.value).then(() => {
+        const btn = el.parentElement.querySelector('.copy-btn');
+        if (btn) { btn.textContent = 'Copied!'; setTimeout(() => { btn.textContent = 'Copy'; }, 1500); }
+    });
+}
+
+// Initialize
+convertColor('#ff0000');
+</script>
+</body>
+</html>

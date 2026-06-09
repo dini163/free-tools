@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9267698062788796" crossorigin="anonymous"></script>
+    <title>Favicon Generator - Free Online Tool</title>
+    <meta name="description" content="Generate favicon for your website. Free online tool. Supports PNG, ICO formats.">
+    <meta name="keywords" content="favicon generator, favicon creator, website icon generator">
+    <link rel="canonical" href="https://dini163.github.io/free-tools/tools/favicon-generator.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/theme.js"></script>
+    <script src="../js/i18n.js"></script>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <a href="../index.html" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+            <span data-i18n="logo">FreeDevTools</span>
+        </a>
+        <nav class="nav-links">
+            <a href="../index.html" data-i18n="all_tools">All Tools</a>
+            <div class="lang-switcher">
+                <button class="lang-btn" id="langToggleBtn" onclick="toggleLangMenu(event)" aria-label="Select language">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <button class="lang-menu-item" onclick="changeLanguage('en')">English</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('fr')">Français</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('es')">Español</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('pt')">Português</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ru')">Русский</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-CN')">简体中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-TW')">繁體中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ja')">日本語</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ko')">한국어</button>
+                </div>
+            </div>
+            <div class="theme-switcher">
+                <button class="theme-btn" id="themeToggleBtn" onclick="toggleThemeMenu(event)" aria-label="Toggle theme">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </button>
+                <div class="theme-menu" id="themeMenu">
+                    <button class="theme-menu-item" onclick="setTheme('light')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg> Light</button>
+                    <button class="theme-menu-item" onclick="setTheme('dark')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg> Dark</button>
+                    <button class="theme-menu-item" onclick="setTheme('auto')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg> System</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main style="max-width: 900px; margin-top: 2rem;">
+    <h1>Favicon Generator</h1>
+    <p style="color:var(--text-secondary); margin-bottom:1.5rem;">Generate favicon for your website. Supports PNG, ICO formats.</p>
+
+    <div id="faviconDropZone" style="border:2px dashed var(--border); border-radius:var(--radius); padding:3rem; text-align:center; margin-bottom:1.5rem; cursor:pointer; transition:all 0.2s;" ondrop="handleFaviconDrop(event)" ondragover="event.preventDefault(); this.style.borderColor='var(--primary)';" ondragleave="this.style.borderColor='var(--border)';">
+        <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" style="margin-bottom:1rem; color:var(--text-secondary);"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+        <p style="color:var(--text-secondary); margin-bottom:0.5rem;">Drag & drop image here, or click to select</p>
+        <p style="font-size:0.8rem; color:var(--text-secondary);">Supports: JPG, PNG, WebP (square image recommended)</p>
+        <input type="file" id="faviconInput" accept="image/*" style="display:none;" onchange="handleFaviconSelect(event)">
+    </div>
+
+    <div id="faviconOptions" style="display:none; margin-bottom:1.5rem; padding:1.25rem; background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius);">
+        <h3 style="font-size:0.95rem; margin-bottom:0.75rem;">Generate Sizes</h3>
+        <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:1rem;">
+            <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.9rem;"><input type="checkbox" id="size16" checked> 16×16</label>
+            <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.9rem;"><input type="checkbox" id="size32" checked> 32×32</label>
+            <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.9rem;"><input type="checkbox" id="size48" checked> 48×48</label>
+            <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.9rem;"><input type="checkbox" id="size64" checked> 64×64</label>
+            <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.9rem;"><input type="checkbox" id="size128" checked> 128×128</label>
+            <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.9rem;"><input type="checkbox" id="size256" checked> 256×256</label>
+        </div>
+        <button class="btn btn-primary" onclick="generateFavicons()" style="width:100%;">Generate Favicons</button>
+    </div>
+
+    <div id="faviconResult" style="display:none; margin-bottom:1.5rem;">
+        <h3 style="font-size:0.95rem; margin-bottom:0.75rem;">Preview & Download</h3>
+        <div id="faviconPreviews" style="display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:1rem;"></div>
+        <button class="btn btn-primary" onclick="downloadAllFavicons()">Download All as ZIP</button>
+        <button class="btn btn-secondary" onclick="downloadFaviconHtml()" style="margin-left:0.5rem;">Download HTML Code</button>
+    </div>
+
+    <div id="faviconHtmlCode" style="display:none; margin-bottom:1.5rem;">
+        <label style="display:block; margin-bottom:0.5rem; font-weight:500;">HTML Code to Add to Your Site</label>
+        <pre id="faviconHtmlOutput" style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:1rem; font-family:monospace; font-size:0.85rem; white-space:pre-wrap; min-height:100px; overflow-x:auto;"></pre>
+        <button class="btn btn-secondary copy-btn" onclick="copyFaviconHtml()" style="margin-top:0.75rem;">Copy HTML Code</button>
+    </div>
+</main>
+
+<footer class="footer">
+    <p>&copy; 2026 FreeDevTools. All tools run 100% locally in your web browser — absolutely no data is transmitted to any server.</p>
+</footer>
+
+<script>
+let faviconOriginalFile = null;
+let faviconGeneratedBlobs = [];
+
+document.getElementById('faviconDropZone').addEventListener('click', () => {
+    document.getElementById('faviconInput').click();
+});
+
+function handleFaviconSelect(e) {
+    const file = e.target.files[0];
+    if (file) processFaviconFile(file);
+}
+
+function handleFaviconDrop(e) {
+    e.preventDefault();
+    e.currentTarget.style.borderColor = 'var(--border)';
+    const file = e.dataTransfer.files[0];
+    if (file && file.type.startsWith('image/')) processFaviconFile(file);
+}
+
+function processFaviconFile(file) {
+    faviconOriginalFile = file;
+    document.getElementById('faviconOptions').style.display = 'block';
+    document.getElementById('faviconResult').style.display = 'none';
+    document.getElementById('faviconHtmlCode').style.display = 'none';
+}
+
+async function generateFavicons() {
+    if (!faviconOriginalFile) return;
+
+    const sizes = [16, 32, 48, 64, 128, 256].filter(s => document.getElementById(`size${s}`).checked);
+    faviconGeneratedBlobs = [];
+    
+    const img = new Image();
+    img.onload = () => {
+        const previewsDiv = document.getElementById('faviconPreviews');
+        previewsDiv.innerHTML = '';
+        
+        sizes.forEach(size => {
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, size, size);
+            
+            canvas.toBlob(blob => {
+                faviconGeneratedBlobs.push({ size, blob });
+                
+                const preview = document.createElement('div');
+                preview.style = 'text-align:center;';
+                preview.innerHTML = `
+                    <div style="width:${Math.max(size, 64)}px; height:${Math.max(size, 64)}px; display:flex; align-items:center; justify-content:center; border:1px solid var(--border); border-radius:var(--radius); margin-bottom:0.5rem; background:repeating-conic-gradient(#ccc 0% 25%, white 0% 50%) 50% / 20px 20px;">
+                        <img src="${URL.createObjectURL(blob)}" style="max-width:100%; max-height:100%;">
+                    </div>
+                    <div style="font-size:0.8rem; color:var(--text-secondary);">${size}×${size}</div>
+                `;
+                previewsDiv.appendChild(preview);
+            }, 'image/png');
+        });
+        
+        document.getElementById('faviconResult').style.display = 'block';
+        generateFaviconHtmlCode();
+    };
+    img.src = URL.createObjectURL(faviconOriginalFile);
+}
+
+function generateFaviconHtmlCode() {
+    const html = `<!-- Favicon HTML Code -->
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+<link rel="icon" type="image/png" sizes="64x64" href="/favicon-64x64.png">
+<link rel="icon" type="image/png" sizes="128x128" href="/favicon-128x128.png">
+<link rel="icon" type="image/png" sizes="256x256" href="/favicon-256x256.png">
+<link rel="shortcut icon" href="/favicon-32x32.png">`;
+    
+    document.getElementById('faviconHtmlOutput').textContent = html;
+    document.getElementById('faviconHtmlCode').style.display = 'block';
+}
+
+function downloadAllFavicons() {
+    // Simple download one by one
+    faviconGeneratedBlobs.forEach(({ size, blob }) => {
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = `favicon-${size}x${size}.png`;
+        a.click();
+    });
+}
+
+function downloadFaviconHtml() {
+    const html = document.getElementById('faviconHtmlOutput').textContent;
+    const blob = new Blob([html], { type: 'text/html' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'favicon-html-code.txt';
+    a.click();
+}
+
+function copyFaviconHtml() {
+    const output = document.getElementById('faviconHtmlOutput').textContent;
+    navigator.clipboard.writeText(output).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        if (btn) { btn.textContent = 'Copied!'; setTimeout(() => { btn.textContent = 'Copy HTML Code'; }, 1500); }
+    });
+}
+</script>
+</body>
+</html>

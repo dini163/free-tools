@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9267698062788796" crossorigin="anonymous"></script>
+    <title>XML Sitemap Generator - Free Online Tool</title>
+    <meta name="description" content="Generate XML sitemap for SEO. Free online tool.">
+    <meta name="keywords" content="xml sitemap generator, seo sitemap, xml sitemap creator">
+    <link rel="canonical" href="https://dini163.github.io/free-tools/tools/xml-sitemap-generator.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/theme.js"></script>
+    <script src="../js/i18n.js"></script>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <a href="../index.html" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+            <span data-i18n="logo">FreeDevTools</span>
+        </a>
+        <nav class="nav-links">
+            <a href="../index.html" data-i18n="all_tools">All Tools</a>
+            <div class="lang-switcher">
+                <button class="lang-btn" id="langToggleBtn" onclick="toggleLangMenu(event)" aria-label="Select language">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <button class="lang-menu-item" onclick="changeLanguage('en')">English</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('fr')">Français</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('es')">Español</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('pt')">Português</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ru')">Русский</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-CN')">简体中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-TW')">繁體中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ja')">日本語</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ko')">한국어</button>
+                </div>
+            </div>
+            <div class="theme-switcher">
+                <button class="theme-btn" id="themeToggleBtn" onclick="toggleThemeMenu(event)" aria-label="Toggle theme">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </button>
+                <div class="theme-menu" id="themeMenu">
+                    <button class="theme-menu-item" onclick="setTheme('light')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg> Light</button>
+                    <button class="theme-menu-item" onclick="setTheme('dark')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg> Dark</button>
+                    <button class="theme-menu-item" onclick="setTheme('auto')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg> System</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main style="max-width: 900px; margin-top: 2rem;">
+    <h1>XML Sitemap Generator</h1>
+    <p style="color:var(--text-secondary); margin-bottom:1.5rem;">Generate XML sitemap for SEO</p>
+
+    <div style="display:grid; gap:1rem; margin-bottom:1.5rem;">
+        <div>
+            <label style="display:block; margin-bottom:0.3rem; font-weight:500;">Website URL</label>
+            <input type="url" class="tool-input" id="siteUrl" placeholder="https://example.com" style="width:100%;" oninput="updateBaseUrl()">
+            <div style="font-size:0.8rem; color:var(--text-secondary); margin-top:0.3rem;">Enter your website's base URL</div>
+        </div>
+
+        <div style="padding:1rem; background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius);">
+            <h3 style="font-size:0.95rem; margin-bottom:0.75rem;">Pages to Include</h3>
+            <div id="pageList">
+                <div style="display:grid; gap:0.5rem; margin-bottom:0.75rem; padding:0.75rem; border:1px solid var(--border); border-radius:var(--radius);">
+                    <div style="display:flex; gap:0.5rem; align-items:center;">
+                        <input type="text" class="tool-input page-path" placeholder="/" style="flex:1;">
+                        <select class="tool-input page-priority" style="flex:0 0 80px; padding:0.4rem;">
+                            <option value="1.0">1.0</option>
+                            <option value="0.9">0.9</option>
+                            <option value="0.8">0.8</option>
+                            <option value="0.7">0.7</option>
+                            <option value="0.6">0.6</option>
+                            <option value="0.5">0.5</option>
+                            <option value="0.4">0.4</option>
+                            <option value="0.3">0.3</option>
+                            <option value="0.2">0.2</option>
+                            <option value="0.1">0.1</option>
+                        </select>
+                        <select class="tool-input page-changefreq" style="flex:0 0 110px; padding:0.4rem;">
+                            <option value="daily">Daily</option>
+                            <option value="weekly" selected>Weekly</option>
+                            <option value="monthly">Monthly</option>
+                            <option value="yearly">Yearly</option>
+                            <option value="never">Never</option>
+                        </select>
+                        <button onclick="removePage(this)" style="padding:0.3rem 0.6rem; background:#ef4444; color:white; border:none; border-radius:var(--radius); cursor:pointer; font-size:0.8rem;">×</button>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-secondary" onclick="addPage()" style="font-size:0.85rem;">+ Add Page</button>
+        </div>
+    </div>
+
+    <button class="btn btn-primary" onclick="generateSitemap()" style="margin-bottom:1.5rem;">Generate XML Sitemap</button>
+
+    <div>
+        <label style="display:block; margin-bottom:0.5rem; font-weight:500;">Generated XML Sitemap</label>
+        <div class="result-container">
+            <pre id="sitemapOutput" style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:1rem; font-family:monospace; font-size:0.85rem; white-space:pre-wrap; min-height:150px; overflow-x:auto;">Click "Generate XML Sitemap" to create...</pre>
+            <button class="btn btn-secondary copy-btn" onclick="copySitemap()" style="margin-top:0.75rem;">Copy Sitemap</button>
+        </div>
+    </div>
+
+    <div style="margin-top:1rem; padding:0.75rem; background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); font-size:0.85rem; color:var(--text-secondary);">
+        <strong>How to use:</strong> Save the generated content as <code>sitemap.xml</code> in the root directory of your website (e.g., <code>https://example.com/sitemap.xml</code>).
+    </div>
+</main>
+
+<footer class="footer">
+    <p>&copy; 2026 FreeDevTools. All tools run 100% locally in your web browser — absolutely no data is transmitted to any server.</p>
+</footer>
+
+<script>
+function updateBaseUrl() {
+    const url = document.getElementById('siteUrl').value.trim();
+    // Could auto-add first page as base URL + /
+}
+
+function addPage() {
+    const pageList = document.getElementById('pageList');
+    const newPage = document.createElement('div');
+    newPage.style = 'display:grid; gap:0.5rem; margin-bottom:0.75rem; padding:0.75rem; border:1px solid var(--border); border-radius:var(--radius);';
+    newPage.innerHTML = `
+        <div style="display:flex; gap:0.5rem; align-items:center;">
+            <input type="text" class="tool-input page-path" placeholder="/about" style="flex:1;">
+            <select class="tool-input page-priority" style="flex:0 0 80px; padding:0.4rem;">
+                <option value="1.0">1.0</option>
+                <option value="0.9">0.9</option>
+                <option value="0.8">0.8</option>
+                <option value="0.7">0.7</option>
+                <option value="0.6">0.6</option>
+                <option value="0.5" selected>0.5</option>
+                <option value="0.4">0.4</option>
+                <option value="0.3">0.3</option>
+                <option value="0.2">0.2</option>
+                <option value="0.1">0.1</option>
+            </select>
+            <select class="tool-input page-changefreq" style="flex:0 0 110px; padding:0.4rem;">
+                <option value="daily">Daily</option>
+                <option value="weekly" selected>Weekly</option>
+                <option value="monthly">Monthly</option>
+                <option value="yearly">Yearly</option>
+                <option value="never">Never</option>
+            </select>
+            <button onclick="removePage(this)" style="padding:0.3rem 0.6rem; background:#ef4444; color:white; border:none; border-radius:var(--radius); cursor:pointer; font-size:0.8rem;">×</button>
+        </div>
+    `;
+    pageList.appendChild(newPage);
+}
+
+function removePage(btn) {
+    btn.closest('div[style*="grid"]').remove();
+}
+
+function generateSitemap() {
+    const baseUrl = document.getElementById('siteUrl').value.trim().replace(/\/+$/, '');
+    if (!baseUrl) {
+        alert('Please enter website URL');
+        return;
+    }
+
+    let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
+    xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+
+    const pages = document.querySelectorAll('#pageList > div');
+    pages.forEach(page => {
+        const path = page.querySelector('.page-path').value.trim() || '/';
+        const priority = page.querySelector('.page-priority').value;
+        const changefreq = page.querySelector('.page-changefreq').value;
+        const fullUrl = baseUrl + (path === '/' ? '' : path);
+
+        xml += '  <url>\n';
+        xml += `    <loc>${escapeXml(fullUrl)}</loc>\n`;
+        xml += `    <changefreq>${changefreq}</changefreq>\n`;
+        xml += `    <priority>${priority}</priority>\n`;
+        xml += '  </url>\n';
+    });
+
+    xml += '</urlset>';
+
+    document.getElementById('sitemapOutput').textContent = xml;
+}
+
+function escapeXml(text) {
+    return text.replace(/&/g, '&amp;')
+              .replace(/</g, '&lt;')
+              .replace(/>/g, '&gt;')
+              .replace(/"/g, '&quot;')
+              .replace(/'/g, '&apos;');
+}
+
+function copySitemap() {
+    const output = document.getElementById('sitemapOutput').textContent;
+    navigator.clipboard.writeText(output).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        if (btn) { btn.textContent = 'Copied!'; setTimeout(() => { btn.textContent = 'Copy Sitemap'; }, 1500); }
+    });
+}
+
+// Add initial page
+addPage();
+</script>
+</body>
+</html>
