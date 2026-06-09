@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" data-title-key="t_csv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9267698062788796" crossorigin="anonymous"></script>
+    <title>CSV to JSON Converter - Free Online Tool</title>
+    <meta name="description" content="Instantly map tabular CSV text structures into standard nested JSON arrays. Free online converter.">
+    <meta name="keywords" content="csv to json, csv converter, json converter, csv to json online">
+    <link rel="canonical" href="https://dini163.github.io/free-tools/tools/csv-to-json.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/theme.js"></script>
+    <script src="../js/i18n.js"></script>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <a href="../index.html" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+            <span data-i18n="logo">FreeDevTools</span>
+        </a>
+        <nav class="nav-links">
+            <a href="../index.html" data-i18n="all_tools">All Tools</a>
+            <div class="lang-switcher">
+                <button class="lang-btn" id="langToggleBtn" onclick="toggleLangMenu(event)" aria-label="Select language">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <button class="lang-menu-item" onclick="changeLanguage('en')">English</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('fr')">Français</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('es')">Español</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('pt')">Português</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ru')">Русский</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-CN')">简体中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-TW')">繁體中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ja')">日本語</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ko')">한국어</button>
+                </div>
+            </div>
+            <div class="theme-switcher">
+                <button class="theme-btn" id="themeToggleBtn" onclick="toggleThemeMenu(event)" aria-label="Toggle theme">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </button>
+                <div class="theme-menu" id="themeMenu">
+                    <button class="theme-menu-item" onclick="setTheme('light')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg> Light</button>
+                    <button class="theme-menu-item" onclick="setTheme('dark')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg> Dark</button>
+                    <button class="theme-menu-item" onclick="setTheme('auto')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg> System</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main style="max-width: 900px; margin-top: 2rem;">
+    <h1 class="tool-title" data-i18n="t_csv">CSV to JSON Converter</h1>
+    <p class="tool-desc" data-i18n="d_csv">Instantly map tabular CSV text structures into standard nested JSON arrays.</p>
+
+    <div class="tool-row">
+        <div class="tool-col">
+            <label class="tool-label">CSV Source String</label>
+            <textarea class="tool-textarea" id="csvInput" placeholder="name,age,city\nJohn,30,NYC\nJane,25,LA" style="min-height:180px;"></textarea>
+        </div>
+        <div class="tool-col">
+            <label class="tool-label">JSON Output / Result</label>
+            <div class="result-container">
+                <textarea class="tool-textarea" id="csvJsonOutput" style="min-height:180px;" readonly>Output array...</textarea>
+                <button class="btn btn-secondary copy-btn" onclick="copyText('csvJsonOutput')" data-i18n="btn_copy">Copy Output</button>
+            </div>
+        </div>
+    </div>
+    <div class="btn-group">
+        <button class="btn btn-primary" onclick="csvToJson()">Convert CSV to JSON</button>
+        <button class="btn btn-secondary" onclick="jsonToCsv()">Convert JSON to CSV</button>
+    </div>
+</main>
+
+<footer class="footer">
+    <p>&copy; 2026 FreeDevTools. All tools run 100% locally in your web browser — absolutely no data is transmitted to any server.</p>
+</footer>
+
+<script>
+function csvToJson() {
+    try {
+        const input = document.getElementById('csvInput').value.trim();
+        if (!input) { document.getElementById('csvJsonOutput').value = 'Input is empty'; return; }
+        const lines = input.split('\n');
+        const headers = lines[0].split(',').map(h => h.trim().replace(/^["']|["']$/g, ''));
+        const result = lines.slice(1).map(line => {
+            const vals = line.split(',').map(v => v.trim().replace(/^["']|["']$/g, ''));
+            return headers.reduce((obj, h, i) => { obj[h] = vals[i] || ''; return obj; }, {});
+        });
+        document.getElementById('csvJsonOutput').value = JSON.stringify(result, null, 2);
+    } catch(e) { document.getElementById('csvJsonOutput').value = 'Parsing Error: ' + e.message; }
+}
+function jsonToCsv() {
+    try {
+        const input = document.getElementById('csvInput').value.trim();
+        if (!input) { document.getElementById('csvJsonOutput').value = 'Input is empty'; return; }
+        const data = JSON.parse(input);
+        if (!Array.isArray(data) || data.length === 0) { document.getElementById('csvJsonOutput').value = 'Error: Expected an array of JSON objects'; return; }
+        const headers = Object.keys(data[0]);
+        let csv = headers.join(',') + '\n';
+        data.forEach(row => { csv += headers.map(h => '"' + (row[h] !== undefined ? row[h] : '').toString().replace(/"/g, '""') + '"').join(',') + '\n'; });
+        document.getElementById('csvJsonOutput').value = csv;
+    } catch(e) { document.getElementById('csvJsonOutput').value = 'Processing Error: ' + e.message; }
+}
+function copyText(id) {
+    const el = document.getElementById(id);
+    navigator.clipboard.writeText(el.value).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        if (btn) { btn.textContent = 'Copied!'; setTimeout(() => { btn.textContent = 'Copy Output'; }, 1500); }
+    });
+}
+</script>
+</body>
+</html>

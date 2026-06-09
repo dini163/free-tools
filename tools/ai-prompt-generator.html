@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" data-title-key="t_ai_prompt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9267698062788796" crossorigin="anonymous"></script>
+    <title>AI Prompt Generator - Free Online Tool</title>
+    <meta name="description" content="Generate optimized AI prompts for ChatGPT, Claude, and LLMs. Select persona templates and customize tone.">
+    <meta name="keywords" content="ai prompt generator, chatgpt prompt, claude prompt, llm prompt optimizer, ai persona">
+    <link rel="canonical" href="https://dini163.github.io/free-tools/tools/ai-prompt-generator.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/theme.js"></script>
+    <script src="../js/i18n.js"></script>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <a href="../index.html" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+            <span data-i18n="logo">FreeDevTools</span>
+        </a>
+        <nav class="nav-links">
+            <a href="../index.html" data-i18n="all_tools">All Tools</a>
+            <div class="lang-switcher">
+                <button class="lang-btn" id="langToggleBtn" onclick="toggleLangMenu(event)" aria-label="Select language">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <button class="lang-menu-item" onclick="changeLanguage('en')">English</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('fr')">Français</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('es')">Español</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('pt')">Português</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ru')">Русский</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-CN')">简体中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-TW')">繁體中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ja')">日本語</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ko')">한국어</button>
+                </div>
+            </div>
+            <div class="theme-switcher">
+                <button class="theme-btn" id="themeToggleBtn" onclick="toggleThemeMenu(event)" aria-label="Toggle theme">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </button>
+                <div class="theme-menu" id="themeMenu">
+                    <button class="theme-menu-item" onclick="setTheme('light')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg> Light</button>
+                    <button class="theme-menu-item" onclick="setTheme('dark')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg> Dark</button>
+                    <button class="theme-menu-item" onclick="setTheme('auto')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg> System</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main style="max-width: 900px; margin-top: 2rem;">
+    <h1 class="tool-title" data-i18n="t_ai_prompt">AI Prompt Generator</h1>
+    <p class="tool-desc" data-i18n="d_ai_prompt">Optimize instructions and custom personas for ChatGPT, Claude, and LLMs.</p>
+
+    <p style="color:var(--text-secondary);margin-bottom:1rem;font-size:0.875rem;" data-i18n="d_ai_prompt">Select a blueprint template role to format optimized prompts:</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));gap:1rem;margin-bottom:1.5rem;">
+        <div style="padding:1rem;border:1px solid var(--border);border-radius:var(--radius);cursor:pointer;transition:var(--transition);background:var(--bg-card);" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="if(!this.classList.contains('active'))this.style.borderColor='var(--border)'" onclick="selectTemplate(this,'coding')" id="tpl-coding">
+            <h4 style="margin-bottom:0.25rem;">💻 Developer Assistant</h4>
+            <p style="font-size:0.8rem;color:var(--text-muted);">Code, refactor, and write test suites</p>
+        </div>
+        <div style="padding:1rem;border:1px solid var(--border);border-radius:var(--radius);cursor:pointer;transition:var(--transition);background:var(--bg-card);" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="if(!this.classList.contains('active'))this.style.borderColor='var(--border)'" onclick="selectTemplate(this,'writing')" id="tpl-writing">
+            <h4 style="margin-bottom:0.25rem;">✍️ Copywriter & Editor</h4>
+            <p style="font-size:0.8rem;color:var(--text-muted);">Articles, blog posts, sales copy</p>
+        </div>
+        <div style="padding:1rem;border:1px solid var(--border);border-radius:var(--radius);cursor:pointer;transition:var(--transition);background:var(--bg-card);" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="if(!this.classList.contains('active'))this.style.borderColor='var(--border)'" onclick="selectTemplate(this,'analysis')" id="tpl-analysis">
+            <h4 style="margin-bottom:0.25rem;">📈 Business Analyst</h4>
+            <p style="font-size:0.8rem;color:var(--text-muted);">Generate charts and parse datasets</p>
+        </div>
+        <div style="padding:1rem;border:1px solid var(--border);border-radius:var(--radius);cursor:pointer;transition:var(--transition);background:var(--bg-card);" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="if(!this.classList.contains('active'))this.style.borderColor='var(--border)'" onclick="selectTemplate(this,'teacher')" id="tpl-teacher">
+            <h4 style="margin-bottom:0.25rem;">🎓 Educational Mentor</h4>
+            <p style="font-size:0.8rem;color:var(--text-muted);">Simplify complex scientific concepts</p>
+        </div>
+    </div>
+
+    <div class="tool-row" style="margin-bottom:1rem;">
+        <div class="tool-col" style="flex: 2;">
+            <label class="tool-label">Topic Description / Task Goal</label>
+            <input type="text" class="tool-input" id="promptTopic" placeholder="e.g. Write a clean Python web scraper" oninput="generatePrompt()">
+        </div>
+        <div class="tool-col">
+            <label class="tool-label">Persona Tone</label>
+            <select class="tool-select" id="promptTone" onchange="generatePrompt()">
+                <option value="highly professional & precise">Professional & Precise</option>
+                <option value="casual & encouraging">Casual & Muted</option>
+                <option value="strictly academic & structural">Academic & Heavy</option>
+                <option value="engaging, creative & humorous">Creative & Dynamic</option>
+            </select>
+        </div>
+    </div>
+
+    <label class="tool-label" style="margin-top:1rem;">Optimized System Prompt</label>
+    <div class="result-container">
+        <div class="tool-output" id="promptOutput" style="min-height:140px; white-space:pre-wrap;">Select a blueprint role template and supply a description to generate...</div>
+        <button class="btn btn-secondary copy-btn" onclick="copyText('promptOutput')">Copy Prompt</button>
+    </div>
+</main>
+
+<footer class="footer">
+    <p>&copy; 2026 FreeDevTools. All tools run 100% locally in your web browser — absolutely no data is transmitted to any server.</p>
+</footer>
+
+<script>
+const PROMPTS = {
+    coding: (t, tone) => `Act as a senior software architect with 15+ years of programming experience. Your task: ${t || '[describe your task]'}. Please supply clean, fully annotated code that strictly complies with idiomatic software standards. Integrate complete error-handling blocks, outline potential edge cases, and elaborate on your algorithmic decisions. Tone requirements: ${tone}.`,
+    writing: (t, tone) => `Act as an elite copywriter and content strategist. Your task: compose a compelling, SEO-oriented article about ${t || '[describe your topic]'}. Structure the output with striking headers, write an engaging hook, offer deep analysis, and wrap up with an actionable conclusion. Tone: ${tone}. Target audience: active professionals.`,
+    analysis: (t, tone) => `Act as an expert business intelligence and data analyst. Examine the following dataset details: ${t || '[describe your target analysis]'}. Detail key trends, highlight outliers, extract actionable commercial recommendations, and suggest visual chart concepts. Tone: ${tone}.`,
+    teacher: (t, tone) => `Act as an expert instructor who specializes in explaining complex technical topics to beginners. Break down: ${t || '[describe the topic]'}. Use simple, relatable analogies, draft real-world examples, and structure the lesson incrementally starting from absolute basics. Tone: ${tone}.`
+};
+let currentType = 'coding';
+
+function selectTemplate(el, type) {
+    document.querySelectorAll('#tpl-coding,#tpl-writing,#tpl-analysis,#tpl-teacher').forEach(e => { e.classList.remove('active'); e.style.borderColor = ''; });
+    el.classList.add('active');
+    el.style.borderColor = 'var(--accent)';
+    currentType = type;
+    generatePrompt();
+}
+function generatePrompt() {
+    const topic = document.getElementById('promptTopic').value;
+    const tone = document.getElementById('promptTone').value;
+    document.getElementById('promptOutput').textContent = PROMPTS[currentType](topic, tone);
+}
+function copyText(id) {
+    const el = document.getElementById(id);
+    navigator.clipboard.writeText(el.textContent).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        if (btn) { btn.textContent = 'Copied!'; setTimeout(() => { btn.textContent = 'Copy Prompt'; }, 1500); }
+    });
+}
+// Select first template by default
+window.addEventListener('DOMContentLoaded', () => { selectTemplate(document.getElementById('tpl-coding'), 'coding'); });
+</script>
+</body>
+</html>

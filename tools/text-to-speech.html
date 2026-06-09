@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" data-title-key="t_tts">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9267698062788796" crossorigin="anonymous"></script>
+    <title>Text to Speech Reader - Free Online Tool</title>
+    <meta name="description" content="Listen to text read aloud natively using configurable browser vocal synthesizers. Free TTS tool.">
+    <meta name="keywords" content="text to speech, tts, text reader, speech synthesis, browser tts">
+    <link rel="canonical" href="https://dini163.github.io/free-tools/tools/text-to-speech.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/theme.js"></script>
+    <script src="../js/i18n.js"></script>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <a href="../index.html" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+            <span data-i18n="logo">FreeDevTools</span>
+        </a>
+        <nav class="nav-links">
+            <a href="../index.html" data-i18n="all_tools">All Tools</a>
+            <div class="lang-switcher">
+                <button class="lang-btn" id="langToggleBtn" onclick="toggleLangMenu(event)" aria-label="Select language">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <button class="lang-menu-item" onclick="changeLanguage('en')">English</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('fr')">Français</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('es')">Español</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('pt')">Português</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ru')">Русский</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-CN')">简体中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-TW')">繁體中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ja')">日本語</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ko')">한국어</button>
+                </div>
+            </div>
+            <div class="theme-switcher">
+                <button class="theme-btn" id="themeToggleBtn" onclick="toggleThemeMenu(event)" aria-label="Toggle theme">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </button>
+                <div class="theme-menu" id="themeMenu">
+                    <button class="theme-menu-item" onclick="setTheme('light')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg> Light</button>
+                    <button class="theme-menu-item" onclick="setTheme('dark')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg> Dark</button>
+                    <button class="theme-menu-item" onclick="setTheme('auto')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg> System</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main style="max-width: 900px; margin-top: 2rem;">
+    <h1 class="tool-title" data-i18n="t_tts">Text to Speech Reader</h1>
+    <p class="tool-desc" data-i18n="d_tts">Listen to text read aloud natively using configurable browser vocal synthesizers.</p>
+
+    <label class="tool-label">Enter Text to Read</label>
+    <textarea class="tool-textarea" id="ttsInput" placeholder="Paste article text, paragraphs, or any string to vocalize..." style="min-height:140px;"></textarea>
+
+    <div class="tool-row" style="margin: 1.25rem 0;">
+        <div class="tool-col">
+            <label class="tool-label">Voice Select</label>
+            <select class="tool-select" id="ttsVoice" onchange="updateTtsSettings()"></select>
+        </div>
+        <div class="tool-col">
+            <label class="tool-label">Speech Rate: <span id="ttsRateVal">1.0</span></label>
+            <input type="range" min="0.5" max="2" step="0.1" value="1" class="tool-range" id="ttsRate" oninput="updateTtsSettings()">
+        </div>
+        <div class="tool-col">
+            <label class="tool-label">Pitch: <span id="ttsPitchVal">1.0</span></label>
+            <input type="range" min="0.5" max="2" step="0.1" value="1" class="tool-range" id="ttsPitch" oninput="updateTtsSettings()">
+        </div>
+    </div>
+
+    <div class="btn-group">
+        <button class="btn btn-primary" onclick="speakTts()" id="ttsSpeakBtn">🔊 Speak</button>
+        <button class="btn btn-secondary" onclick="pauseTts()" id="ttsPauseBtn">⏸ Pause</button>
+        <button class="btn btn-secondary" onclick="stopTts()">⏹ Stop</button>
+    </div>
+</main>
+
+<footer class="footer">
+    <p>&copy; 2026 FreeDevTools. All tools run 100% locally in your web browser — absolutely no data is transmitted to any server.</p>
+</footer>
+
+<script>
+let ttsVoices = [];
+function loadTtsVoices() {
+    ttsVoices = speechSynthesis.getVoices();
+    const sel = document.getElementById('ttsVoice');
+    sel.innerHTML = '';
+    ttsVoices.forEach((v, i) => {
+        const opt = document.createElement('option');
+        opt.value = i;
+        opt.textContent = v.name + ' (' + v.lang + ')';
+        sel.appendChild(opt);
+    });
+}
+speechSynthesis.onvoiceschanged = loadTtsVoices;
+loadTtsVoices();
+
+function speakTts() {
+    if (!document.getElementById('ttsInput').value.trim()) return;
+    stopTts();
+    const utter = new SpeechSynthesisUtterance(document.getElementById('ttsInput').value);
+    const idx = parseInt(document.getElementById('ttsVoice').value) || 0;
+    utter.voice = ttsVoices[idx];
+    utter.rate = parseFloat(document.getElementById('ttsRate').value);
+    utter.pitch = parseFloat(document.getElementById('ttsPitch').value);
+    speechSynthesis.speak(utter);
+    document.getElementById('ttsSpeakBtn').textContent = '🔊 Speaking...';
+    utter.onend = () => { document.getElementById('ttsSpeakBtn').textContent = '🔊 Speak'; };
+}
+function pauseTts() {
+    if (speechSynthesis.speaking && !speechSynthesis.paused) speechSynthesis.pause();
+    else if (speechSynthesis.paused) speechSynthesis.resume();
+}
+function stopTts() { speechSynthesis.cancel(); document.getElementById('ttsSpeakBtn').textContent = '🔊 Speak'; }
+function updateTtsSettings() {
+    document.getElementById('ttsRateVal').textContent = document.getElementById('ttsRate').value;
+    document.getElementById('ttsPitchVal').textContent = document.getElementById('ttsPitch').value;
+}
+</script>
+</body>
+</html>

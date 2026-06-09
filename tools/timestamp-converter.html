@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-title-key="t_timestamp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9267698062788796"
+     crossorigin="anonymous"></script>
+    <title>Timestamp Converter - Free Online Tool</title>
+    <meta name="description" content="Convert Unix Epoch timestamps to readable dates. Supports seconds and milliseconds.">
+    <meta name="keywords" content="timestamp converter, unix timestamp, epoch converter, date to timestamp">
+    <link rel="canonical" href="https://dini163.github.io/free-tools/tools/timestamp-converter.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/theme.js"></script>
+    <script src="../js/i18n.js"></script>
+    <script type="application/ld+json">
+    { "@context": "https://schema.org", "@type": "WebApplication", "name": "Timestamp Converter", "description": "Convert Unix timestamps to dates.", "applicationCategory": "UtilityApplication", "operatingSystem": "Any", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" } }
+    </script>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <a href="../index.html" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+            </div>
+            <span data-i18n="logo">FreeDevTools</span>
+        </a>
+        <nav class="nav-links">
+            <a href="../index.html" data-i18n="all_tools">All Tools</a>
+            <div class="lang-switcher">
+                <button class="lang-btn" id="langToggleBtn" onclick="toggleLangMenu(event)" aria-label="Select language">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                    </svg>
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <button class="lang-menu-item" onclick="changeLanguage('en')">English</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('fr')">Français</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('es')">Español</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('pt')">Português</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ru')">Русский</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-CN')">简体中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-TW')">繁體中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ja')">日本語</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ko')">한국어</button>
+                </div>
+            </div>
+            <div class="theme-switcher">
+                <button class="theme-btn" id="themeToggleBtn" onclick="toggleThemeMenu(event)" aria-label="Toggle theme">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <div class="theme-menu" id="themeMenu">
+                    <button class="theme-menu-item" onclick="setTheme('light')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                        Light
+                    </button>
+                    <button class="theme-menu-item" onclick="setTheme('dark')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                        Dark
+                    </button>
+                    <button class="theme-menu-item" onclick="setTheme('auto')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                        System
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main style="max-width: 900px; margin-top: 2rem;">
+    <h1 class="tool-title" data-i18n="t_timestamp">Timestamp Converter</h1>
+    <p class="tool-desc" data-i18n="d_timestamp">Translate Unix Epoch timestamps into human readable local and UTC dates.</p>
+
+    <div class="tool-row">
+        <div class="tool-col">
+            <label class="tool-label">Current Epoch Timestamp</label>
+            <input type="text" class="tool-input" id="currentTs" readonly>
+        </div>
+        <div class="tool-col">
+            <label class="tool-label">Input Timestamp (Seconds / Milliseconds)</label>
+            <input type="text" class="tool-input" id="tsInput" oninput="convertTimestamp()" placeholder="Enter timestamp...">
+        </div>
+    </div>
+    <label class="tool-label">Parsed Date Configurations</label>
+    <div class="stats-row" id="tsResult">
+        <div class="stat-box"><div class="stat-value" id="tsDate" style="font-size:0.95rem;">-</div><div class="stat-label">Local System Time</div></div>
+        <div class="stat-box"><div class="stat-value" id="tsUtc" style="font-size:0.95rem;">-</div><div class="stat-label">UTC Standard</div></div>
+        <div class="stat-box"><div class="stat-value" id="tsRel" style="font-size:0.95rem;">-</div><div class="stat-label">Relative Interval</div></div>
+    </div>
+</main>
+
+<footer class="footer">
+    <p>&copy; 2026 FreeDevTools. All tools run 100% locally in your web browser — absolutely no data is transmitted to any server.</p>
+</footer>
+
+<script>
+// Initialize current timestamp
+(function() {
+    document.getElementById('currentTs').value = Math.floor(Date.now() / 1000);
+    document.getElementById('tsInput').value = Math.floor(Date.now() / 1000);
+    convertTimestamp();
+})();
+
+function convertTimestamp() {
+    let tsVal = document.getElementById('tsInput').value.trim();
+    let ts = parseInt(tsVal);
+    if (!isNaN(ts) && ts > 0) {
+        const isMs = tsVal.length > 11;
+        const d = new Date(isMs ? ts : ts * 1000);
+        if (isNaN(d.getTime())) {
+            document.getElementById('tsDate').textContent = 'Invalid Date';
+            return;
+        }
+        document.getElementById('tsDate').textContent = d.toLocaleString();
+        document.getElementById('tsUtc').textContent = d.toUTCString();
+
+        const diff = Date.now() - d.getTime();
+        const diffSecs = Math.floor(diff / 1000);
+        const diffMins = Math.floor(diffSecs / 60);
+        const diffHours = Math.floor(diffMins / 60);
+        const diffDays = Math.floor(diffHours / 24);
+
+        let rel = '';
+        if (Math.abs(diffSecs) < 10) rel = 'Just now';
+        else if (diffSecs > 0) {
+            if (diffDays > 0) rel = diffDays + ' days ago';
+            else if (diffHours > 0) rel = diffHours + ' hr ago';
+            else if (diffMins > 0) rel = diffMins + ' min ago';
+            else rel = diffSecs + ' sec ago';
+        } else {
+            const absMins = Math.abs(diffMins);
+            const absHours = Math.abs(diffHours);
+            const absDays = Math.abs(diffDays);
+            if (absDays > 0) rel = 'In ' + absDays + ' days';
+            else if (absHours > 0) rel = 'In ' + absHours + ' hours';
+            else if (absMins > 0) rel = 'In ' + absMins + ' minutes';
+            else rel = 'In ' + Math.abs(diffSecs) + ' seconds';
+        }
+        document.getElementById('tsRel').textContent = rel;
+    } else {
+        document.getElementById('tsDate').textContent = 'Please enter a number';
+    }
+}
+</script>
+</body>
+</html>

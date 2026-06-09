@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" data-title-key="t_px_rem">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9267698062788796" crossorigin="anonymous"></script>
+    <title>PX ⇄ REM Converter - Free Online Tool</title>
+    <meta name="description" content="Calculate CSS unit conversions dynamically based on standard 16px roots. Free PX to REM tool.">
+    <meta name="keywords" content="px to rem, rem to px, css unit converter, px rem calculator">
+    <link rel="canonical" href="https://dini163.github.io/free-tools/tools/px-rem-converter.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/theme.js"></script>
+    <script src="../js/i18n.js"></script>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <a href="../index.html" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+            <span data-i18n="logo">FreeDevTools</span>
+        </a>
+        <nav class="nav-links">
+            <a href="../index.html" data-i18n="all_tools">All Tools</a>
+            <div class="lang-switcher">
+                <button class="lang-btn" id="langToggleBtn" onclick="toggleLangMenu(event)" aria-label="Select language">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <button class="lang-menu-item" onclick="changeLanguage('en')">English</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('fr')">Français</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('es')">Español</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('pt')">Português</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ru')">Русский</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-CN')">简体中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-TW')">繁體中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ja')">日本語</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ko')">한국어</button>
+                </div>
+            </div>
+            <div class="theme-switcher">
+                <button class="theme-btn" id="themeToggleBtn" onclick="toggleThemeMenu(event)" aria-label="Toggle theme">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </button>
+                <div class="theme-menu" id="themeMenu">
+                    <button class="theme-menu-item" onclick="setTheme('light')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg> Light</button>
+                    <button class="theme-menu-item" onclick="setTheme('dark')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg> Dark</button>
+                    <button class="theme-menu-item" onclick="setTheme('auto')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg> System</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main style="max-width: 900px; margin-top: 2rem;">
+    <h1 class="tool-title" data-i18n="t_px_rem">PX ⇄ REM Converter</h1>
+    <p class="tool-desc" data-i18n="d_px_rem">Calculate CSS unit conversions dynamically based on standard 16px roots.</p>
+
+    <div class="tool-row" style="margin-bottom:1.25rem; align-items: flex-end;">
+        <div class="tool-col">
+            <label class="tool-label">Root Font Size (px)</label>
+            <input type="number" class="tool-input" id="pxRemRoot" value="16" min="1" max="100" oninput="calcPxRem()">
+        </div>
+        <div class="tool-col" style="flex:0 0 auto;">
+            <button class="btn btn-primary" onclick="calcPxRem()" style="white-space: nowrap;">Calculate</button>
+        </div>
+    </div>
+
+    <div class="tool-row" style="margin-bottom:1.25rem;">
+        <div class="tool-col">
+            <label class="tool-label">PX → REM</label>
+            <input type="number" class="tool-input" id="pxInput" placeholder="e.g. 32" oninput="pxToRem()">
+            <div class="tool-output" id="pxToRemOut" style="margin-top:0.5rem; min-height:36px;">-</div>
+        </div>
+        <div class="tool-col">
+            <label class="tool-label">REM → PX</label>
+            <input type="number" class="tool-input" id="remInput" placeholder="e.g. 2" step="0.1" oninput="remToPx()">
+            <div class="tool-output" id="remToPxOut" style="margin-top:0.5rem; min-height:36px;">-</div>
+        </div>
+    </div>
+
+    <div style="margin-top:1.5rem; padding:1.25rem; background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius);">
+        <h3 style="font-size:0.95rem; margin-bottom:0.75rem; color:var(--text-primary);">Quick Reference (Root = <span id="refRoot">16</span>px)</h3>
+        <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap:0.5rem; font-size:0.8rem; color:var(--text-secondary); font-family:var(--font-mono);" id="pxRemTable"></div>
+    </div>
+</main>
+
+<footer class="footer">
+    <p>&copy; 2026 FreeDevTools. All tools run 100% locally in your web browser — absolutely no data is transmitted to any server.</p>
+</footer>
+
+<script>
+function calcPxRem() {
+    const root = parseInt(document.getElementById('pxRemRoot').value) || 16;
+    document.getElementById('refRoot').textContent = root;
+    pxToRem(); remToPx();
+    buildTable(root);
+}
+function pxToRem() {
+    const root = parseInt(document.getElementById('pxRemRoot').value) || 16;
+    const px = parseFloat(document.getElementById('pxInput').value);
+    document.getElementById('pxToRemOut').textContent = isNaN(px) ? '-' : (px / root).toFixed(4) + 'rem';
+}
+function remToPx() {
+    const root = parseInt(document.getElementById('pxRemRoot').value) || 16;
+    const rem = parseFloat(document.getElementById('remInput').value);
+    document.getElementById('remToPxOut').textContent = isNaN(rem) ? '-' : Math.round(rem * root) + 'px';
+}
+function buildTable(root) {
+    const sizes = [0,1,2,4,8,12,16,20,24,32,40,48,64];
+    const container = document.getElementById('pxRemTable');
+    let html = '<div style="font-weight:600;color:var(--text-primary);">PX</div><div style="font-weight:600;color:var(--text-primary);">REM</div>';
+    sizes.forEach(s => {
+        html += '<div>' + s + 'px</div><div>' + (s / root).toFixed(4) + 'rem</div>';
+    });
+    container.innerHTML = html;
+}
+calcPxRem();
+</script>
+</body>
+</html>

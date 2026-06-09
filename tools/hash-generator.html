@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-title-key="t_hash">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9267698062788796" crossorigin="anonymous"></script>
+    <title>Hash Generator - Free Online Tool</title>
+    <meta name="description" content="Generate secure MD5, SHA-1, and SHA-256 cryptographic hashes for text. Free online hash tool.">
+    <meta name="keywords" content="hash generator, sha256 hash, md5 hash, sha1 hash, text hash online">
+    <link rel="canonical" href="https://dini163.github.io/free-tools/tools/hash-generator.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/theme.js"></script>
+    <script src="../js/i18n.js"></script>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <a href="../index.html" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+            <span data-i18n="logo">FreeDevTools</span>
+        </a>
+        <nav class="nav-links">
+            <a href="../index.html" data-i18n="all_tools">All Tools</a>
+            <div class="lang-switcher">
+                <button class="lang-btn" id="langToggleBtn" onclick="toggleLangMenu(event)" aria-label="Select language">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <button class="lang-menu-item" onclick="changeLanguage('en')">English</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('fr')">Français</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('es')">Español</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('pt')">Português</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ru')">Русский</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-CN')">简体中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-TW')">繁體中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ja')">日本語</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ko')">한국어</button>
+                </div>
+            </div>
+            <div class="theme-switcher">
+                <button class="theme-btn" id="themeToggleBtn" onclick="toggleThemeMenu(event)" aria-label="Toggle theme">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </button>
+                <div class="theme-menu" id="themeMenu">
+                    <button class="theme-menu-item" onclick="setTheme('light')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg> Light</button>
+                    <button class="theme-menu-item" onclick="setTheme('dark')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg> Dark</button>
+                    <button class="theme-menu-item" onclick="setTheme('auto')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg> System</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main style="max-width: 900px; margin-top: 2rem;">
+    <h1 class="tool-title" data-i18n="t_hash">Hash Generator</h1>
+    <p class="tool-desc" data-i18n="d_hash">Generate secure MD5, SHA-1, and SHA-256 cryptographic hashes for text.</p>
+
+    <label class="tool-label">Input Text</label>
+    <textarea class="tool-textarea" id="hashInput" placeholder="Enter plain text to generate cryptographic hashes..." oninput="generateHashes()" style="min-height:100px;"></textarea>
+
+    <label class="tool-label">SHA-256 Hash</label>
+    <div class="result-container" style="margin-bottom:1rem;">
+        <div class="tool-output" id="sha256" style="min-height:40px;margin-bottom:0;word-break:break-all;">-</div>
+        <button class="btn btn-secondary copy-btn" onclick="copyText('sha256')">Copy</button>
+    </div>
+
+    <label class="tool-label">SHA-1 Hash</label>
+    <div class="result-container" style="margin-bottom:1rem;">
+        <div class="tool-output" id="sha1" style="min-height:40px;margin-bottom:0;word-break:break-all;">-</div>
+        <button class="btn btn-secondary copy-btn" onclick="copyText('sha1')">Copy</button>
+    </div>
+
+    <label class="tool-label">MD5 Hash (Legacy)</label>
+    <div class="result-container">
+        <div class="tool-output" id="md5" style="min-height:40px;margin-bottom:0;word-break:break-all;">-</div>
+        <button class="btn btn-secondary copy-btn" onclick="copyText('md5')">Copy</button>
+    </div>
+</main>
+
+<footer class="footer">
+    <p>&copy; 2026 FreeDevTools. All tools run 100% locally in your web browser — absolutely no data is transmitted to any server.</p>
+</footer>
+
+<script>
+async function generateHashes() {
+    const t = document.getElementById('hashInput').value;
+    if (!t) {
+        document.getElementById('sha256').textContent = '-';
+        document.getElementById('sha1').textContent = '-';
+        document.getElementById('md5').textContent = '-';
+        return;
+    }
+    const buf = new TextEncoder().encode(t);
+    try {
+        const sha256Buf = await crypto.subtle.digest('SHA-256', buf);
+        document.getElementById('sha256').textContent = Array.from(new Uint8Array(sha256Buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+    } catch(e) { document.getElementById('sha256').textContent = 'Error'; }
+    try {
+        const sha1Buf = await crypto.subtle.digest('SHA-1', buf);
+        document.getElementById('sha1').textContent = Array.from(new Uint8Array(sha1Buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+    } catch(e) { document.getElementById('sha1').textContent = 'Error'; }
+    document.getElementById('md5').textContent = md5Polyfill(t);
+}
+
+function md5Polyfill(str) {
+    function rotl(q, r) { return (q << r) | (q >>> (32 - r)); }
+    let h0 = 0x67452301, h1 = 0xEFCDAB89, h2 = 0x98BADCFE, h3 = 0x10325476;
+    const bytes = new TextEncoder().encode(str);
+    const len = bytes.length;
+    const bits = len << 3;
+    const padLen = (len % 64 < 56) ? (56 - len % 64) : (120 - len % 64);
+    const padded = new Uint8Array(len + padLen + 8);
+    padded.set(bytes);
+    padded[len] = 0x80;
+    padded[padded.length - 8] = (bits >>> 0) & 0xFF;
+    padded[padded.length - 7] = (bits >>> 8) & 0xFF;
+    padded[padded.length - 6] = (bits >>> 16) & 0xFF;
+    padded[padded.length - 5] = (bits >>> 24) & 0xFF;
+    for (let i = 0; i < padded.length; i += 64) {
+        let a = h0, b = h1, c = h2, d = h3;
+        for (let j = 0; j < 64; j++) {
+            let f, g;
+            if (j < 16) { f = (b & c) | ((~b) & d); g = j; }
+            else if (j < 32) { f = (d & b) | ((~d) & c); g = (5 * j + 1) % 16; }
+            else if (j < 48) { f = b ^ c ^ d; g = (3 * j + 5) % 16; }
+            else { f = c ^ (b | (~d)); g = (7 * j) % 16; }
+            f = (f + a + (function() {
+                const k = [0xd76aa478,0xe8c7b756,0x242070db,0xc1bdceee,0xf57c0faf,0x4787c62a,0xa8304613,0xfd469501,0x698098d8,0x8b44f7af,0xffff5bb1,0x895cd7be,0x6b901122,0xfd987193,0xa679438e,0x49b40821,0xf61e2562,0xc040b340,0x265e5a51,0xe9b6c7aa,0xd62f105d,0x02441453,0xd8a1e681,0xe7d3fbc8,0x21e1cde6,0xc33707d6,0xf4d50d87,0x455a14ed,0xa9e3e905,0xfcefa3f8,0x676f02d9,0x8d2a4c8a];
+                return k[j];
+            })() + (padded[i + g * 4] | (padded[i + g * 4 + 1] << 8) | (padded[i + g * 4 + 2] << 16) | (padded[i + g * 4 + 3] << 24)) & 0xFFFFFFFF;
+            a = d; d = c; c = b; b = (b + f) & 0xFFFFFFFF;
+        }
+        h0 = (h0 + a) & 0xFFFFFFFF; h1 = (h1 + b) & 0xFFFFFFFF; h2 = (h2 + c) & 0xFFFFFFFF; h3 = (h3 + d) & 0xFFFFFFFF;
+    }
+    return [h0,h1,h2,h3].map(h => (h >>> 0).toString(16).padStart(8,'0')).join('');
+}
+
+function copyText(id) {
+    const el = document.getElementById(id);
+    navigator.clipboard.writeText(el.textContent).then(() => {
+        const btns = document.querySelectorAll('.copy-btn');
+        btns.forEach(btn => {
+            const prev = btn.textContent;
+            btn.textContent = 'Copied!';
+            btn.style.color = 'var(--success)';
+            btn.style.borderColor = 'var(--success)';
+            setTimeout(() => { btn.textContent = prev; btn.style.color = ''; btn.style.borderColor = ''; }, 1500);
+        });
+    });
+}
+</script>
+</body>
+</html>

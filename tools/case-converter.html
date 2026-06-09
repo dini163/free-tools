@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" data-title-key="t_case">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9267698062788796" crossorigin="anonymous"></script>
+    <title>Case Converter - Free Online Tool</title>
+    <meta name="description" content="Convert text between UPPERCASE, lowercase, Title Case, camelCase, snake_case, and kebab-case online.">
+    <meta name="keywords" content="case converter, uppercase converter, lowercase converter, camelcase converter, snake case, kebab case">
+    <link rel="canonical" href="https://dini163.github.io/free-tools/tools/case-converter.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/theme.js"></script>
+    <script src="../js/i18n.js"></script>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <a href="../index.html" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+            <span data-i18n="logo">FreeDevTools</span>
+        </a>
+        <nav class="nav-links">
+            <a href="../index.html" data-i18n="all_tools">All Tools</a>
+            <div class="lang-switcher">
+                <button class="lang-btn" id="langToggleBtn" onclick="toggleLangMenu(event)" aria-label="Select language">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <button class="lang-menu-item" onclick="changeLanguage('en')">English</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('fr')">Français</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('es')">Español</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('pt')">Português</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ru')">Русский</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-CN')">简体中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-TW')">繁體中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ja')">日本語</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ko')">한국어</button>
+                </div>
+            </div>
+            <div class="theme-switcher">
+                <button class="theme-btn" id="themeToggleBtn" onclick="toggleThemeMenu(event)" aria-label="Toggle theme">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </button>
+                <div class="theme-menu" id="themeMenu">
+                    <button class="theme-menu-item" onclick="setTheme('light')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg> Light</button>
+                    <button class="theme-menu-item" onclick="setTheme('dark')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg> Dark</button>
+                    <button class="theme-menu-item" onclick="setTheme('auto')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg> System</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main style="max-width: 900px; margin-top: 2rem;">
+    <h1 class="tool-title" data-i18n="t_case">Case Converter</h1>
+    <p class="tool-desc" data-i18n="d_case">Convert text values to UPPER, lower, Title Case, camel, snake, or kebab formats.</p>
+
+    <label class="tool-label">Enter Source Text</label>
+    <textarea class="tool-textarea" id="caseInput" placeholder="Paste standard strings here..." style="min-height:120px;"></textarea>
+    <div class="btn-group">
+        <button class="btn btn-secondary" onclick="changeCase('upper')">UPPERCASE</button>
+        <button class="btn btn-secondary" onclick="changeCase('lower')">lowercase</button>
+        <button class="btn btn-secondary" onclick="changeCase('title')">Title Case</button>
+        <button class="btn btn-secondary" onclick="changeCase('sentence')">Sentence case</button>
+        <button class="btn btn-secondary" onclick="changeCase('camel')">camelCase</button>
+        <button class="btn btn-secondary" onclick="changeCase('snake')">snake_case</button>
+        <button class="btn btn-secondary" onclick="changeCase('kebab')">kebab-case</button>
+        <button class="btn btn-secondary copy-btn" onclick="copyText('caseOutput')" data-i18n="btn_copy">Copy Output</button>
+    </div>
+    <label class="tool-label">Formatted Text Output</label>
+    <div class="result-container">
+        <div class="tool-output" id="caseOutput" style="min-height:80px;">Output will appear here...</div>
+    </div>
+</main>
+
+<footer class="footer">
+    <p>&copy; 2026 FreeDevTools. All tools run 100% locally in your web browser — absolutely no data is transmitted to any server.</p>
+</footer>
+
+<script>
+function changeCase(type) {
+    let t = document.getElementById('caseInput').value;
+    switch(type) {
+        case 'upper': t = t.toUpperCase(); break;
+        case 'lower': t = t.toLowerCase(); break;
+        case 'title': t = t.replace(/\w\S*/g, w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()); break;
+        case 'sentence': t = t.toLowerCase().replace(/(^\s*\w|[.!?]\s+\w)/g, c => c.toUpperCase()); break;
+        case 'camel': t = t.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (_, c) => c.toUpperCase()); break;
+        case 'snake': t = t.toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, ''); break;
+        case 'kebab': t = t.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''); break;
+    }
+    document.getElementById('caseOutput').textContent = t;
+}
+function copyText(id) {
+    const el = document.getElementById(id);
+    navigator.clipboard.writeText(el.value || el.textContent).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        if (btn) {
+            const prev = btn.textContent;
+            btn.textContent = 'Copied!';
+            btn.style.color = 'var(--success)';
+            btn.style.borderColor = 'var(--success)';
+            setTimeout(() => { btn.textContent = prev; btn.style.color = ''; btn.style.borderColor = ''; }, 1500);
+        }
+    });
+}
+</script>
+</body>
+</html>

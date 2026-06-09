@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" data-title-key="t_regex">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9267698062788796" crossorigin="anonymous"></script>
+    <title>Regex Tester - Free Online Tool</title>
+    <meta name="description" content="Test regular expression patterns with real-time text matching. Free online regex tester.">
+    <meta name="keywords" content="regex tester, regular expression tester, regex test online, pattern matching">
+    <link rel="canonical" href="https://dini163.github.io/free-tools/tools/regex-tester.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/theme.js"></script>
+    <script src="../js/i18n.js"></script>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <a href="../index.html" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+            <span data-i18n="logo">FreeDevTools</span>
+        </a>
+        <nav class="nav-links">
+            <a href="../index.html" data-i18n="all_tools">All Tools</a>
+            <div class="lang-switcher">
+                <button class="lang-btn" id="langToggleBtn" onclick="toggleLangMenu(event)" aria-label="Select language">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <button class="lang-menu-item" onclick="changeLanguage('en')">English</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('fr')">Français</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('es')">Español</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('pt')">Português</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ru')">Русский</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-CN')">简体中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-TW')">繁體中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ja')">日本語</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ko')">한국어</button>
+                </div>
+            </div>
+            <div class="theme-switcher">
+                <button class="theme-btn" id="themeToggleBtn" onclick="toggleThemeMenu(event)" aria-label="Toggle theme">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </button>
+                <div class="theme-menu" id="themeMenu">
+                    <button class="theme-menu-item" onclick="setTheme('light')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg> Light</button>
+                    <button class="theme-menu-item" onclick="setTheme('dark')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg> Dark</button>
+                    <button class="theme-menu-item" onclick="setTheme('auto')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg> System</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main style="max-width: 900px; margin-top: 2rem;">
+    <h1 class="tool-title" data-i18n="t_regex">Regex Tester</h1>
+    <p class="tool-desc" data-i18n="d_regex">Test standard regular expression patterns with real-time text matching.</p>
+
+    <div class="tool-row">
+        <div class="tool-col" style="flex: 2;">
+            <label class="tool-label">Regular Expression Pattern</label>
+            <input type="text" class="tool-input" id="regexPattern" placeholder="e.g. \b[A-Za-z]+\b" oninput="testRegex()">
+        </div>
+        <div class="tool-col">
+            <label class="tool-label">Regex Flags</label>
+            <input type="text" class="tool-input" id="regexFlags" value="gi" oninput="testRegex()">
+        </div>
+    </div>
+    <label class="tool-label">Test Subject Text</label>
+    <textarea class="tool-textarea" id="regexInput" placeholder="Enter paragraph text to evaluate matches..." oninput="testRegex()" style="min-height:120px;"></textarea>
+    <label class="tool-label">Matching Analytics</label>
+    <div class="tool-output" id="regexOutput" style="min-height:60px;white-space:pre-wrap;">Enter regular expression to begin matches...</div>
+</main>
+
+<footer class="footer">
+    <p>&copy; 2026 FreeDevTools. All tools run 100% locally in your web browser — absolutely no data is transmitted to any server.</p>
+</footer>
+
+<script>
+function testRegex() {
+    try {
+        const pattern = document.getElementById('regexPattern').value;
+        const flags = document.getElementById('regexFlags').value;
+        const text = document.getElementById('regexInput').value;
+        if (!pattern || !text) { document.getElementById('regexOutput').textContent = 'Awaiting values...'; return; }
+        const regex = new RegExp(pattern, flags);
+        const matches = [...text.matchAll(regex)];
+        if (matches.length) {
+            let html = '<span style="color:var(--success);font-weight:600;">Found ' + matches.length + ' matching entry(s):</span>\n';
+            matches.forEach((m, i) => { html += (i+1) + '. "' + escapeHtml(m[0]) + '" (index ' + m.index + ')\n'; });
+            document.getElementById('regexOutput').innerHTML = html;
+        } else {
+            document.getElementById('regexOutput').textContent = 'No matches resolved.';
+        }
+    } catch(e) { document.getElementById('regexOutput').innerHTML = '<span style="color:var(--error)">Regex Error: ' + escapeHtml(e.message) + '</span>'; }
+}
+function escapeHtml(s) {
+    const d = document.createElement('div'); d.textContent = s; return d.innerHTML;
+}
+</script>
+</body>
+</html>

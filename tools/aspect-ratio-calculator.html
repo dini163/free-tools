@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" data-title-key="t_aspect">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9267698062788796" crossorigin="anonymous"></script>
+    <title>Aspect Ratio Calculator - Free Online Tool</title>
+    <meta name="description" content="Calculate missing proportions based on responsive image and video presets. Free aspect ratio calculator.">
+    <meta name="keywords" content="aspect ratio calculator, image aspect ratio, video aspect ratio, 16:9 4:3">
+    <link rel="canonical" href="https://dini163.github.io/free-tools/tools/aspect-ratio-calculator.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/theme.js"></script>
+    <script src="../js/i18n.js"></script>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <a href="../index.html" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+            <span data-i18n="logo">FreeDevTools</span>
+        </a>
+        <nav class="nav-links">
+            <a href="../index.html" data-i18n="all_tools">All Tools</a>
+            <div class="lang-switcher">
+                <button class="lang-btn" id="langToggleBtn" onclick="toggleLangMenu(event)" aria-label="Select language">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <button class="lang-menu-item" onclick="changeLanguage('en')">English</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('fr')">Français</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('es')">Español</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('pt')">Português</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ru')">Русский</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-CN')">简体中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-TW')">繁體中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ja')">日本語</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ko')">한국어</button>
+                </div>
+            </div>
+            <div class="theme-switcher">
+                <button class="theme-btn" id="themeToggleBtn" onclick="toggleThemeMenu(event)" aria-label="Toggle theme">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </button>
+                <div class="theme-menu" id="themeMenu">
+                    <button class="theme-menu-item" onclick="setTheme('light')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg> Light</button>
+                    <button class="theme-menu-item" onclick="setTheme('dark')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg> Dark</button>
+                    <button class="theme-menu-item" onclick="setTheme('auto')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg> System</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main style="max-width: 900px; margin-top: 2rem;">
+    <h1 class="tool-title" data-i18n="t_aspect">Aspect Ratio Calculator</h1>
+    <p class="tool-desc" data-i18n="d_aspect">Calculate missing proportions based on responsive image and video presets.</p>
+
+    <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.75rem; margin-bottom: 1.25rem;">
+        <button class="btn btn-secondary" onclick="setPreset(16,9)" style="padding:0.75rem;">16:9</button>
+        <button class="btn btn-secondary" onclick="setPreset(4,3)" style="padding:0.75rem;">4:3</button>
+        <button class="btn btn-secondary" onclick="setPreset(1,1)" style="padding:0.75rem;">1:1</button>
+        <button class="btn btn-secondary" onclick="setPreset(9,16)" style="padding:0.75rem;">9:16</button>
+        <button class="btn btn-secondary" onclick="setPreset(21,9)" style="padding:0.75rem;">21:9</button>
+        <button class="btn btn-secondary" onclick="setPreset(3,2)" style="padding:0.75rem;">3:2</button>
+    </div>
+
+    <div class="tool-row" style="margin-bottom:1.25rem;">
+        <div class="tool-col">
+            <label class="tool-label">Width (W)</label>
+            <input type="number" class="tool-input" id="aspectW" placeholder="e.g. 1920" oninput="calcAspect()">
+        </div>
+        <div class="tool-col" style="display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:700;color:var(--text-muted);">:</div>
+        <div class="tool-col">
+            <label class="tool-label">Height (H)</label>
+            <input type="number" class="tool-input" id="aspectH" placeholder="e.g. 1080" oninput="calcAspect()">
+        </div>
+    </div>
+
+    <div class="tool-row" style="margin-bottom:1.25rem;">
+        <div class="tool-col">
+            <label class="tool-label">Aspect Ratio</label>
+            <div class="tool-output" id="aspectRatio" style="min-height:40px;display:flex;align-items:center;font-size:1.1rem;font-weight:600;">-</div>
+        </div>
+        <div class="tool-col">
+            <label class="tool-label">Decimal Ratio (W÷H)</label>
+            <div class="tool-output" id="aspectDecimal" style="min-height:40px;display:flex;align-items:center;font-size:1.1rem;font-weight:600;">-</div>
+        </div>
+    </div>
+
+    <div id="aspectPreview" style="width:100%;height:120px;border:2px dashed var(--border);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:0.85rem;margin-top:1rem;">Preview</div>
+</main>
+
+<footer class="footer">
+    <p>&copy; 2026 FreeDevTools. All tools run 100% locally in your web browser — absolutely no data is transmitted to any server.</p>
+</footer>
+
+<script>
+function setPreset(w, h) {
+    document.getElementById('aspectW').value = '';
+    document.getElementById('aspectH').value = '';
+    document.getElementById('aspectW').placeholder = w;
+    document.getElementById('aspectH').placeholder = h;
+    document.getElementById('aspectRatio').textContent = w + ' : ' + h;
+    const dec = (w / h).toFixed(4);
+    document.getElementById('aspectDecimal').textContent = dec;
+    updatePreview(w, h);
+}
+function calcAspect() {
+    const w = parseInt(document.getElementById('aspectW').value);
+    const h = parseInt(document.getElementById('aspectH').value);
+    if (!w || !h || h === 0) {
+        document.getElementById('aspectRatio').textContent = '-';
+        document.getElementById('aspectDecimal').textContent = '-';
+        return;
+    }
+    const gcd = (a, b) => b === 0 ? a : gcd(b, a % b);
+    const d = gcd(w, h);
+    document.getElementById('aspectRatio').textContent = (w/d) + ' : ' + (h/d);
+    document.getElementById('aspectDecimal').textContent = (w / h).toFixed(4);
+    updatePreview(w, h);
+}
+function updatePreview(w, h) {
+    const box = document.getElementById('aspectPreview');
+    const maxW = box.parentElement.offsetWidth - 32;
+    const scale = Math.min(maxW / w, 120 / h);
+    box.style.width = Math.round(w * scale) + 'px';
+    box.style.height = Math.round(h * scale) + 'px';
+    box.textContent = w + ' x ' + h;
+}
+// Init with 16:9
+setTimeout(() => setPreset(16, 9), 100);
+</script>
+</body>
+</html>

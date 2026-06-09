@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-title-key="t_file_b64">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9267698062788796" crossorigin="anonymous"></script>
+    <title>Base64 File Converter - Free Online Tool</title>
+    <meta name="description" content="Drag, drop, and encode binary files to Base64 strings or extract them back. Free online tool.">
+    <meta name="keywords" content="file to base64, base64 file encoder, file base64 decoder, drag drop base64">
+    <link rel="canonical" href="https://dini163.github.io/free-tools/tools/file-base64-converter.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/theme.js"></script>
+    <script src="../js/i18n.js"></script>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <a href="../index.html" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+            <span data-i18n="logo">FreeDevTools</span>
+        </a>
+        <nav class="nav-links">
+            <a href="../index.html" data-i18n="all_tools">All Tools</a>
+            <div class="lang-switcher">
+                <button class="lang-btn" id="langToggleBtn" onclick="toggleLangMenu(event)" aria-label="Select language">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <button class="lang-menu-item" onclick="changeLanguage('en')">English</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('fr')">Français</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('es')">Español</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('pt')">Português</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ru')">Русский</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-CN')">简体中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-TW')">繁體中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ja')">日本語</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ko')">한국어</button>
+                </div>
+            </div>
+            <div class="theme-switcher">
+                <button class="theme-btn" id="themeToggleBtn" onclick="toggleThemeMenu(event)" aria-label="Toggle theme">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </button>
+                <div class="theme-menu" id="themeMenu">
+                    <button class="theme-menu-item" onclick="setTheme('light')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg> Light</button>
+                    <button class="theme-menu-item" onclick="setTheme('dark')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg> Dark</button>
+                    <button class="theme-menu-item" onclick="setTheme('auto')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg> System</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main style="max-width: 900px; margin-top: 2rem;">
+    <h1 class="tool-title" data-i18n="t_b64_file">Base64 File Converter</h1>
+    <p class="tool-desc" data-i18n="d_b64_file">Drag, drop, and encode binary files to Base64 strings or extract them back.</p>
+
+    <div style="border:2.5px dashed var(--border);border-radius:var(--radius);padding:2.5rem 1rem;text-align:center;cursor:pointer;margin-bottom:1.25rem;transition:var(--transition);background:var(--bg-card);" onclick="document.getElementById('b64FileInput').click()" id="b64DropZone" ondragover="event.preventDefault();this.style.borderColor='var(--accent)';" ondragleave="this.style.borderColor='var(--border)';" ondrop="event.preventDefault();this.style.borderColor='var(--border)';handleB64File(event.dataTransfer.files[0]);">
+        <div style="font-size:2rem;color:var(--text-secondary);margin-bottom:0.5rem;">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"></path>
+            </svg>
+        </div>
+        <p style="font-weight:600;font-size:0.95rem;">Click or drop file here to encode</p>
+        <p style="font-size:0.75rem;color:var(--text-secondary);margin-top:0.25rem;">Supports all file types</p>
+        <input type="file" id="b64FileInput" style="display:none;" onchange="handleB64File(this.files[0])">
+    </div>
+
+    <div class="btn-group" style="margin-bottom:1.25rem;">
+        <button class="btn btn-secondary" onclick="decodeB64File()" id="b64DecodeBtn" disabled>Decode Base64 to File</button>
+        <button class="btn btn-secondary copy-btn" onclick="copyText('b64Output')" data-i18n="btn_copy">Copy Base64</button>
+    </div>
+
+    <label class="tool-label">Base64 Output</label>
+    <div class="result-container">
+        <textarea class="tool-textarea" id="b64Output" style="min-height:120px;" readonly>Awaiting file...</textarea>
+    </div>
+
+    <div id="b64FilePreview" style="margin-top:1rem;display:none;">
+        <label class="tool-label">Decoded File Preview</label>
+        <div style="display:flex;justify-content:center;padding:1rem;" id="b64PreviewArea"></div>
+        <a id="b64DownloadLink" style="display:inline-block;margin-top:0.5rem;color:var(--accent);" download>Download decoded file</a>
+    </div>
+</main>
+
+<footer class="footer">
+    <p>&copy; 2026 FreeDevTools. All tools run 100% locally in your web browser — absolutely no data is transmitted to any server.</p>
+</footer>
+
+<script>
+let b64FileName = '';
+function handleB64File(file) {
+    if (!file) return;
+    b64FileName = file.name;
+    const reader = new FileReader();
+    reader.onload = e => {
+        document.getElementById('b64Output').value = e.target.result;
+        document.getElementById('b64DecodeBtn').disabled = false;
+    };
+    reader.readAsDataURL(file);
+}
+function decodeB64File() {
+    const b64 = document.getElementById('b64Output').value;
+    if (!b64 || !b64.startsWith('data:')) return;
+    const parts = b64.match(/^data:(.*?);base64,(.*)$/);
+    if (!parts) return;
+    const mime = parts[1] || 'application/octet-stream';
+    const raw = atob(parts[2]);
+    const bytes = new Uint8Array(raw.length);
+    for (let i = 0; i < raw.length; i++) bytes[i] = raw.charCodeAt(i);
+    const blob = new Blob([bytes], { type: mime });
+    const url = URL.createObjectURL(blob);
+    document.getElementById('b64DownloadLink').href = url;
+    document.getElementById('b64DownloadLink').download = b64FileName || 'decoded-file';
+    document.getElementById('b64FilePreview').style.display = 'block';
+    if (mime.startsWith('image/')) {
+        document.getElementById('b64PreviewArea').innerHTML = '<img src="' + url + '" style="max-height:160px;border-radius:var(--radius);border:2px solid var(--border);">';
+    }
+}
+function copyText(id) {
+    const el = document.getElementById(id);
+    navigator.clipboard.writeText(el.value).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        if (btn) { btn.textContent = 'Copied!'; setTimeout(() => { btn.textContent = 'Copy Base64'; }, 1500); }
+    });
+}
+</script>
+</body>
+</html>
