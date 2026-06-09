@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9267698062788796" crossorigin="anonymous"></script>
+    <title>Ping Tool - Free Online Tool</title>
+    <meta name="description" content="Test network connectivity and response time to any website. Simulates ping using HTTP requests. Free online tool.">
+    <meta name="keywords" content="ping tool, network test, response time, website ping">
+    <link rel="canonical" href="https://dini163.github.io/free-tools/tools/ping-tool.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/theme.js"></script>
+    <script src="../js/i18n.js"></script>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <a href="../index.html" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+            <span data-i18n="logo">FreeDevTools</span>
+        </a>
+        <nav class="nav-links">
+            <a href="../index.html" data-i18n="all_tools">All Tools</a>
+            <div class="lang-switcher">
+                <button class="lang-btn" id="langToggleBtn" onclick="toggleLangMenu(event)" aria-label="Select language">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <button class="lang-menu-item" onclick="changeLanguage('en')">English</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('fr')">Français</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('es')">Español</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('pt')">Português</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ru')">Русский</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-CN')">简体中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-TW')">繁體中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ja')">日本語</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ko')">한국어</button>
+                </div>
+            </div>
+            <div class="theme-switcher">
+                <button class="theme-btn" id="themeToggleBtn" onclick="toggleThemeMenu(event)" aria-label="Toggle theme">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </button>
+                <div class="theme-menu" id="themeMenu">
+                    <button class="theme-menu-item" onclick="setTheme('light')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg> Light</button>
+                    <button class="theme-menu-item" onclick="setTheme('dark')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg> Dark</button>
+                    <button class="theme-menu-item" onclick="setTheme('auto')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg> System</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main style="max-width: 900px; margin-top: 2rem;">
+    <h1>Ping Tool</h1>
+    <p style="color:var(--text-secondary); margin-bottom:1.5rem;">Test network connectivity and response time to any website. Simulates ping using HTTP requests.</p>
+
+    <div style="display:flex; gap:1rem; margin-bottom:1.5rem; flex-wrap:wrap;">
+        <input type="text" class="tool-input" id="hostInput" placeholder="Enter host (e.g., example.com)" style="flex:1; min-width:250px;">
+        <input type="number" class="tool-input" id="pingCount" value="4" min="1" max="20" style="width:100px;" title="Number of pings">
+        <button class="btn btn-primary" id="pingBtn" onclick="startPing()">Ping</button>
+        <button class="btn btn-secondary" id="stopBtn" onclick="stopPing()" style="display:none;">Stop</button>
+    </div>
+
+    <div id="result" style="display:none;">
+        <h3 style="margin-bottom:1rem;">Ping Results</h3>
+        <div class="tool-result" id="pingResult" style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:1rem; font-family:monospace; white-space:pre-wrap; max-height:400px; overflow-y:auto;">
+        </div>
+        <div id="pingStats" style="margin-top:1rem; padding:1rem; background:var(--bg-main); border-radius:var(--radius); display:none;">
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:0.8rem;">
+                <div style="text-align:center;">
+                    <div style="font-size:1.5rem; font-weight:700; color:var(--primary);" id="minTime">-</div>
+                    <div style="font-size:0.85rem; color:var(--text-secondary);">Min</div>
+                </div>
+                <div style="text-align:center;">
+                    <div style="font-size:1.5rem; font-weight:700; color:var(--primary);" id="maxTime">-</div>
+                    <div style="font-size:0.85rem; color:var(--text-secondary);">Max</div>
+                </div>
+                <div style="text-align:center;">
+                    <div style="font-size:1.5rem; font-weight:700; color:var(--primary);" id="avgTime">-</div>
+                    <div style="font-size:0.85rem; color:var(--text-secondary);">Average</div>
+                </div>
+                <div style="text-align:center;">
+                    <div style="font-size:1.5rem; font-weight:700; color:var(--primary);" id="packetLoss">-</div>
+                    <div style="font-size:0.85rem; color:var(--text-secondary);">Packet Loss</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading" style="display:none; text-align:center; padding:2rem;">
+        <div class="spinner"></div>
+        <p style="margin-top:1rem; color:var(--text-secondary);">Pinging host...</p>
+    </div>
+
+    <div id="error" style="display:none; padding:1rem; background:rgba(239, 68, 68, 0.1); border:1px solid #ef4444; border-radius:var(--radius); margin-top:1rem;">
+    </div>
+
+    <div style="margin-top:2rem; padding:1rem; background:rgba(59, 130, 246, 0.1); border:1px solid #3b82f6; border-radius:var(--radius);">
+        <h4 style="margin-bottom:0.5rem;">ℹ️ Note</h4>
+        <p style="font-size:0.9rem; color:var(--text-secondary);">
+            This tool simulates ping by sending HTTP requests and measuring response time. It's not a real ICMP ping, but provides similar connectivity and latency information. 
+            For real ICMP ping, you need to use command line tools (ping command) or backend services.
+        </p>
+    </div>
+</main>
+
+<footer class="footer">
+    <p>&copy; 2026 FreeDevTools. This tool simulates ping using HTTP requests.</p>
+</footer>
+
+<script>
+let pingRunning = false;
+let pingResults = [];
+
+async function startPing() {
+    const host = document.getElementById('hostInput').value.trim();
+    const count = parseInt(document.getElementById('pingCount').value);
+    
+    if (!host) {
+        showError('Please enter a host name.');
+        return;
+    }
+
+    if (isNaN(count) || count < 1 || count > 20) {
+        showError('Ping count must be between 1 and 20.');
+        return;
+    }
+
+    // Reset
+    pingResults = [];
+    pingRunning = true;
+    
+    // Update UI
+    document.getElementById('result').style.display = 'none';
+    document.getElementById('error').style.display = 'none';
+    document.getElementById('loading').style.display = 'block';
+    document.getElementById('pingBtn').style.display = 'none';
+    document.getElementById('stopBtn').style.display = 'inline-block';
+    
+    // Clear previous results
+    document.getElementById('pingResult').textContent = '';
+    
+    // Start pinging
+    const url = host.startsWith('http') ? host : `https://${host}`;
+    let resultText = `Pinging ${host} with HTTP requests:\n\n`;
+
+    for (let i = 0; i < count && pingRunning; i++) {
+        const startTime = Date.now();
+        
+        try {
+            const response = await fetch(url, { 
+                method: 'HEAD',
+                mode: 'no-cors',
+                signal: AbortSignal.timeout(10000)
+            });
+            
+            const endTime = Date.now();
+            const responseTime = endTime - startTime;
+            
+            pingResults.push(responseTime);
+            resultText += `${i + 1}. Response from ${host}: time=${responseTime}ms\n`;
+            
+            // Update result in real-time
+            document.getElementById('pingResult').textContent = resultText;
+            
+        } catch (err) {
+            pingResults.push(null);
+            resultText += `${i + 1}. Request timed out or failed\n`;
+            document.getElementById('pingResult').textContent = resultText;
+        }
+
+        // Wait 1 second between pings (like real ping)
+        if (i < count - 1 && pingRunning) {
+            await new Promise(resolve => setTimeout(resolve, 1000));
+        }
+    }
+
+    // Show statistics
+    showStats();
+    
+    // Reset UI
+    pingRunning = false;
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('result').style.display = 'block';
+    document.getElementById('pingBtn').style.display = 'inline-block';
+    document.getElementById('stopBtn').style.display = 'none';
+}
+
+function stopPing() {
+    pingRunning = false;
+    document.getElementById('stopBtn').style.display = 'none';
+    document.getElementById('pingBtn').style.display = 'inline-block';
+    showStats();
+}
+
+function showStats() {
+    if (pingResults.length === 0) return;
+
+    const validResults = pingResults.filter(r => r !== null);
+    const min = Math.min(...validResults);
+    const max = Math.max(...validResults);
+    const avg = Math.round(validResults.reduce((a, b) => a + b, 0) / validResults.length);
+    const loss = Math.round(((pingResults.length - validResults.length) / pingResults.length) * 100);
+
+    document.getElementById('minTime').textContent = `${min}ms`;
+    document.getElementById('maxTime').textContent = `${max}ms`;
+    document.getElementById('avgTime').textContent = `${avg}ms`;
+    document.getElementById('packetLoss').textContent = `${loss}%`;
+    document.getElementById('pingStats').style.display = 'block';
+}
+
+function showError(message) {
+    const errorDiv = document.getElementById('error');
+    errorDiv.textContent = message;
+    errorDiv.style.display = 'block';
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('pingBtn').style.display = 'inline-block';
+    document.getElementById('stopBtn').style.display = 'none';
+}
+
+// Allow Enter key to trigger ping
+document.getElementById('hostInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        startPing();
+    }
+});
+</script>
+</body>
+</html>

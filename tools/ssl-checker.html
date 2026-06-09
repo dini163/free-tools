@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9267698062788796" crossorigin="anonymous"></script>
+    <title>SSL Checker - Free Online Tool</title>
+    <meta name="description" content="Check SSL certificate status for any website. Verify HTTPS support and certificate validity. Free online tool.">
+    <meta name="keywords" content="SSL checker, SSL certificate, HTTPS check, SSL validation">
+    <link rel="canonical" href="https://dini163.github.io/free-tools/tools/ssl-checker.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/theme.js"></script>
+    <script src="../js/i18n.js"></script>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <a href="../index.html" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+            <span data-i18n="logo">FreeDevTools</span>
+        </a>
+        <nav class="nav-links">
+            <a href="../index.html" data-i18n="all_tools">All Tools</a>
+            <div class="lang-switcher">
+                <button class="lang-btn" id="langToggleBtn" onclick="toggleLangMenu(event)" aria-label="Select language">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <button class="lang-menu-item" onclick="changeLanguage('en')">English</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('fr')">Français</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('es')">Español</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('pt')">Português</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ru')">Русский</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-CN')">简体中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-TW')">繁體中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ja')">日本語</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ko')">한국어</button>
+                </div>
+            </div>
+            <div class="theme-switcher">
+                <button class="theme-btn" id="themeToggleBtn" onclick="toggleThemeMenu(event)" aria-label="Toggle theme">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </button>
+                <div class="theme-menu" id="themeMenu">
+                    <button class="theme-menu-item" onclick="setTheme('light')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg> Light</button>
+                    <button class="theme-menu-item" onclick="setTheme('dark')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg> Dark</button>
+                    <button class="theme-menu-item" onclick="setTheme('auto')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg> System</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main style="max-width: 900px; margin-top: 2rem;">
+    <h1>SSL Checker</h1>
+    <p style="color:var(--text-secondary); margin-bottom:1.5rem;">Check SSL certificate status for any website. Verify HTTPS support and certificate validity.</p>
+
+    <div style="display:flex; gap:1rem; margin-bottom:1.5rem; flex-wrap:wrap;">
+        <input type="text" class="tool-input" id="domainInput" placeholder="Enter domain (e.g., example.com)" style="flex:1; min-width:250px;">
+        <button class="btn btn-primary" onclick="checkSSL()">Check SSL</button>
+    </div>
+
+    <div id="result" style="display:none;">
+        <h3 style="margin-bottom:1rem;">SSL Certificate Status</h3>
+        <div class="tool-result" id="sslResult" style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem;">
+            <div id="sslStatus" style="margin-bottom:1rem;"></div>
+            <div id="sslDetails"></div>
+        </div>
+    </div>
+
+    <div id="loading" style="display:none; text-align:center; padding:2rem;">
+        <div class="spinner"></div>
+        <p style="margin-top:1rem; color:var(--text-secondary);">Checking SSL certificate...</p>
+    </div>
+
+    <div id="error" style="display:none; padding:1rem; background:rgba(239, 68, 68, 0.1); border:1px solid #ef4444; border-radius:var(--radius); margin-top:1rem;">
+    </div>
+
+    <div style="margin-top:2rem; padding:1rem; background:rgba(59, 130, 246, 0.1); border:1px solid #3b82f6; border-radius:var(--radius);">
+        <h4 style="margin-bottom:0.5rem;">ℹ️ Note</h4>
+        <p style="font-size:0.9rem; color:var(--text-secondary);">
+            This tool checks if a website supports HTTPS by attempting to connect via SSL/TLS. For detailed SSL certificate information, we recommend using 
+            <a href="https://www.ssllabs.com/ssltest/" target="_blank" style="color:var(--primary);">SSL Labs SSL Test</a>.
+        </p>
+    </div>
+</main>
+
+<footer class="footer">
+    <p>&copy; 2026 FreeDevTools. This tool performs basic HTTPS connectivity checks.</p>
+</footer>
+
+<script>
+async function checkSSL() {
+    let domain = document.getElementById('domainInput').value.trim();
+    
+    if (!domain) {
+        showError('Please enter a domain name.');
+        return;
+    }
+
+    // Remove protocol if present
+    domain = domain.replace(/^https?:\/\//, '');
+    domain = domain.replace(/\/.*$/, '');
+
+    // Show loading
+    document.getElementById('result').style.display = 'none';
+    document.getElementById('error').style.display = 'none';
+    document.getElementById('loading').style.display = 'block';
+
+    try {
+        const startTime = Date.now();
+        
+        // Try to fetch the domain via HTTPS
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000);
+
+        try {
+            const response = await fetch(`https://${domain}`, { 
+                method: 'HEAD',
+                mode: 'no-cors',
+                signal: controller.signal
+            });
+            
+            clearTimeout(timeoutId);
+            const endTime = Date.now();
+            const responseTime = endTime - startTime;
+
+            // With no-cors mode, we can't read the response details
+            // But if the fetch doesn't throw, the site supports HTTPS
+            displayResult({
+                status: 'valid',
+                message: '✅ This website supports HTTPS',
+                details: {
+                    'Domain': domain,
+                    'HTTPS Support': 'Yes',
+                    'Response Time': `${responseTime}ms`,
+                    'Note': 'Basic connectivity check passed. For detailed certificate information, use SSL Labs.'
+                }
+            });
+
+        } catch (fetchError) {
+            clearTimeout(timeoutId);
+            
+            if (fetchError.name === 'AbortError') {
+                showError(`Connection to ${domain} timed out. The site may not support HTTPS or may be unavailable.`);
+            } else {
+                // Try HTTP to see if the site works at all
+                try {
+                    await fetch(`http://${domain}`, { method: 'HEAD', mode: 'no-cors' });
+                    displayResult({
+                        status: 'partial',
+                        message: '⚠️ This website does not support HTTPS (HTTP only)',
+                        details: {
+                            'Domain': domain,
+                            'HTTPS Support': 'No',
+                            'HTTP Support': 'Yes',
+                            'Recommendation': 'Enable HTTPS for better security'
+                        }
+                    });
+                } catch (httpError) {
+                    showError(`Unable to connect to ${domain}. The site may be offline or unavailable.`);
+                }
+            }
+        }
+    } catch (err) {
+        showError('Failed to check SSL: ' + err.message);
+    } finally {
+        document.getElementById('loading').style.display = 'none';
+    }
+}
+
+function displayResult(result) {
+    const statusDiv = document.getElementById('sslStatus');
+    const detailsDiv = document.getElementById('sslDetails');
+    
+    let statusColor = result.status === 'valid' ? '#10b981' : '#f59e0b';
+    
+    statusDiv.innerHTML = `
+        <div style="display:flex; align-items:center; gap:0.5rem; padding:1rem; background:${statusColor}20; border:1px solid ${statusColor}; border-radius:var(--radius);">
+            <div style="font-size:2rem;">${result.status === 'valid' ? '✅' : '⚠️'}</div>
+            <div>
+                <div style="font-weight:600; font-size:1.1rem;">${result.message}</div>
+            </div>
+        </div>
+    `;
+
+    let detailsHtml = '<div style="display:grid; gap:0.5rem;">';
+    for (const [key, value] of Object.entries(result.details)) {
+        detailsHtml += `
+            <div style="display:flex; justify-content:space-between; padding:0.5rem; border-bottom:1px solid var(--border);">
+                <strong>${key}:</strong>
+                <span>${value}</span>
+            </div>
+        `;
+    }
+    detailsHtml += '</div>';
+    
+    detailsDiv.innerHTML = detailsHtml;
+    document.getElementById('result').style.display = 'block';
+}
+
+function showError(message) {
+    const errorDiv = document.getElementById('error');
+    errorDiv.textContent = message;
+    errorDiv.style.display = 'block';
+}
+
+// Allow Enter key to trigger check
+document.getElementById('domainInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        checkSSL();
+    }
+});
+</script>
+</body>
+</html>

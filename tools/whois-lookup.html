@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9267698062788796" crossorigin="anonymous"></script>
+    <title>Whois Lookup - Free Online Tool</title>
+    <meta name="description" content="Query Whois information for any domain. Get registrar, registration date, expiration date and more. Free online tool.">
+    <meta name="keywords" content="whois lookup, domain whois, whois information, domain registration">
+    <link rel="canonical" href="https://dini163.github.io/free-tools/tools/whois-lookup.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/theme.js"></script>
+    <script src="../js/i18n.js"></script>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <a href="../index.html" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+            <span data-i18n="logo">FreeDevTools</span>
+        </a>
+        <nav class="nav-links">
+            <a href="../index.html" data-i18n="all_tools">All Tools</a>
+            <div class="lang-switcher">
+                <button class="lang-btn" id="langToggleBtn" onclick="toggleLangMenu(event)" aria-label="Select language">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </button>
+                <div class="lang-menu" id="langMenu">
+                    <button class="lang-menu-item" onclick="changeLanguage('en')">English</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('fr')">Français</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('es')">Español</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('pt')">Português</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ru')">Русский</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-CN')">简体中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('zh-TW')">繁體中文</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ja')">日本語</button>
+                    <button class="lang-menu-item" onclick="changeLanguage('ko')">한국어</button>
+                </div>
+            </div>
+            <div class="theme-switcher">
+                <button class="theme-btn" id="themeToggleBtn" onclick="toggleThemeMenu(event)" aria-label="Toggle theme">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </button>
+                <div class="theme-menu" id="themeMenu">
+                    <button class="theme-menu-item" onclick="setTheme('light')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg> Light</button>
+                    <button class="theme-menu-item" onclick="setTheme('dark')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg> Dark</button>
+                    <button class="theme-menu-item" onclick="setTheme('auto')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg> System</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main style="max-width: 900px; margin-top: 2rem;">
+    <h1>Whois Lookup</h1>
+    <p style="color:var(--text-secondary); margin-bottom:1.5rem;">Query Whois information for any domain. Get registrar, registration date, expiration date and more.</p>
+
+    <div style="display:flex; gap:1rem; margin-bottom:1.5rem; flex-wrap:wrap;">
+        <input type="text" class="tool-input" id="domainInput" placeholder="Enter domain (e.g., example.com)" style="flex:1; min-width:250px;">
+        <button class="btn btn-primary" onclick="lookupWhois()">Lookup</button>
+    </div>
+
+    <div id="result" style="display:none;">
+        <h3 style="margin-bottom:1rem;">Whois Information</h3>
+        <div class="tool-result" id="whoisResult" style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem;">
+        </div>
+    </div>
+
+    <div id="loading" style="display:none; text-align:center; padding:2rem;">
+        <div class="spinner"></div>
+        <p style="margin-top:1rem; color:var(--text-secondary);">Querying Whois information...</p>
+    </div>
+
+    <div id="error" style="display:none; padding:1rem; background:rgba(239, 68, 68, 0.1); border:1px solid #ef4444; border-radius:var(--radius); margin-top:1rem;">
+    </div>
+
+    <div style="margin-top:2rem; padding:1rem; background:rgba(59, 130, 246, 0.1); border:1px solid #3b82f6; border-radius:var(--radius);">
+        <h4 style="margin-bottom:0.5rem;">ℹ️ Note</h4>
+        <p style="font-size:0.9rem; color:var(--text-secondary);">
+            This tool attempts to retrieve Whois information using public APIs. Due to CORS restrictions, some API calls may fail. 
+            For complete Whois information, please visit 
+            <a href="https://whois.net/" target="_blank" style="color:var(--primary);">Whois.net</a> or 
+            <a href="https://www.whois.com/whois/" target="_blank" style="color:var(--primary);">Whois.com</a>.
+        </p>
+    </div>
+</main>
+
+<footer class="footer">
+    <p>&copy; 2026 FreeDevTools. This tool uses public Whois APIs when available.</p>
+</footer>
+
+<script>
+async function lookupWhois() {
+    let domain = document.getElementById('domainInput').value.trim();
+    
+    if (!domain) {
+        showError('Please enter a domain name.');
+        return;
+    }
+
+    // Remove protocol and path if present
+    domain = domain.replace(/^https?:\/\//, '');
+    domain = domain.replace(/\/.*$/, '');
+
+    // Show loading
+    document.getElementById('result').style.display = 'none';
+    document.getElementById('error').style.display = 'none';
+    document.getElementById('loading').style.display = 'block';
+
+    try {
+        let whoisData = null;
+        let apiSource = '';
+
+        // Try multiple Whois APIs
+        const apis = [
+            { name: 'WhoisJSON', url: `https://whois-v2.whoisjsonapi.com/v1/${domain}` },
+            { name: 'RDAP', url: `https://rdap.org/domain/${domain}` }
+        ];
+
+        for (const api of apis) {
+            try {
+                const response = await fetch(api.url, { 
+                    mode: 'cors',
+                    signal: AbortSignal.timeout(10000)
+                });
+                
+                if (response.ok) {
+                    whoisData = await response.json();
+                    apiSource = api.name;
+                    break;
+                }
+            } catch (err) {
+                console.log(`API ${api.name} failed:`, err.message);
+            }
+        }
+
+        if (whoisData) {
+            displayWhoisData(domain, whoisData, apiSource);
+        } else {
+            showDemoResult(domain);
+        }
+    } catch (err) {
+        showError('Failed to query Whois information: ' + err.message);
+    } finally {
+        document.getElementById('loading').style.display = 'none';
+    }
+}
+
+function displayWhoisData(domain, data, source) {
+    let html = `<div style="margin-bottom:1rem; padding:0.5rem; background:rgba(16, 185, 129, 0.1); border:1px solid #10b981; border-radius:var(--radius); font-size:0.9rem;">
+            Data source: ${source} API
+        </div>`;
+
+    html += '<div style="display:grid; gap:0.8rem;">';
+
+    // Extract common Whois fields (API responses vary)
+    const fields = {
+        'Domain Name': data.domain_name || data.ld || domain,
+        'Registrar': data.registrar || data.registration_service_provider || 'N/A',
+        'Registration Date': data.creation_date || data.created || 'N/A',
+        'Expiration Date': data.expiration_date || data.expires || 'N/A',
+        'Updated Date': data.updated_date || data.changed || 'N/A',
+        'Status': data.domain_status || data.status || 'N/A',
+        'Name Servers': data.name_servers ? (Array.isArray(data.name_servers) ? data.name_servers.join(', ') : data.name_servers) : 'N/A'
+    };
+
+    for (const [key, value] of Object.entries(fields)) {
+        if (value && value !== 'N/A') {
+            html += `
+                <div style="display:flex; justify-content:space-between; padding:0.8rem; background:var(--bg-main); border-radius:var(--radius);">
+                    <strong>${key}:</strong>
+                    <span style="text-align:right; max-width:60%;">${value}</span>
+                </div>
+            `;
+        }
+    }
+
+    html += '</div>';
+    html += `
+        <div style="margin-top:1rem; padding:1rem; background:rgba(59, 130, 246, 0.1); border-radius:var(--radius);">
+            <p style="font-size:0.9rem; color:var(--text-secondary);">
+                For more detailed Whois information, visit 
+                <a href="https://whois.net/domain_whois/${encodeURIComponent(domain)}" target="_blank" style="color:var(--primary);">Whois.net</a> 
+                or 
+                <a href="https://www.whois.com/whois/${encodeURIComponent(domain)}" target="_blank" style="color:var(--primary);">Whois.com</a>.
+            </p>
+        </div>
+    `;
+
+    document.getElementById('whoisResult').innerHTML = html;
+    document.getElementById('result').style.display = 'block';
+}
+
+function showDemoResult(domain) {
+    const currentYear = new Date().getFullYear();
+    const randomYear = currentYear - Math.floor(Math.random() * 15) - 1;
+    const randomMonth = String(Math.floor(Math.random() * 12) + 1).padStart(2, '0');
+    const randomDay = String(Math.floor(Math.random() * 28) + 1).padStart(2, '0');
+
+    document.getElementById('whoisResult').innerHTML = `
+        <div style="padding:1rem; background:rgba(245, 158, 11, 0.1); border:1px solid #f59e0b; border-radius:var(--radius); margin-bottom:1rem;">
+            <strong>⚠️ Demo Mode:</strong> Unable to fetch real Whois data due to CORS restrictions or API unavailability. This is simulated information.
+        </div>
+        <div style="display:grid; gap:0.8rem;">
+            <div style="display:flex; justify-content:space-between; padding:0.8rem; background:var(--bg-main); border-radius:var(--radius);">
+                <strong>Domain Name:</strong>
+                <span>${domain}</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; padding:0.8rem; background:var(--bg-main); border-radius:var(--radius);">
+                <strong>Estimated Registration:</strong>
+                <span>${randomYear}-${randomMonth}-${randomDay}</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; padding:0.8rem; background:var(--bg-main); border-radius:var(--radius);">
+                <strong>Estimated Expiration:</strong>
+                <span>${randomYear + 1}-${randomMonth}-${randomDay}</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; padding:0.8rem; background:var(--bg-main); border-radius:var(--radius);">
+                <strong>Estimated Registrar:</strong>
+                <span>Demo Registrar Inc.</span>
+            </div>
+        </div>
+        <div style="margin-top:1rem; padding:1rem; background:rgba(59, 130, 246, 0.1); border-radius:var(--radius);">
+            <p style="font-size:0.9rem; color:var(--text-secondary);">
+                To get actual Whois information, please visit 
+                <a href="https://whois.net/domain_whois/${encodeURIComponent(domain)}" target="_blank" style="color:var(--primary);">Whois.net</a> 
+                or use a backend service that can bypass CORS restrictions.
+            </p>
+        </div>
+    `;
+    document.getElementById('result').style.display = 'block';
+}
+
+function showError(message) {
+    const errorDiv = document.getElementById('error');
+    errorDiv.textContent = message;
+    errorDiv.style.display = 'block';
+}
+
+// Allow Enter key to trigger lookup
+document.getElementById('domainInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        lookupWhois();
+    }
+});
+</script>
+</body>
+</html>
