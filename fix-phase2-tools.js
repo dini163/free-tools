@@ -1,13 +1,62 @@
-<!DOCTYPE html>
+#!/usr/bin/env node
+
+import fs from 'fs';
+import path from 'path';
+
+const toolsDir = './tools';
+const filesToFix = [
+    'unit-converter.html',
+    'percentage-calculator.html',
+    'age-calculator.html',
+    'date-calculator.html',
+    'time-zone-converter.html',
+    'number-base-converter.html',
+    'roman-numerals-converter.html',
+    'speech-to-text.html',
+    'password-strength-checker.html',
+    'qr-code-reader.html',
+    'barcode-generator.html',
+    'placeholder-image-generator.html',
+    'css-box-shadow-generator.html',
+    'css-border-radius-generator.html',
+    'gradient-generator.html'
+];
+
+console.log(`🔧 Fixing ${filesToFix.length} tool files...\n`);
+
+filesToFix.forEach(file => {
+    const filePath = path.join(toolsDir, file);
+    
+    if (!fs.existsSync(filePath)) {
+        console.log(`⚠️  File not found: ${file}`);
+        return;
+    }
+
+    let content = fs.readFileSync(filePath, 'utf-8');
+    
+    // Extract the main content (everything between <main> and </main>)
+    const mainMatch = content.match(/<main[\s\S]*?<\/main>/i);
+    if (!mainMatch) {
+        console.log(`❌ Could not find <main> content in ${file}`);
+        return;
+    }
+    const mainContent = mainMatch[0];
+
+    // Get the tool name from the file name
+    const toolName = file.replace('.html', '').replace(/-/g, ' ');
+    const toolTitle = toolName.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+    
+    // Create the correct file structure
+    const correctedContent = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9267698062788796" crossorigin="anonymous"></script>
-    <title>Percentage Calculator - Free Online Tool</title>
-    <meta name="description" content="Percentage Calculator - Free online tool for developers and designers.">
-    <meta name="keywords" content="percentage calculator, free online tool, web developer tool">
-    <link rel="canonical" href="https://dini163.github.io/free-tools/tools/percentage-calculator.html">
+    <title>${toolTitle} - Free Online Tool</title>
+    <meta name="description" content="${toolTitle} - Free online tool for developers and designers.">
+    <meta name="keywords" content="${toolName}, free online tool, web developer tool">
+    <link rel="canonical" href="https://dini163.github.io/free-tools/tools/${file}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="../css/style.css">
@@ -56,59 +105,18 @@
     </div>
 </header>
 
-<main>
-        <section class="tool-hero">
-            <h1 data-i18n="pct_title">Percentage Calculator</h1>
-            <p data-i18n="pct_desc">Calculate percentages, percentage increase/decrease, and percentage difference.</p>
-        </section>
-        <section class="tool-container">
-            <div class="pct-modes">
-                <button class="pct-mode-btn active" onclick="switchPctMode('basic')" data-i18n="pct_basic">Basic Percentage</button>
-                <button class="pct-mode-btn" onclick="switchPctMode('increase')" data-i18n="pct_increase">Percentage Increase</button>
-                <button class="pct-mode-btn" onclick="switchPctMode('difference')" data-i18n="pct_diff">Percentage Difference</button>
-            </div>
-
-            <!-- Basic Percentage -->
-            <div id="pctBasic" class="pct-section">
-                <p data-i18n="pct_basic_desc">What is X% of Y?</p>
-                <div class="input-group">
-                    <input type="number" id="pctX" placeholder="X" oninput="calcBasicPct()">
-                    <span>% of</span>
-                    <input type="number" id="pctY" placeholder="Y" oninput="calcBasicPct()">
-                    <span>=</span>
-                    <input type="text" id="pctResult" readonly>
-                </div>
-            </div>
-
-            <!-- Percentage Increase/Decrease -->
-            <div id="pctIncrease" class="pct-section" style="display:none;">
-                <p data-i18n="pct_increase_desc">Percentage increase/decrease from X to Y</p>
-                <div class="input-group">
-                    <label data-i18n="pct_from">From:</label>
-                    <input type="number" id="pctFrom" placeholder="Original value" oninput="calcPctIncrease()">
-                    <label data-i18n="pct_to">To:</label>
-                    <input type="number" id="pctTo" placeholder="New value" oninput="calcPctIncrease()">
-                </div>
-                <div class="pct-result" id="pctIncreaseResult"></div>
-            </div>
-
-            <!-- Percentage Difference -->
-            <div id="pctDifference" class="pct-section" style="display:none;">
-                <p data-i18n="pct_diff_desc">X is what percentage of Y?</p>
-                <div class="input-group">
-                    <input type="number" id="pctPart" placeholder="X" oninput="calcPctDifference()">
-                    <span data-i18n="pct_is_what">is</span>
-                    <input type="number" id="pctWhole" placeholder="Y" oninput="calcPctDifference()">
-                    <span>% of</span>
-                    <input type="text" id="pctDiffResult" readonly>
-                </div>
-            </div>
-        </section>
-    </main>
+${mainContent}
 
 <footer class="footer">
     <p>&copy; 2026 FreeDevTools. All tools run 100% locally in your web browser — absolutely no data is transmitted to any server.</p>
 </footer>
 
 </body>
-</html>
+</html>`;
+
+    // Write the corrected content back to the file
+    fs.writeFileSync(filePath, correctedContent, 'utf-8');
+    console.log(`✅ Fixed: ${file}`);
+});
+
+console.log(`\n🎉 Successfully fixed ${filesToFix.length} files!`);
